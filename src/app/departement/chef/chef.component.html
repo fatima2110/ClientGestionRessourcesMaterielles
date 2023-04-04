@@ -1,0 +1,105 @@
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Datatables</h5>
+          <p>Add lightweight datatables to your project with using the <a
+              href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library.
+            Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+
+
+          <!-- Table with stripped rows -->
+          <div class="row">
+            <div class="col-3 pb-5">
+              <select (change)="onOptionSelected($event.target)" class="form-select" id="validationDefault04" required>
+                <option selected value=1>Ordinateur</option>
+                <option value=2>Imprimante</option>
+              </select>
+            </div>
+
+
+
+            <table *ngIf="showOrdinateur;else alternative" class="table datatable" id="myTbale">
+              <thead>
+
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Enseignant</th>
+                  <th scope="col">CPU</th>
+                  <th scope="col">RAM</th>
+                  <th scope="col">Disque Date</th>
+                  <th scope="col">Ecran</th>
+                  <th scope="col">Quantite</th>
+                  <th scope="col">Date envoie</th>
+                  <th scope="col">Operations</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let besoin of besoinsOrdinateurs;let i =index">
+                  <th scope="row">{{i}}</th>
+                  <td>{{besoin.ensignant}}</td>
+                  <td>{{besoin.cpu}}</td>
+                  <td>{{besoin.ram}}</td>
+                  <td>{{besoin.disque}}</td>
+                  <td>{{besoin.ecran}}</td>
+                  <td>{{besoin.qtn}}</td>
+                  <td>{{besoin.date_envoie}}</td>
+                  <td> <button onclick="confirmer(i)" class="btn btn-success">
+                    <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <button onclick="confirmer(i)" class="btn btn-warning">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+
+
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+            <ng-template #alternative>
+              <table class="table datatable" id="myTbale">
+                <thead>
+
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ensiegnant</th>
+                    <th scope="col">Resolution</th>
+                    <th scope="col">Vitesse</th>
+                    <th scope="col">Quantite</th>
+                    <th scope="col">Date d'envoie</th>
+                    <th scope="col">Operations</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let besoinImprimante of besoinsImprimantes;let i =index">
+                    <th scope="row">{{i}}</th>
+                    <td>{{besoinImprimante.ensignant}}</td>
+                    <td>{{besoinImprimante.resolution}}</td>
+                    <td>{{besoinImprimante.vitesse}}</td>
+                    <td>{{besoinImprimante.qtn}}</td>
+                    <td>{{besoinImprimante.date_envoie}}</td>
+                    <td> <button onclick="confirmer(i)" class="btn btn-success">
+                        Modifier
+                      </button>
+                      <button onclick="confirmer(i)" class="btn btn-warning">
+                        Modifier
+                      </button>
+                    </td>
+                  </tr>
+
+
+
+                </tbody>
+              </table>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

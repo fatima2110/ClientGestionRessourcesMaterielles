@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "node_modules/boxicons/css/boxicons.min.css",
@@ -31,9 +32,9 @@
               "node_modules/quill/dist/quill.snow.css",
               "node_modules/quill/dist/quill.bubble.css",
               "node_modules/simple-datatables/dist/style.css",
-              "src/assets/css/style.css"                                
+              "src/assets/css/style.css"
             ],
-            "scripts": [      
+            "scripts": [
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/jquery/dist/jquery.min.js",
@@ -41,7 +42,9 @@
               "node_modules/quill/dist/quill.min.js",
               "node_modules/simple-datatables/dist/umd/simple-datatables.js",
               "node_modules/tinymce/tinymce.min.js",
-              "src/assets/js/main.js"  
+              "src/assets/js/main.js",
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js"
             ]
           },
           "configurations": {
@@ -107,5 +110,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "bb92dae3-b2b0-4abb-aeb5-51b9fb51c390"
   }
 }

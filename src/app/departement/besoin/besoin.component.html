@@ -1,0 +1,195 @@
+<section class="section">
+  <div class="row">
+    <div class="col-lg-6">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">J'ai un besoin</h5>
+          <p>Cette escpace pour ajouter vos besoin d'ensignment.votre presence dans la reunion de la departement est
+            <code>obligatoire</code> apres avoir collecter tous vous besoins.
+          </p>
+
+          <!-- Browser Default Validation -->
+
+          <label for="validationDefault04" class="form-label">Type de besoin:</label>
+          <select (change)="onOptionSelected($event.target)" class="form-select" id="validationDefault04" required>
+            <option selected value=1>Ordinateur</option>
+            <option value=2>Imprimante</option>
+          </select>
+          <hr>
+
+          <form class="row g-3" *ngIf="showOrdinateur;else alternative">
+            <div class="col-md-4">
+              <label for="validationDefault02" class="form-label">CPU</label>
+              <select [(ngModel)]="newOrdinateur.cpu" name="cpu" class="form-select" id="validationDefault04" required>
+                <option selected value=1>2 CPU</option>
+                <option value="4 CPU">4 CPU</option>
+                <option value="6 CPU">6 CPU</option>
+                <option value="8 CPU">8 CPU</option>
+                <option value="10 CPU">10 CPU</option>
+                <option value="server">server</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="validationDefault02" class="form-label">RAM</label>
+              <select [(ngModel)]="newOrdinateur.ram" name="ram" class="form-select" id="validationDefault04" required>
+                <option selected value="4 GO">4GO</option>
+                <option value="6 GO">6GO</option>
+                <option value="8 GO">8GO</option>
+                <option value="10 Go">10Go</option>
+                <option value="12 Go">12Go</option>
+                <option value="16 Go">16Go</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="validationDefault02" class="form-label">Disque</label>
+              <select [(ngModel)]="newOrdinateur.disque" name="disque" class="form-select" id="validationDefault04"
+                required>
+                <option selected value="128Go SSD">128Go SSD</option>
+                <option value="256Go SSD">256Go SSD</option>
+                <option value="512Go SSD">512Go SSD</option>
+                <option value="1To SSD">1To SSD</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="validationDefault02" class="form-label">Ecran</label>
+              <select [(ngModel)]="newOrdinateur.ecran" name="ecran" class="form-select" id="validationDefault04"
+                required>
+                <option selected value="1920x1080 (Full HD)">1920x1080 (Full HD)</option>
+                <option value="2560x1440 (Quad HD)">2560x1440 (Quad HD)</option>
+                <option value="3840x2160 (Ultra HD ou 4K)">3840x2160 (Ultra HD ou 4K)</option>
+
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label for="validationDefault02" class="form-label">Quantite</label>
+              <input [(ngModel)]="newOrdinateur.qtn" type="number" name="qtn" class="form-control" id="inputEmail">
+            </div>
+
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                <label class="form-check-label" for="invalidCheck2">
+                  J'accepte les termes et les conditions de la departement
+                </label>
+              </div>
+            </div>
+            <div class="col-12">
+              <button (click)="saveOrdinateur()" class="btn btn-primary" type="submit">Envoyer besoin</button>
+            </div>
+          </form>
+          <ng-template #alternative>
+            <form class="row g-3">
+              <div class="col-md-4">
+                <label for="validationDefault02" class="form-label">Resolution</label>
+                <select [(ngModel)]="newImprimante.resolution" name="resolution" class="form-select"
+                  id="validationDefault04" required>
+                  <option selected value="1920x1080 (Full HD)">1920x1080 (Full HD)</option>
+                  <option value="2560x1440 (Quad HD)">2560x1440 (Quad HD)</option>
+                  <option value="3840x2160 (Ultra HD ou 4K)">3840x2160 (Ultra HD ou 4K)</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="validationDefault02" class="form-label">Vitesse</label>
+                <select [(ngModel)]="newImprimante.vitesse" name="vitesse" class="form-select" id="validationDefault04"
+                  required>
+                  <option selected value="28 ppm (noir et blanc)">28 ppm (noir et blanc)</option>
+                  <option value="[15-10] ipm (noir et blanc)">[15-10] ipm (noir et blanc)</option>
+                  <option value="19 ppm (noir et blanc et couleur)">19 ppm (noir et blanc et couleur)</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="validationDefault02" class="form-label">Quantite</label>
+                <input [(ngModel)]="newImprimante.qtn" type="number" name="qtn" class="form-control" id="inputEmail">
+              </div>
+
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                  <label class="form-check-label" for="invalidCheck2">
+                    J'accepte les termes et les conditions de la departement
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <button (click)="saveImprimante()" class="btn btn-primary" type="submit">Envoyer besoin</button>
+              </div>
+            </form>
+
+          </ng-template>
+        </div>
+        <!-- End Browser Default Validation -->
+
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Gestion des besoins</h5>
+
+          <!-- Browser Default Validation -->
+
+
+          <table class="table datatable" id="hello" *ngIf="showOrdinateur;else alternativeTable">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Cpu</th>
+                <th scope="col">Ram</th>
+                <th scope="col">disque</th>
+                <th scope="col">quantite</th>
+                <th scope="col">Operations</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <th scope="row">1</th>
+                <td>10 CPU</td>
+                <td>10 GO</td>
+                <td>128 SSD</td>
+                <td>5</td>
+                <td> <button class="btn btn-success">
+                    <i class="bi bi-pencil-square"></i>
+                  </button><button class="btn btn-warning">
+                    <i class="bi bi-trash"></i>
+                  </button></td>
+              </tr>
+            </tbody>
+          </table>
+          <ng-template #alternativeTable>
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Resolution</th>
+                  <th scope="col">Vitesse</th>
+                  <th scope="col">quantite</th>
+                  <th scope="col">Operations</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <th scope="row">1</th>
+                  <td>2000 x 1500</td>
+                  <td>10 ppm</td>
+                  <td>5</td>
+                  <td> <button class="btn btn-success">
+                      <i class="bi bi-pencil-square"></i>
+                    </button><button class="btn btn-warning">
+                      <i class="bi bi-trash"></i>
+                    </button></td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
