@@ -16,27 +16,27 @@
                 <th scope="col">#</th>
                 <th scope="col">Materiel</th>
                 <th scope="col">Code a barre</th>
-                <th scope="col">Quantite</th>
+
                 <th scope="col">Date d'affectation</th>
                 <th scope="col">Operations</th>
               </tr>
             </thead>
             <tbody>
 
-              <tr *ngFor="let materiel of materils;let i =index">
-                <th scope="row">{{i}}</th>
+              <tr *ngFor="let materiel of materils;let i=index">
+                <th scope="row">{{i+1}}</th>
                 <td>{{materiel.type}}|{{materiel.marque}}</td>
                 <td>{{materiel.code_barre}}</td>
-                <td>{{materiel.qtn}}</td>
+
                 <td>{{materiel.date_affectation}}</td>
-                <td *ngIf="materiel.enPanne;else alternative"> <button onclick="confirmer(i)" class="btn btn-warning"
-                    (click)="confirmerPanne(materiel.type+materiel.marque,i)">
+                <td *ngIf="materiel.enPanne==1;else alternative"> <button class="btn btn-warning"
+                    (click)="confirmerPanne(materiel.type+materiel.marque,materiel.id)">
                     en Panne
                   </button></td>
                 <ng-template #alternative>
                   <td>
                     <button class="btn btn-success text-dark"
-                      (click)="confirmerService(materiel.type+materiel.marque,i)">
+                      (click)="confirmerService(materiel.type+materiel.marque,materiel.id)">
                       en Service
                     </button>
                   </td>

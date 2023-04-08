@@ -13,6 +13,8 @@ export class BesoinComponent implements OnInit {
   showOrdinateur = true;
   newOrdinateur = new Ordinateur();
   newImprimante = new Imprimante();
+  oldImprimante=new Imprimante();
+  oldOrdinateur=new Ordinateur();
   constructor(private ordinateurService: OrdinateurService, private imprimanteService: ImprimanteService) { }
   onOptionSelected(value: any) {
     if (value.value == 2) {
@@ -22,17 +24,38 @@ export class BesoinComponent implements OnInit {
 
     }
   }
-  saveOrdinateur(): void {
-    this.ordinateurService.addOrdinateur(this.newOrdinateur);
+  saveOrdinateur() {
+  this.ordinateurService.addOrdinateur(this.newOrdinateur).subscribe({
+next:(res)=>{
+alert("i'm from typesecript all is good"+res);
+},error:(err)=>{
+  alert("error")
+  console.log(err)
+}
+  });
 
   }
-  saveImprimante(): void {
-    this.imprimanteService.addImprimante(this.newImprimante);
+  saveImprimante() {
+    this.imprimanteService.addImprimante(this.newImprimante).subscribe({
+      next:(res)=>{
+        alert("i'm from typesecript all is good"+res);
+        },error:(err)=>{
+          alert("error")
+          console.log(err)
+        }
+    });
    }
   ngOnInit(): void {
 
   }
-
+getImprimante(i:number):Imprimante{
+this.oldImprimante=this.imprimanteService.getBesoin(i);
+return this.oldImprimante;
+}
+getOrdinateur(i:number):Ordinateur{
+  this.oldOrdinateur=this.ordinateurService.getBesoin(i);
+  return this.oldOrdinateur;
+  }
   deleteBesoinOrdinateur(i:number):void{
     this.ordinateurService.deleteBesoin(i);
   }
@@ -44,7 +67,7 @@ export class BesoinComponent implements OnInit {
     this.imprimanteService.deleteBesoin(i);
   }
   confirmerDeleteImprimante(mat:string,i:number) {
-    if(confirm("vous etes sur de supprimer"+mat +" ?"))
+    if(confirm("vous etes sur de supprimer "+mat +" ?"))
     this.deleteBesoinImprimante(i);
   }
 }

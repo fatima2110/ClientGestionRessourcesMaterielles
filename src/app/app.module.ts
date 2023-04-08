@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
 import { BesoinComponent } from './departement/besoin/besoin.component';
 import { FormsModule } from '@angular/forms';
 import { ChefComponent } from './departement/chef/chef.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ChefComponent } from './departement/chef/chef.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [DatePipe],
   bootstrap: [DepartementComponent]

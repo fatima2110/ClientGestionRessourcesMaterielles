@@ -22,7 +22,7 @@
             <div class="col-md-4">
               <label for="validationDefault02" class="form-label">CPU</label>
               <select [(ngModel)]="newOrdinateur.cpu" name="cpu" class="form-select" id="validationDefault04" required>
-                <option selected value=1>2 CPU</option>
+                <option selected value="2 CPU">2 CPU</option>
                 <option value="4 CPU">4 CPU</option>
                 <option value="6 CPU">6 CPU</option>
                 <option value="8 CPU">8 CPU</option>
@@ -61,10 +61,7 @@
 
               </select>
             </div>
-            <div class="col-md-4">
-              <label for="validationDefault02" class="form-label">Quantite</label>
-              <input [(ngModel)]="newOrdinateur.qtn" type="number" name="qtn" class="form-control" id="inputEmail">
-            </div>
+
 
             <div class="col-12">
               <div class="form-check">
@@ -98,10 +95,7 @@
                   <option value="19 ppm (noir et blanc et couleur)">19 ppm (noir et blanc et couleur)</option>
                 </select>
               </div>
-              <div class="col-md-4">
-                <label for="validationDefault02" class="form-label">Quantite</label>
-                <input [(ngModel)]="newImprimante.qtn" type="number" name="qtn" class="form-control" id="inputEmail">
-              </div>
+
 
 
               <div class="col-12">
@@ -151,9 +145,9 @@
                 <td>10 GO</td>
                 <td>128 SSD</td>
                 <td>5</td>
-                <td> <button class="btn btn-success">
+                <td> <button class="btn btn-success" (click)="getOrdinateur(1)">
                     <i class="bi bi-pencil-square"></i>
-                  </button><button class="btn btn-warning">
+                  </button><button class="btn btn-warning" (click)="confirmerDeleteOrdinateur('text',1)">
                     <i class="bi bi-trash"></i>
                   </button></td>
               </tr>
@@ -177,11 +171,11 @@
                   <td>2000 x 1500</td>
                   <td>10 ppm</td>
                   <td>5</td>
-                  <td> <button class="btn btn-success">
-                      <i class="bi bi-pencil-square"></i>
-                    </button><button class="btn btn-warning">
-                      <i class="bi bi-trash"></i>
-                    </button></td>
+                  <td> <button class="btn btn-success" (click)="getImprimante(1)">
+                    <i class="bi bi-pencil-square"></i>
+                  </button><button class="btn btn-warning" (click)="confirmerDeleteImprimante('text',1)">
+                    <i class="bi bi-trash"></i>
+                  </button></td>
                 </tr>
               </tbody>
             </table>

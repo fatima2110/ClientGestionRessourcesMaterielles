@@ -24,22 +24,48 @@ export class EnsignantComponent {
     // this.prenom="mahfoud";
     // this.age=22;
     // this.tel="0667767123";
-    this.materils=this.materielServiceService.getMateriels();
+   this.materielServiceService.getMateriels().subscribe({
+      next:(res)=>{
+        alert("i'm from typesecript all is good"+res);
+        this.materils=res;
+        },error:(err)=>{
+          alert("error")
+          console.log(err)
+        }
+    });
 
     }
-    enPanne(i:number):void{
-this.materielServiceService.enPanne(i);
+    enPanne(id:number):void{
+
+this.materielServiceService.enPanne(id).subscribe({
+  next:(res)=>{
+    alert("i'm from typesecript all is good"+res);
+    this.materielServiceService.getMateriels();
+    },error:(err)=>{
+      alert("error")
+      console.log(err)
     }
-    enService(i:number):void{
-      this.materielServiceService.enService(i);
+});
+    }
+    enService(id:number):void{
+      this.materielServiceService.enService(id).subscribe({
+        next:(res)=>{
+          alert("i'm from typesecript all is good"+res);
+          this.materielServiceService.getMateriels();
+          },error:(err)=>{
+            alert("error")
+            console.log(err)
           }
-    confirmerPanne(mat:string,i:number) {
+      });
+          }
+    confirmerPanne(mat:string,id:number) {
       if(confirm("vous etes sur "+mat +"en panne ?"))
-      this.enPanne(i);
+      this.enPanne(id);
     }
-    confirmerService(mat:string,i:number) {
+    confirmerService(mat:string,id:number) {
       if(confirm("vous etes sur "+mat +"en service ?"))
-      this.enService(i);
+      console.log(id)
+      this.enService(id);
     }
 
 }

@@ -1,15 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Materiel } from './materiel';
 import { DatePipe } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class MaterielServiceService {
+  private url = "http://localhost:8080/getMateriels/10";
+  private url_panne = "http://localhost:8080/enPanne/8";
+  private url_service = "http://localhost:8080/enService/8";
 
-  constructor(private datePipe: DatePipe) { }
+
+  constructor(private datePipe: DatePipe,private httpClient:HttpClient) { }
   myFunction(dateString: string | null) {
     if (dateString === null) {
       // handle null case
@@ -18,41 +24,17 @@ export class MaterielServiceService {
     return new Date(dateString);
     // use dateObj
   }
-  getMateriels(): Materiel[] {
-    var materiels = [
-      { id: 0, type: "ordinateur mahfoud", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true},
-      { id: 1, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 2, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 3, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:false },
-      { id: 4, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:false },
-      { id: 5, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:false },
-      { id: 6, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:false },
-      { id: 7, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 8, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 9, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 10, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 11, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 12, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 13, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 14, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 14, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 14, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 14, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 14, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 14, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 14, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 14, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 14, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 14, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-      { id: 14, type: "ordinateur", marque: "HP 45", code_barre: '123679', qtn: 12, date_affectation: this.myFunction("26/03/2000"),enPanne:true },
-    ];
+  getMateriels(): Observable<Materiel[]> {
+    var materiels=this.httpClient.get<Materiel[]>(this.url);
     console.log(materiels);
     return materiels;
   }
-  enPanne(i:number):void{
-
+  enPanne(id:number):Observable<void>{
+return this.httpClient.get<void>("http://localhost:8080/enPanne/"+id);
   }
-  enService(i:number):void{}
+  enService(id:number):Observable<void>{
+return this.httpClient.get<void>("http://localhost:8080/enService/"+id);
+  }
 
 
 
