@@ -26,7 +26,7 @@ export class ImprimanteService {
     return Object.create(null);
   }
   modifyBesoin(besoin: Imprimante): Observable<void> {
-    return this.httpClient.put<void>("http://localhost:8080/editOrdinateur",besoin);
+    return this.httpClient.put<void>("http://localhost:8080/editImprimente",besoin);
   }
   getAllBesoins():Observable<Imprimante[]>{
   return this.httpClient.get<Imprimante[]>("http://localhost:8080/getBesoinsImpriments/1");
