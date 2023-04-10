@@ -9,7 +9,7 @@ import {HttpClient,HttpHeaders} from '@angular/common/http';
 export class OrdinateurService {
 
   private url="http://localhost:8080/saveOrdinateur";
-  constructor(private httClient:HttpClient) { }
+  constructor(private httpClient:HttpClient) { }
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -18,15 +18,19 @@ export class OrdinateurService {
   addOrdinateur(newOrdinateur:Ordinateur):Observable<any>{
     console.log(newOrdinateur);
     alert("ordinateur"+newOrdinateur.cpu);
-return this.httClient.post(this.url,newOrdinateur);
+return this.httpClient.post(this.url,newOrdinateur);
   }
-  deleteBesoin(i:number):void{
+  deleteBesoin(id: number): Observable<void> {
+    return this.httpClient.delete<void>("http://localhost:8080/deleteOrdinateur/"+id);
 
   }
   getBesoin(i:number):Ordinateur{
     return Object.create(null);
   }
-  modifyBesoin(besoin :Ordinateur):void{
-
+  modifyBesoin(besoin :Ordinateur):Observable<void>{
+    return this.httpClient.put<void>("http://localhost:8080/editOrdinateur",besoin);
+  }
+  getAllBesoins():Observable<Ordinateur[]>{
+    return this.httpClient.get<Ordinateur[]>("http://localhost:8080/getBesoinsOrdinateurs/1");
   }
 }

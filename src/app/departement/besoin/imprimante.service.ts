@@ -18,13 +18,17 @@ export class ImprimanteService {
     alert("imprimente" + newImprimante.resolution);
     return this.httpClient.post(this.url, newImprimante);
   }
-  deleteBesoin(i: number): void {
+  deleteBesoin(id: number): Observable<void> {
+    return this.httpClient.delete<void>("http://localhost:8080/deleteImprimente/"+id);
 
   }
   getBesoin(i: number): Imprimante {
     return Object.create(null);
   }
-  modifyBesoin(besoin: Imprimante): void {
-
+  modifyBesoin(besoin: Imprimante): Observable<void> {
+    return this.httpClient.put<void>("http://localhost:8080/editOrdinateur",besoin);
+  }
+  getAllBesoins():Observable<Imprimante[]>{
+  return this.httpClient.get<Imprimante[]>("http://localhost:8080/getBesoinsImpriments/1");
   }
 }

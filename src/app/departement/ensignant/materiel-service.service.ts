@@ -10,7 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
   providedIn: 'root'
 })
 export class MaterielServiceService {
-  private url = "http://localhost:8080/getMateriels/10";
+  private url = "http://localhost:8080/getMateriels/1";
   private url_panne = "http://localhost:8080/enPanne/8";
   private url_service = "http://localhost:8080/enService/8";
 

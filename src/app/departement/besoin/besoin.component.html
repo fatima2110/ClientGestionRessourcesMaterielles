@@ -27,7 +27,7 @@
                 <option value="6 CPU">6 CPU</option>
                 <option value="8 CPU">8 CPU</option>
                 <option value="10 CPU">10 CPU</option>
-                <option value="server">server</option>
+                <option value="12 CPU">12 CPU</option>
               </select>
             </div>
             <div class="col-md-4">
@@ -36,7 +36,7 @@
                 <option selected value="4 GO">4GO</option>
                 <option value="6 GO">6GO</option>
                 <option value="8 GO">8GO</option>
-                <option value="10 Go">10Go</option>
+                <option value="10 Go">10 Go</option>
                 <option value="12 Go">12Go</option>
                 <option value="16 Go">16Go</option>
               </select>
@@ -133,21 +133,21 @@
                 <th scope="col">Cpu</th>
                 <th scope="col">Ram</th>
                 <th scope="col">disque</th>
-                <th scope="col">quantite</th>
+                <th scope="col">Ecran</th>
                 <th scope="col">Operations</th>
               </tr>
             </thead>
             <tbody>
 
-              <tr>
-                <th scope="row">1</th>
-                <td>10 CPU</td>
-                <td>10 GO</td>
-                <td>128 SSD</td>
-                <td>5</td>
-                <td> <button class="btn btn-success" (click)="getOrdinateur(1)">
+              <tr  *ngFor="let besoin of besoinsOrdinateurs;let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{besoin.cpu}}</td>
+                <td>{{besoin.ram}}</td>
+                <td>{{besoin.disque}}</td>
+                <td>{{besoin.ecran}}</td>
+                <td> <button class="btn btn-success" (click)="getOrdinateur(besoin)">
                     <i class="bi bi-pencil-square"></i>
-                  </button><button class="btn btn-warning" (click)="confirmerDeleteOrdinateur('text',1)">
+                  </button><button class="btn btn-warning" (click)="confirmerDeleteOrdinateur('text',besoin.id)">
                     <i class="bi bi-trash"></i>
                   </button></td>
               </tr>
@@ -160,20 +160,19 @@
                   <th scope="col">#</th>
                   <th scope="col">Resolution</th>
                   <th scope="col">Vitesse</th>
-                  <th scope="col">quantite</th>
                   <th scope="col">Operations</th>
                 </tr>
               </thead>
               <tbody>
 
-                <tr>
-                  <th scope="row">1</th>
-                  <td>2000 x 1500</td>
-                  <td>10 ppm</td>
-                  <td>5</td>
-                  <td> <button class="btn btn-success" (click)="getImprimante(1)">
+                <tr *ngFor="let besoin of besoinsImprimentes;let i=index">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{besoin.resolution}}</td>
+                  <td>{{besoin.vitesse}}</td>
+
+                  <td> <button class="btn btn-success" (click)="getImprimante(besoin)">
                     <i class="bi bi-pencil-square"></i>
-                  </button><button class="btn btn-warning" (click)="confirmerDeleteImprimante('text',1)">
+                  </button><button class="btn btn-warning" (click)="confirmerDeleteImprimante('text',besoin.id)">
                     <i class="bi bi-trash"></i>
                   </button></td>
                 </tr>

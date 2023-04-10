@@ -29,7 +29,7 @@
                 <td>{{materiel.code_barre}}</td>
 
                 <td>{{materiel.date_affectation}}</td>
-                <td *ngIf="materiel.enPanne==1;else alternative"> <button class="btn btn-warning"
+                <td *ngIf="materiel.enPanne==0;else alternative"> <button class="btn btn-warning"
                     (click)="confirmerPanne(materiel.type+materiel.marque,materiel.id)">
                     en Panne
                   </button></td>

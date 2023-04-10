@@ -26,7 +26,6 @@ export class EnsignantComponent {
     // this.tel="0667767123";
    this.materielServiceService.getMateriels().subscribe({
       next:(res)=>{
-        alert("i'm from typesecript all is good"+res);
         this.materils=res;
         },error:(err)=>{
           alert("error")
@@ -39,8 +38,7 @@ export class EnsignantComponent {
 
 this.materielServiceService.enPanne(id).subscribe({
   next:(res)=>{
-    alert("i'm from typesecript all is good"+res);
-    this.materielServiceService.getMateriels();
+    this.ngOnInit();
     },error:(err)=>{
       alert("error")
       console.log(err)
@@ -50,8 +48,7 @@ this.materielServiceService.enPanne(id).subscribe({
     enService(id:number):void{
       this.materielServiceService.enService(id).subscribe({
         next:(res)=>{
-          alert("i'm from typesecript all is good"+res);
-          this.materielServiceService.getMateriels();
+          this.ngOnInit();
           },error:(err)=>{
             alert("error")
             console.log(err)
