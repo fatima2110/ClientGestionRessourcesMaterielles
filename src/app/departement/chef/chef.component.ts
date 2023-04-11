@@ -29,10 +29,18 @@ export class ChefComponent implements OnInit {
 
   }
   ngAfterViewInit(): void {
-    $(document).ready(function () {
+    /*$(document).ready(function() {
       $('#myTable').DataTable();
       $('.datatable').dataTable();
-    });
+    });*/
+
+    setTimeout(()=>{
+      $(document).ready(function() {
+        $('#myTable').DataTable();
+        $('.datatable').dataTable();
+      });
+    },500);
+
   }
   onOptionSelected(value: any) {
     if (value.value == 2) {

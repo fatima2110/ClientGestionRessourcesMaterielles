@@ -28,9 +28,6 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "node_modules/boxicons/css/boxicons.min.css",
-              "node_modules/quill/dist/quill.core.css",
-              "node_modules/quill/dist/quill.snow.css",
-              "node_modules/quill/dist/quill.bubble.css",
               "node_modules/simple-datatables/dist/style.css",
               "src/assets/css/style.css"
             ],
@@ -39,7 +36,6 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/apexcharts/dist/apexcharts.min.js",
-              "node_modules/quill/dist/quill.min.js",
               "node_modules/simple-datatables/dist/umd/simple-datatables.js",
               "node_modules/tinymce/tinymce.min.js",
               "src/assets/js/main.js",
