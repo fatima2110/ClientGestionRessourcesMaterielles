@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DepartementComponent } from './departement/departement.component';
 import { EnsignantComponent } from './departement/ensignant/ensignant.component';
-import { ImprimanteComponent } from './imprimante/imprimante.component';
 import { DatePipe } from '@angular/common';
 import { BesoinComponent } from './departement/besoin/besoin.component';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     DepartementComponent,
     EnsignantComponent,
-    ImprimanteComponent,
     BesoinComponent,
     ChefComponent
   ],

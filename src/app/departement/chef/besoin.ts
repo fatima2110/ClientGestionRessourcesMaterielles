@@ -7,6 +7,7 @@ export class Besoin {
   disque: string;
   ecran: string;
 
+
   constructor() {
     this.id = 0;
     this.nom = '';
@@ -15,6 +16,7 @@ export class Besoin {
     this.ram='';
     this.disque='';
     this.ecran='';
+
 
 
   }

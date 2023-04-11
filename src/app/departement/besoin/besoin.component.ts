@@ -18,6 +18,7 @@ export class BesoinComponent implements OnInit {
   oldOrdinateur = new Ordinateur();
   besoinsOrdinateurs: Ordinateur[];
   besoinsImprimentes: Imprimante[];
+  title='Besoin - Enseignement';
   constructor(private ordinateurService: OrdinateurService, private imprimanteService: ImprimanteService) {
     this.besoinsOrdinateurs = [];
     this.besoinsImprimentes = [];

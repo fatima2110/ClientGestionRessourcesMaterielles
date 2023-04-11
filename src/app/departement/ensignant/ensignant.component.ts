@@ -11,7 +11,7 @@ declare var $: any;
 })
 export class EnsignantComponent {
   materils:any;
-  title='Dashboard - Departement';
+  title='Dashboard - Les ressources affectees';
 
   ngAfterViewInit(): void {
     $(document).ready(function() {

@@ -1,7 +1,15 @@
+<div class="pagetitle">
+  <h1> {{this.title}}</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active">Dashboard</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
 <section class="section">
   <div class="row">
     <div class="col-lg-12">
-
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Datatables</h5>
@@ -16,16 +24,14 @@
                 <th scope="col">#</th>
                 <th scope="col">Materiel</th>
                 <th scope="col">Code a barre</th>
-
                 <th scope="col">Date d'affectation</th>
                 <th scope="col">Operations</th>
               </tr>
             </thead>
             <tbody>
-
               <tr *ngFor="let materiel of materils;let i=index">
                 <th scope="row">{{i+1}}</th>
-                <td>{{materiel.type}}|{{materiel.marque}}</td>
+                <td>{{materiel.marque}}</td>
                 <td>{{materiel.code_barre}}</td>
 
                 <td>{{materiel.date_affectation}}</td>

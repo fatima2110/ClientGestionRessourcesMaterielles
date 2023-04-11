@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ImprimanteService {
-  private url = "http://localhost:8080/saveImprimante";
+  private url = "http://localhost:8080/saveImprimante/1";
 
 
   constructor(private httpClient: HttpClient) { }
@@ -30,5 +30,8 @@ export class ImprimanteService {
   }
   getAllBesoins():Observable<Imprimante[]>{
   return this.httpClient.get<Imprimante[]>("http://localhost:8080/getBesoinsImpriments/1");
+  }
+  validerImprimente(imprimente:Imprimante){
+    return this.httpClient.put<void>("http://localhost:8080/validImprimente/",imprimente);
   }
 }

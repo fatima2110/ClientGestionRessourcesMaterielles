@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Besoin } from './besoin';
-import { Imprimante } from '../besoin/imprimante';
 import { BesoinImprimante } from './besoin-imprimante';
 import { Observable } from 'rxjs';
 
@@ -30,4 +29,5 @@ export class BesoinService {
 return this.httpclient.get<BesoinImprimante[]>("http://localhost:8080/getBesoinsImprimentesChef/informatique");
 
   }
+
 }

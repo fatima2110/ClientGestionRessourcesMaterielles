@@ -8,7 +8,7 @@ import {HttpClient,HttpHeaders} from '@angular/common/http';
 })
 export class OrdinateurService {
 
-  private url="http://localhost:8080/saveOrdinateur";
+  private url="http://localhost:8080/saveOrdinateur/1";
   constructor(private httpClient:HttpClient) { }
   private httpOptions = {
     headers: new HttpHeaders({
@@ -28,9 +28,13 @@ return this.httpClient.post(this.url,newOrdinateur);
     return Object.create(null);
   }
   modifyBesoin(besoin :Ordinateur):Observable<void>{
-    return this.httpClient.put<void>("http://localhost:8080/editOrdinateur",besoin);
+    return this.httpClient.put<void>("http://localhost:8080/editOrdinateur/",besoin);
   }
   getAllBesoins():Observable<Ordinateur[]>{
     return this.httpClient.get<Ordinateur[]>("http://localhost:8080/getBesoinsOrdinateurs/1");
   }
+  validerOrdinateur(ordinateur:Ordinateur){
+    return this.httpClient.put<void>("http://localhost:8080/validOrdibateur/",ordinateur);
+  }
+
 }
