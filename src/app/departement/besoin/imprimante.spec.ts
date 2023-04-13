@@ -1,4 +1,4 @@
-import { Imprimante } from './imprimante';
+import { Imprimante } from '../../../Modules/imprimante';
 
 describe('Imprimante', () => {
   it('should create an instance', () => {

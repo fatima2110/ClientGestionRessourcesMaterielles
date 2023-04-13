@@ -3,10 +3,26 @@
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-      <li class="breadcrumb-item active">Dashboard</li>
+      <li class="breadcrumb-item active">{{this.stitle}}</li>
     </ol>
   </nav>
 </div><!-- End Page Title -->
+<div *ngIf="notif==1" class="alert alert-success alert-dismissible fade show" role="alert">
+  <i class="bi bi-star me-1"></i>
+  Votre besoin a ete ajoute avec <strong>succes</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div *ngIf="notif==2" class="alert alert-warning alert-dismissible fade show" role="alert">
+  <i class="bi bi-star me-1"></i>
+  Votre besoin a ete supprimer avec <strong>succes</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div *ngIf="notif==3" class="alert alert-primary alert-dismissible fade show" role="alert">
+  <i class="bi bi-star me-1"></i>
+  Votre besoin a ete modifie avec <strong>succes</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 <section class="section">
   <div class="row">
     <div class="col-lg-6">
@@ -73,12 +89,7 @@
 
 
             <div class="col-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                <label class="form-check-label" for="invalidCheck2">
-                  J'accepte les termes et les conditions de la departement
-                </label>
-              </div>
+
             </div>
             <div class="col-12">
               <button (click)="saveOrdinateur()" class="btn btn-primary" type="submit">Envoyer besoin</button>
@@ -107,14 +118,7 @@
 
 
 
-              <div class="col-12">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                  <label class="form-check-label" for="invalidCheck2">
-                    J'accepte les termes et les conditions de la departement
-                  </label>
-                </div>
-              </div>
+
 
               <div class="col-12">
                 <button (click)="saveImprimante()" class="btn btn-primary" type="submit">Envoyer besoin</button>

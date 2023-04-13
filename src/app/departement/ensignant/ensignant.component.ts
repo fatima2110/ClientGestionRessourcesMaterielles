@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MaterielServiceService } from './materiel-service.service';
-import { Materiel } from './materiel';
+import { MaterielServiceService } from '../../../services/materiel-service.service';
+import { Materiel } from '../../../Modules/materiel';
 import { AfterViewInit } from '@angular/core';
 declare var $: any;
 
@@ -12,13 +12,26 @@ declare var $: any;
 export class EnsignantComponent {
   materils:any;
   title='Dashboard - Les ressources affectees';
+  stitle='les - affectations';
+  enPannAlert:number;
 
   ngAfterViewInit(): void {
-    $(document).ready(function() {
+    /*$(document).ready(function() {
       $('#myTable').DataTable();
       $('.datatable').dataTable();
-    });}
-  constructor(private materielServiceService:MaterielServiceService){}
+    });*/
+
+    setTimeout(()=>{
+      $(document).ready(function() {
+        $('#myTable').DataTable();
+        //$('.datatable').dataTable();
+      });
+    },500);
+
+  }
+  constructor(private materielServiceService:MaterielServiceService){
+    this.enPannAlert=0;
+  }
   ngOnInit(): void {
     // this.Nom="chdaoui";
     // this.prenom="mahfoud";
@@ -27,6 +40,8 @@ export class EnsignantComponent {
    this.materielServiceService.getMateriels().subscribe({
       next:(res)=>{
         this.materils=res;
+        //console.log(res)
+
         },error:(err)=>{
           alert("error")
           console.log(err)
@@ -39,30 +54,17 @@ export class EnsignantComponent {
 this.materielServiceService.enPanne(id).subscribe({
   next:(res)=>{
     this.ngOnInit();
+    this.enPannAlert=1;
     },error:(err)=>{
       alert("error")
       console.log(err)
     }
 });
     }
-    enService(id:number):void{
-      this.materielServiceService.enService(id).subscribe({
-        next:(res)=>{
-          this.ngOnInit();
-          },error:(err)=>{
-            alert("error")
-            console.log(err)
-          }
-      });
-          }
     confirmerPanne(mat:string,id:number) {
       if(confirm("vous etes sur "+mat +"en panne ?"))
       this.enPanne(id);
     }
-    confirmerService(mat:string,id:number) {
-      if(confirm("vous etes sur "+mat +"en service ?"))
-      console.log(id)
-      this.enService(id);
-    }
+
 
 }

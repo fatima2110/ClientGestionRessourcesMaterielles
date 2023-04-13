@@ -1,9 +1,10 @@
-import { Besoin } from './../chef/besoin';
+import { Besoin } from '../../../Modules/besoin';
 import { Component, OnInit } from '@angular/core';
-import { Ordinateur } from './ordinateur';
-import { Imprimante } from './imprimante';
-import { OrdinateurService } from './ordinateur.service';
-import { ImprimanteService } from './imprimante.service';
+import { Ordinateur } from '../../../Modules/ordinateur';
+import { Imprimante } from '../../../Modules/imprimante';
+import { OrdinateurService } from '../../../services/ordinateur.service';
+import { ImprimanteService } from '../../../services/imprimante.service';
+declare var $: any;
 
 @Component({
   selector: 'app-besoin',
@@ -18,10 +19,28 @@ export class BesoinComponent implements OnInit {
   oldOrdinateur = new Ordinateur();
   besoinsOrdinateurs: Ordinateur[];
   besoinsImprimentes: Imprimante[];
-  title='Besoin - Enseignement';
+  title = 'Dashboard - Mes besoins';
+  notif: number;
+  stitle='ajouter-modifier-supprimer-mes besoins';
+
   constructor(private ordinateurService: OrdinateurService, private imprimanteService: ImprimanteService) {
     this.besoinsOrdinateurs = [];
     this.besoinsImprimentes = [];
+    this.notif = 0;
+  }
+  ngAfterViewInit(): void {
+    /*$(document).ready(function() {
+      $('#myTable').DataTable();
+      $('.datatable').dataTable();
+    });*/
+
+    setTimeout(()=>{
+      $(document).ready(function() {
+        $('#myTable').DataTable();
+        //$('.datatable').dataTable();
+      });
+    },500);
+
   }
   onOptionSelected(value: any) {
     if (value.value == 2) {
@@ -34,7 +53,11 @@ export class BesoinComponent implements OnInit {
   saveOrdinateur() {
     this.ordinateurService.addOrdinateur(this.newOrdinateur).subscribe({
       next: (res) => {
-this.ngOnInit();
+        this.ngOnInit();
+        if (this.newOrdinateur.id != 0)
+          this.notif = 1;
+        else
+          this.notif = 3;
       }, error: (err) => {
         alert("error")
         console.log(err)
@@ -46,6 +69,12 @@ this.ngOnInit();
     this.imprimanteService.addImprimante(this.newImprimante).subscribe({
       next: (res) => {
         this.ngOnInit();
+        if (this.newImprimante.id != 0)
+          this.notif = 1;
+        else
+          this.notif = 3;
+
+
       }, error: (err) => {
         alert("error")
         console.log(err)
@@ -75,18 +104,20 @@ this.ngOnInit();
   }
 
   getImprimante(i: Imprimante): void {
-    this.newImprimante=i;
+    this.newImprimante = i;
 
   }
   getOrdinateur(besoinOrdinateur: Ordinateur): void {
     console.log(besoinOrdinateur);
-   this.newOrdinateur=besoinOrdinateur;
+    this.newOrdinateur = besoinOrdinateur;
   }
   deleteBesoinOrdinateur(i: number): void {
     this.ordinateurService.deleteBesoin(i).subscribe({
       next: (res) => {
 
-       this.ngOnInit();
+        this.ngOnInit();
+        this.notif = 2;
+
       }, error: (err) => {
         alert("error")
         console.log(err)
@@ -101,7 +132,9 @@ this.ngOnInit();
     this.imprimanteService.deleteBesoin(i).subscribe({
       next: (res) => {
 
-       this.ngOnInit();
+        this.ngOnInit();
+        this.notif = 2;
+
       }, error: (err) => {
         alert("error")
         console.log(err)

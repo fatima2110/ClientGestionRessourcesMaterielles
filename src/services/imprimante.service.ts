@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Imprimante } from './imprimante';
-import { Besoin } from '../chef/besoin';
+import { Imprimante } from '../Modules/imprimante';
+import { Besoin } from '../Modules/besoin';
 import { Observable } from 'rxjs';
 
 
@@ -15,7 +15,7 @@ export class ImprimanteService {
   constructor(private httpClient: HttpClient) { }
   addImprimante(newImprimante: Imprimante): Observable<any> {
     console.log(newImprimante);
-    alert("imprimente" + newImprimante.resolution);
+    //alert("imprimente" + newImprimante.resolution);
     return this.httpClient.post(this.url, newImprimante);
   }
   deleteBesoin(id: number): Observable<void> {

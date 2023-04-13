@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
-import { OrdinateurService } from './../besoin/ordinateur.service';
-import { BesoinImprimante } from './besoin-imprimante';
+import { OrdinateurService } from '../../../services/ordinateur.service';
+import { BesoinImprimante } from '../../../Modules/besoin-imprimante';
 import { Component, OnInit } from '@angular/core';
-import { Besoin } from './besoin';
-import { BesoinService } from './besoin.service';
-import { ImprimanteService } from '../besoin/imprimante.service';
-import { Ordinateur } from '../besoin/ordinateur';
-import { Imprimante } from '../besoin/imprimante';
+import { Besoin } from '../../../Modules/besoin';
+import { BesoinService } from '../../../services/besoin.service';
+import { ImprimanteService } from '../../../services/imprimante.service';
+import { Ordinateur } from '../../../Modules/ordinateur';
+import { Imprimante } from '../../../Modules/imprimante';
 declare var $: any;
 
 @Component({
@@ -21,18 +21,29 @@ export class ChefComponent implements OnInit {
   besoinOrdinateur = new Ordinateur();
   besoinImprimente = new Imprimante();
   idEnseignat:number;
-  title='Gestion - Besoins - Enseignement';
+  notif:number;
+  title='Dashboard - Gestion des besoins';
+  stitle='gerer-besoins';
   constructor(private besoinservice: BesoinService, private ordinateurService: OrdinateurService, private impriService: ImprimanteService) {
     this.besoinsImprimantes = [];
     this.besoinsOrdinateurs = [];
     this.idEnseignat=0;
+    this.notif=0;
 
   }
   ngAfterViewInit(): void {
-    $(document).ready(function () {
+    /*$(document).ready(function() {
       $('#myTable').DataTable();
       $('.datatable').dataTable();
-    });
+    });*/
+
+    setTimeout(()=>{
+      $(document).ready(function() {
+        $('#myTable').DataTable();
+        //$('.datatable').dataTable();
+      });
+    },500);
+
   }
   onOptionSelected(value: any) {
     if (value.value == 2) {
@@ -67,6 +78,8 @@ export class ChefComponent implements OnInit {
       this.impriService.deleteBesoin(besoin.id).subscribe({
         next: (res) => {
           this.ngOnInit();
+    this.notif=2;
+
           // this.ngOnInit();
         }, error: (err) => {
           alert("error")
@@ -79,6 +92,8 @@ export class ChefComponent implements OnInit {
       this.ordinateurService.deleteBesoin(besoin.id).subscribe({
         next: (res) => {
           this.ngOnInit();
+    this.notif=2;
+
           // this.ngOnInit();
         }, error: (err) => {
           alert("error")
@@ -103,6 +118,8 @@ export class ChefComponent implements OnInit {
     this.ordinateurService.modifyBesoin(ordinateur).subscribe({
       next: (res) => {
         this.ngOnInit();
+    this.notif=1;
+
         // this.ngOnInit();
       }, error: (err) => {
         alert("error")
@@ -114,6 +131,8 @@ export class ChefComponent implements OnInit {
     this.impriService.modifyBesoin(imprimente).subscribe({
       next: (res) => {
         this.ngOnInit();
+    this.notif=1;
+
         // this.ngOnInit();
       }, error: (err) => {
         alert("error")
@@ -132,6 +151,8 @@ export class ChefComponent implements OnInit {
 this.ordinateurService.validerOrdinateur(this.besoinOrdinateur).subscribe({
   next: (res) => {
     this.ngOnInit();
+this.notif=3;
+
     // this.ngOnInit();
   }, error: (err) => {
     alert("error")
@@ -152,6 +173,7 @@ validerImprimentes(){
 this.impriService.validerImprimente(this.besoinImprimente).subscribe({
 next: (res) => {
   this.ngOnInit();
+this.notif=3;
   // this.ngOnInit();
 }, error: (err) => {
   alert("error")

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ImprimanteService } from './imprimante.service';
+import { ImprimanteService } from '../../../services/imprimante.service';
 
 describe('ImprimanteService', () => {
   let service: ImprimanteService;
