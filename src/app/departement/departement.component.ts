@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { AuthService } from 'src/services/AuthService';
+import { AuthService } from 'src/app/services/AuthService';
 declare var $: any;
 
 @Component({

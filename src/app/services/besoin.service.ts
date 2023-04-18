@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Besoin } from '../Modules/besoin';
-import { BesoinImprimante } from '../Modules/besoin-imprimante';
+import { Besoin } from '../models/besoin';
+import { BesoinImprimante } from '../models/besoin-imprimante';
 import { Observable } from 'rxjs';
 
 

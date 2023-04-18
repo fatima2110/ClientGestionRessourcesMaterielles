@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Materiel } from '../Modules/materiel';
+import { Materiel } from '../models/materiel';
 import { DatePipe } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 

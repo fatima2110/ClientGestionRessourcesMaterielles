@@ -7,7 +7,7 @@ import { BesoinComponent } from './departement/besoin/besoin.component';
 import { ChefComponent } from './departement/chef/chef.component';
 import { DepartementComponent } from './departement/departement.component';
 import { EnsignantComponent } from './departement/ensignant/ensignant.component';
-import { AuthGuard } from '../services/AuthGuard';
+import { AuthGuard } from './services/AuthGuard';
 
 const routes: Routes = [
   {path: 'departement',

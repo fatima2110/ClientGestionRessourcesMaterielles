@@ -1,9 +1,9 @@
-import { Besoin } from '../../../Modules/besoin';
+import { Besoin } from '../../models/besoin';
 import { Component, OnInit } from '@angular/core';
-import { Ordinateur } from '../../../Modules/ordinateur';
-import { Imprimante } from '../../../Modules/imprimante';
-import { OrdinateurService } from '../../../services/ordinateur.service';
-import { ImprimanteService } from '../../../services/imprimante.service';
+import { Ordinateur } from '../../models/ordinateur';
+import { Imprimante } from '../../models/imprimante';
+import { OrdinateurService } from '../../services/ordinateur.service';
+import { ImprimanteService } from '../../services/imprimante.service';
 declare var $: any;
 
 @Component({

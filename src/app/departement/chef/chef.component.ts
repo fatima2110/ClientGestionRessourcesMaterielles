@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
-import { OrdinateurService } from '../../../services/ordinateur.service';
-import { BesoinImprimante } from '../../../Modules/besoin-imprimante';
+import { OrdinateurService } from '../../services/ordinateur.service';
+import { BesoinImprimante } from '../../models/besoin-imprimante';
 import { Component, OnInit } from '@angular/core';
-import { Besoin } from '../../../Modules/besoin';
-import { BesoinService } from '../../../services/besoin.service';
-import { ImprimanteService } from '../../../services/imprimante.service';
-import { Ordinateur } from '../../../Modules/ordinateur';
-import { Imprimante } from '../../../Modules/imprimante';
+import { Besoin } from '../../models/besoin';
+import { BesoinService } from '../../services/besoin.service';
+import { ImprimanteService } from '../../services/imprimante.service';
+import { Ordinateur } from '../../models/ordinateur';
+import { Imprimante } from '../../models/imprimante';
 declare var $: any;
 
 @Component({

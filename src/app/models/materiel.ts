@@ -1,4 +1,4 @@
-import { Panne } from "src/Modules/panne";
+import { Panne } from "src/app/models/panne";
 
 export class Materiel {
   id:number;

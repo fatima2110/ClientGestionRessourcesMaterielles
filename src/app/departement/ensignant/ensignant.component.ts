@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { MaterielServiceService } from '../../../services/materiel-service.service';
-import { Materiel } from '../../../Modules/materiel';
-import { AfterViewInit } from '@angular/core';
+import { MaterielServiceService } from '../../services/materiel-service.service';
 declare var $: any;
 
 @Component({
@@ -16,15 +14,9 @@ export class EnsignantComponent {
   enPannAlert:number;
 
   ngAfterViewInit(): void {
-    /*$(document).ready(function() {
-      $('#myTable').DataTable();
-      $('.datatable').dataTable();
-    });*/
-
     setTimeout(()=>{
       $(document).ready(function() {
         $('#myTable').DataTable();
-        //$('.datatable').dataTable();
       });
     },500);
 
@@ -33,15 +25,9 @@ export class EnsignantComponent {
     this.enPannAlert=0;
   }
   ngOnInit(): void {
-    // this.Nom="chdaoui";
-    // this.prenom="mahfoud";
-    // this.age=22;
-    // this.tel="0667767123";
    this.materielServiceService.getMateriels().subscribe({
       next:(res)=>{
         this.materils=res;
-        //console.log(res)
-
         },error:(err)=>{
           alert("error")
           console.log(err)

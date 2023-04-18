@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Ordinateur } from '../Modules/ordinateur';
+import { Ordinateur } from '../models/ordinateur';
 import { Observable } from 'rxjs';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
 
