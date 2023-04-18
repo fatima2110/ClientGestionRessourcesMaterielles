@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
           this.authService.setRole(this.role);
           this.authService.setToken(this.token);
           this.authService.setIsLoggedIn("true");
-          this.router.navigate(['/departement']);
+          this.router.navigate(['departement/home']);
         }else this.router.navigate(['/error']);
       },error : (err)=>{
         console.log(err);

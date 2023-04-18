@@ -10,12 +10,9 @@ import { EnsignantComponent } from './departement/ensignant/ensignant.component'
 import { AuthGuard } from '../services/AuthGuard';
 
 const routes: Routes = [
-  //{ path: 'departement', loadChildren: () => import('./departement/departement.module').then(m => m.DepartementModule) },
   {path: 'departement',
     component: DepartementComponent,
     canActivate: [AuthGuard],
-    //redirectTo:'home',
-    //pathMatch:'full',
     children: [
       {
         path: 'gestion-besoins',
@@ -23,7 +20,7 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'dashboard',
+        path: 'home',
         component: EnsignantComponent,
         canActivate: [AuthGuard]
       },
