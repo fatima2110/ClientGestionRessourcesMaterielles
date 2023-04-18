@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Besoin } from '../models/besoin';
 import { BesoinImprimante } from '../models/besoin-imprimante';
 import { Observable } from 'rxjs';
+import { AuthService } from './AuthService';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class BesoinService {
 
-  constructor(private httpclient:HttpClient) {
+  constructor(private httpclient:HttpClient, private auth:AuthService) {
 
    }
   myFunction(dateString: string | null) {
@@ -22,11 +23,23 @@ export class BesoinService {
     // use dateObj
   }
   getBesoinsOrdinateurs():Observable<Besoin[]>{
-    return this.httpclient.get<Besoin[]>("http://localhost:8080/getBesoinsOrdinateurChef/informatique");
+    const token= this.auth.getToken();
+    const httpOptions = {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    };
+    return this.httpclient.get<Besoin[]>("http://localhost:8080/getBesoinsOrdinateurChef/informatique",httpOptions);
 
   }
   getBesoinsImprimates():Observable<BesoinImprimante[]>{
-return this.httpclient.get<BesoinImprimante[]>("http://localhost:8080/getBesoinsImprimentesChef/informatique");
+    const token= this.auth.getToken();
+    const httpOptions = {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    };
+    return this.httpclient.get<BesoinImprimante[]>("http://localhost:8080/getBesoinsImprimentesChef/informatique",httpOptions);
 
   }
 

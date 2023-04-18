@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Materiel } from '../models/materiel';
 import { DatePipe } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+import { AuthService } from './AuthService';
 
 
 @Injectable({
@@ -15,7 +15,7 @@ export class MaterielServiceService {
   private url_service = "http://localhost:8080/enService/8";
 
 
-  constructor(private datePipe: DatePipe,private httpClient:HttpClient) { }
+  constructor(private datePipe: DatePipe,private httpClient:HttpClient, private auth:AuthService) { }
   myFunction(dateString: string | null) {
     if (dateString === null) {
       // handle null case
@@ -25,12 +25,24 @@ export class MaterielServiceService {
     // use dateObj
   }
   getMateriels(): Observable<Materiel[]> {
-    var materiels=this.httpClient.get<Materiel[]>(this.url);
+    const token= this.auth.getToken();
+    const httpOptions = {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    };
+    var materiels=this.httpClient.get<Materiel[]>(this.url,httpOptions);
     console.log(materiels);
     return materiels;
   }
   enPanne(id:number):Observable<void>{
-return this.httpClient.get<void>("http://localhost:8080/enPanne/"+id);
+    const token= this.auth.getToken();
+    const httpOptions = {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    };
+    return this.httpClient.get<void>("http://localhost:8080/enPanne/"+id,httpOptions);
   }
 
 
