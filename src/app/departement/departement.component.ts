@@ -1,8 +1,8 @@
-import { MaterielServiceService } from '../../services/materiel-service.service';
 import { Component } from '@angular/core';
-import { Materiel } from '../../Modules/materiel';
-import { AfterViewInit } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { AuthService } from 'src/services/AuthService';
 declare var $: any;
 
 @Component({
@@ -11,8 +11,43 @@ declare var $: any;
   styleUrls: ['./departement.component.css']
 })
 export class DepartementComponent  {
-
   title='Dashboard - Departement';
+  login !:any;
+  role !:any;
+  constructor(private authService:AuthService, private router:Router){
+    this.login = this.authService.getLogin();
+    this.role = this.authService.getRole();
+  }
 
+  ngAfterViewInit(): void {
+    $(document).ready(function() {
+      $('#myTable').DataTable();
+    });}
+  
+  async signOut() {
+    try {
+      const resp = await firstValueFrom(this.authService.singOut());
+      console.log(resp);
+      const code = resp.status;
+      if (code === 200) {
+        this.authService.setLogin("");
+        this.authService.setRole("");
+        this.authService.setToken("");
+        this.router.navigate([""]);
+      } 
+    } catch (err) {
+      console.log(err);
+      if (err instanceof HttpErrorResponse) {
+        const code = err.status;
+        if (code === 200) {
+          this.authService.setIsLoggedIn("false");
+          this.authService.setLogin("");
+          this.authService.setRole("");
+          this.authService.setToken("");
+          this.router.navigate([""]);
+        } 
+      }
+    }
+  }
 }
 

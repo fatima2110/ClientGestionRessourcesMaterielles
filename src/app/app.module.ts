@@ -7,11 +7,12 @@ import { DepartementComponent } from './departement/departement.component';
 import { EnsignantComponent } from './departement/ensignant/ensignant.component';
 import { DatePipe } from '@angular/common';
 import { BesoinComponent } from './departement/besoin/besoin.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChefComponent } from './departement/chef/chef.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { PagesErrorComponent } from './pages-error/pages-error.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -28,9 +29,11 @@ import { PagesErrorComponent } from './pages-error/pages-error.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [DatePipe],
-  bootstrap: [DepartementComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
