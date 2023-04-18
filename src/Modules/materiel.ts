@@ -1,3 +1,5 @@
+import { Panne } from "src/Modules/panne";
+
 export class Materiel {
   id:number;
   type:string;
@@ -5,6 +7,7 @@ export class Materiel {
   code_barre:string;
   qtn:number;
   date_affectation:Date;
+  panne:Panne;
 
   constructor() {
     this.id=0;
@@ -13,5 +16,6 @@ export class Materiel {
     this.code_barre='';
     this.qtn=5;
     this.date_affectation=new Date();
+    this.panne=Panne.active;
    }
 }

@@ -10,6 +10,8 @@ import { BesoinComponent } from './departement/besoin/besoin.component';
 import { FormsModule } from '@angular/forms';
 import { ChefComponent } from './departement/chef/chef.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { PagesErrorComponent } from './pages-error/pages-error.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     DepartementComponent,
     EnsignantComponent,
     BesoinComponent,
-    ChefComponent
+    ChefComponent,
+    LoginComponent,
+    PagesErrorComponent
   ],
   imports: [
     BrowserModule,

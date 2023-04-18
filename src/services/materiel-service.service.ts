@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Materiel } from './materiel';
+import { Materiel } from '../Modules/materiel';
 import { DatePipe } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -32,9 +32,7 @@ export class MaterielServiceService {
   enPanne(id:number):Observable<void>{
 return this.httpClient.get<void>("http://localhost:8080/enPanne/"+id);
   }
-  enService(id:number):Observable<void>{
-return this.httpClient.get<void>("http://localhost:8080/enService/"+id);
-  }
+
 
 
 

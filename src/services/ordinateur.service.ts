@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Ordinateur } from './ordinateur';
+import { Ordinateur } from '../Modules/ordinateur';
 import { Observable } from 'rxjs';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
 
@@ -17,7 +17,7 @@ export class OrdinateurService {
   };
   addOrdinateur(newOrdinateur:Ordinateur):Observable<any>{
     console.log(newOrdinateur);
-    alert("ordinateur"+newOrdinateur.cpu);
+    //alert("ordinateur"+newOrdinateur.cpu);
 return this.httpClient.post(this.url,newOrdinateur);
   }
   deleteBesoin(id: number): Observable<void> {

@@ -3,10 +3,26 @@
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-      <li class="breadcrumb-item active">Dashboard</li>
+      <li class="breadcrumb-item active">{{this.stitle}}</li>
     </ol>
   </nav>
 </div><!-- End Page Title -->
+<div *ngIf="notif==1" class="alert alert-success alert-dismissible fade show" role="alert">
+  <i class="bi bi-star me-1"></i>
+  La besoin a ete modifie avec <strong>succes</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div *ngIf="notif==2" class="alert alert-warning alert-dismissible fade show" role="alert">
+  <i class="bi bi-star me-1"></i>
+  la besoin a ete supprimer avec <strong>succes</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div *ngIf="notif==3" class="alert alert-primary alert-dismissible fade show" role="alert">
+  <i class="bi bi-star me-1"></i>
+  Les besoins ont ete validees avec <strong>succes</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 <section class="section">
 
 
@@ -68,14 +84,7 @@
             </div>
 
 
-            <div class="col-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                <label class="form-check-label" for="invalidCheck2">
-                  J'accepte les termes et les conditions de la departement
-                </label>
-              </div>
-            </div>
+
             <div class="col-12">
               <button (click)="saveOrdinateurChef(besoinOrdinateur)" class="btn btn-primary" type="submit"
                 data-bs-dismiss="modal">modifier besoin</button>
@@ -104,14 +113,7 @@
 
 
 
-              <div class="col-12">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                  <label class="form-check-label" for="invalidCheck2">
-                    J'accepte les termes et les conditions de la departement
-                  </label>
-                </div>
-              </div>
+
 
               <div class="col-12">
                 <button (click)="saveImprimenteChef(besoinImprimente)" class="btn btn-primary" type="submit"
@@ -132,10 +134,8 @@
 
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Datatables</h5>
-          <p>Add lightweight datatables to your project with using the <a
-              href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library.
-            Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+          <h5 class="card-title">Les besoins de Departement</h5>
+          <p>Cette escpace est pour la gestion des besoins de la <strong>departement.</strong> </p>
 
 
           <!-- Table with stripped rows -->
