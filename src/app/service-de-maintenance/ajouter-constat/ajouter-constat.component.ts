@@ -1,39 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Constat } from 'src/app/models/constat';
 import { Imprimante } from 'src/app/models/imprimante';
 import { Ordinateur } from 'src/app/models/ordinateur';
+import { PanneService } from 'src/app/services/PannesService';
 
 @Component({
   selector: 'app-ajouter-constat',
   templateUrl: './ajouter-constat.component.html',
   styleUrls: ['./ajouter-constat.component.css']
 })
-export class AjouterConstatComponent {
+export class AjouterConstatComponent implements OnInit{
   title = 'Dashboard - Ajouter Constat';
   notif: number;
   showOrdinateur = true;
+  code_barre:string = "";
   
   newConstat = new Constat();
 
-  constructor(){
+  constructor(private route: ActivatedRoute, private panne:PanneService){
     this.notif=0;
   }
-
-  onOptionSelected(value: any) {
-    if (value.value == 2) {
-      this.showOrdinateur = false;
-    } else {
-      this.showOrdinateur = true;
-
-    }
+  ngOnInit(): void {
+    const data = window.history.state;
+    this.code_barre = data.code;
+    this.showOrdinateur = data.showOrdinateur;
   }
 
   saveConstat(){
-    console.log(this.newConstat.code_barre);
-    console.log(this.newConstat.date_apparition);
-    console.log(this.newConstat.explication_panne);
-    console.log(this.newConstat.frequence);
-    console.log(this.newConstat.ordre);
+    this.newConstat.code_barre=this.code_barre;
+    this.panne.ajouterConstat(this.newConstat).subscribe({
+      next:(resp)=>{console.log(resp);},
+      error:(err)=>{console.log(err);}
+    });
   }
 
 }

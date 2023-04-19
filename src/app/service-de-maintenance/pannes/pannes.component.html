@@ -50,7 +50,8 @@
                       <td> 
                         <button class="btn btn-warning"
                           (click)="materielRepare()">En panne </button>
-                          <a href="service-de-maintenance/constat"><button type="button" class="btn btn-info">Rédiger constat</button></a>
+                          <a routerLink="#" (click)="redigerConstat(panneOrd.code_barre)"><button type="button" class="btn btn-info">Rédiger constat</button>
+                          </a>
                       </td>
                     </tr>   
                   </tbody>
@@ -79,8 +80,10 @@
                         <td>{{panneImp.resolution}}</td>
                         <td>{{panneImp.vitesse}}</td>
                         <td> 
-                            <button type="button" class="btn btn-success">En service</button>
-                            <button type="button" class="btn btn-info">Rédiger constat</button>
+                          <button class="btn btn-warning"
+                          (click)="materielRepare()">En panne </button>
+                          <a routerLink="#" (click)="redigerConstat(panneImp.code_barre)"><button type="button" class="btn btn-info">Rédiger constat</button>
+                          </a>
                         </td>
                       </tr>
                     </tbody>

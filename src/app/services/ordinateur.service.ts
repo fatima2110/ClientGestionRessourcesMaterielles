@@ -11,11 +11,6 @@ export class OrdinateurService {
 
   private url="http://localhost:8080/saveOrdinateur/";
   constructor(private httpClient:HttpClient, private auth:AuthService) { }
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
   addOrdinateur(newOrdinateur:Ordinateur):Observable<any>{
     const id = this.auth.getId();
     const token= this.auth.getToken();

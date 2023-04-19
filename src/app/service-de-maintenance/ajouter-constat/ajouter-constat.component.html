@@ -40,7 +40,7 @@
               <option selected value=1>Ordinateur</option>
               <option value=2>Imprimante</option>
             </select>-->
-            <input [(ngModel)]="newConstat.code_barre" type="text" id="code" name="code">
+            <input [(ngModel)]="code_barre" type="text" id="code" name="code">
             <hr>
   
             <form class="row g-3">
@@ -57,7 +57,7 @@
                   <option value="Permanente">Permanente</option>
                 </select>
               </div>
-              <div class="col-md-4">
+              <div *ngIf="showOrdinateur;else alternative" class="col-md-4">
                 <label for="validationDefault02" class="form-label">Ordre</label>
                 <select [(ngModel)]="newConstat.ordre" name="ordre" class="form-select" id="validationDefault04"
                   required>
@@ -65,6 +65,15 @@
                   <option value="Matériel">Matériel</option>
                 </select>
               </div>
+              <ng-template #alternative>
+                <div class="col-md-4">
+                  <label for="validationDefault02" class="form-label">Ordre</label>
+                  <select [(ngModel)]="newConstat.ordre" name="ordre" class="form-select" id="validationDefault04"
+                    required>
+                    <option value="Matériel">Matériel</option>
+                  </select>
+                </div>
+              </ng-template>
               <div class="col-md-5">
                 <label for="validationDefault02" class="form-label">Explication de panne</label>
                 <textarea  [(ngModel)]="newConstat.explication_panne" id="explication" name="explication" rows="4" cols="50"></textarea>
@@ -73,7 +82,7 @@
               </div>
 
               <div class="col-12">
-                <button (click)="saveConstat()" class="btn btn-primary" type="submit">Envoyer besoin</button>
+                <button (click)="saveConstat()" class="btn btn-primary" type="submit">Ajouter constat</button>
               </div>
             </form>
 
