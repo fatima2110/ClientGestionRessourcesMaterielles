@@ -1,0 +1,97 @@
+<div class="pagetitle">
+    <h1> {{this.title}}</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">{{this.title}}</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">les ressources en panne</h5>
+            <p>Vous trouverez ci-dessous toutes les ressources qui sont en <strong>panne</strong> </p>
+  
+            <!-- Table with stripped rows -->
+            <div class="row">
+                <div class="col-3 pb-5">
+                  <select (change)="onOptionSelected($event.target)" class="form-select" id="validationDefault04" required>
+                    <option selected value=1>Ordinateur</option>
+                    <option value=2>Imprimante</option>
+                  </select>
+                </div>
+                <table *ngIf="showOrdinateur;else alternative" class="table datatable" id="myTbale">
+                  <thead>    
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Enseignant</th>
+                      <th scope="col">CODE A BARRE</th>
+                      <th scope="col">MARQUE</th>
+                      <th scope="col">CPU</th>
+                      <th scope="col">RAM</th>
+                      <th scope="col">Disque</th>
+                      <th scope="col">Ecran</th>   
+                      <th scope="col">Operations</th>   
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let panneOrd of pannesOrdinateurs;let i =index">
+                      <th scope="row">{{i+1}}</th>
+                      <td>{{panneOrd.enseignant}}</td>
+                      <td>{{panneOrd.code_barre}}</td>
+                      <td>{{panneOrd.marque}}</td>
+                      <td>{{panneOrd.cpu}}</td>
+                      <td>{{panneOrd.ram}}</td>
+                      <td>{{panneOrd.disque}}</td>
+                      <td>{{panneOrd.ecran}}</td>    
+                      <td> 
+                        <button class="btn btn-warning"
+                          (click)="materielRepare()">En panne </button>
+                          <a href="service-de-maintenance/constat"><button type="button" class="btn btn-info">Rédiger constat</button></a>
+                      </td>
+                    </tr>   
+                  </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+                <ng-template #alternative>
+                  <table class="table datatable" id="myTbale">
+                    <thead>
+    
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ensiegnant</th>
+                        <th scope="col">CODE A BARRE</th>
+                        <th scope="col">MARQUE</th>
+                        <th scope="col">Resolution</th>
+                        <th scope="col">Vitesse</th>   
+                        <th scope="col">Operations</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let panneImp of pannesImprimentes;let i =index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{panneImp.enseignant}}</td>
+                        <td>{{panneImp.code_barre}}</td>
+                        <td>{{panneImp.marque}}</td>
+                        <td>{{panneImp.resolution}}</td>
+                        <td>{{panneImp.vitesse}}</td>
+                        <td> 
+                            <button type="button" class="btn btn-success">En service</button>
+                            <button type="button" class="btn btn-info">Rédiger constat</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+            <!-- End Table with stripped rows -->
+  
+          </div>
+        </div>
+  </section>
+  

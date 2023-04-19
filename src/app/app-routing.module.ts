@@ -8,14 +8,14 @@ import { ChefComponent } from './departement/chef/chef.component';
 import { DepartementComponent } from './departement/departement.component';
 import { EnsignantComponent } from './departement/ensignant/ensignant.component';
 import { AuthGuard } from './services/AuthGuard';
+import { AjouterConstatComponent } from './service-de-maintenance/ajouter-constat/ajouter-constat.component';
+import { ServiceDeMaintenanceComponent } from './service-de-maintenance/service-de-maintenance.component';
+import { PannesComponent } from './service-de-maintenance/pannes/pannes.component';
 
 const routes: Routes = [
-  //{ path: 'departement', loadChildren: () => import('./departement/departement.module').then(m => m.DepartementModule) },
   {path: 'departement',
     component: DepartementComponent,
     canActivate: [AuthGuard],
-    //redirectTo:'home',
-    //pathMatch:'full',
     children: [
       {
         path: 'gestion-besoins',
@@ -30,6 +30,27 @@ const routes: Routes = [
       {
         path: 'besoin',
         component: BesoinComponent,
+        canActivate: [AuthGuard]
+      }
+    ]
+  },
+  {path: 'service-de-maintenance',
+    component: ServiceDeMaintenanceComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'home',
+        component: PannesComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'constat',
+        component: AjouterConstatComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'pannes',
+        component: PannesComponent,
         canActivate: [AuthGuard]
       }
     ]

@@ -13,6 +13,9 @@ import { BesoinComponent } from './departement/besoin/besoin.component';
 import { ChefComponent } from './departement/chef/chef.component';
 import { DepartementComponent } from './departement/departement.component';
 import { EnsignantComponent } from './departement/ensignant/ensignant.component';
+import { ServiceDeMaintenanceComponent } from './service-de-maintenance/service-de-maintenance.component';
+import { AjouterConstatComponent } from './service-de-maintenance/ajouter-constat/ajouter-constat.component';
+import { PannesComponent } from './service-de-maintenance/pannes/pannes.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { EnsignantComponent } from './departement/ensignant/ensignant.component'
     DepartementComponent,
     EnsignantComponent,
     BesoinComponent,
-    ChefComponent
+    ChefComponent,
+    ServiceDeMaintenanceComponent,
+    AjouterConstatComponent,
+    PannesComponent
   ],
   imports: [
     BrowserModule,

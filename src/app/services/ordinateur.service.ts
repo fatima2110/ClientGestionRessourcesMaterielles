@@ -9,7 +9,7 @@ import { AuthService } from './AuthService';
 })
 export class OrdinateurService {
 
-  private url="http://localhost:8080/saveOrdinateur/1";
+  private url="http://localhost:8080/saveOrdinateur/";
   constructor(private httpClient:HttpClient, private auth:AuthService) { }
   private httpOptions = {
     headers: new HttpHeaders({
@@ -17,6 +17,7 @@ export class OrdinateurService {
     })
   };
   addOrdinateur(newOrdinateur:Ordinateur):Observable<any>{
+    const id = this.auth.getId();
     const token= this.auth.getToken();
     const httpOptions = {
       headers: {
@@ -25,7 +26,7 @@ export class OrdinateurService {
     };
     console.log(newOrdinateur);
     //alert("ordinateur"+newOrdinateur.cpu);
-    return this.httpClient.post(this.url,newOrdinateur,httpOptions);
+    return this.httpClient.post(this.url+id,newOrdinateur,httpOptions);
   }
   deleteBesoin(id: number): Observable<void> {
     const token= this.auth.getToken();

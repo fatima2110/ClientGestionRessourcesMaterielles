@@ -14,6 +14,9 @@ export class AuthService {
   setLogin(login:string){localStorage.setItem("login",login);}
   getLogin(){return localStorage.getItem("login");}
 
+  setId(id:string){localStorage.setItem("id",id);}
+  getId(){return localStorage.getItem("id");}
+
   setRole(role:string){localStorage.setItem("role",role);}
   getRole(){return localStorage.getItem("role");}
 

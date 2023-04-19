@@ -15,8 +15,6 @@ export class LoginComponent implements OnInit {
   mode: string = 'register'; // Initialisation du mode à 'register'
   loginForm!: FormGroup;
   errorMessage : string = "";
-  token!:any;
-  role!:any;
 
   constructor(private router: Router,private authService:AuthService, private formBuilder: FormBuilder) { }
 
@@ -34,17 +32,26 @@ export class LoginComponent implements OnInit {
     this.authService.authenticateUser(this.user)
     .subscribe({
       next : (response)=>{
-        this.token = response.token;
-        //localStorage.setItem('token', response.token);
-        this.role = response.role;
-        if(this.role == "ENSEIGNANT"){
+        if(response.role == "ENSEIGNANT"){
+          console.log("ENSEIGNANT");
           this.authService.setLogin(this.user.login);
-          this.authService.setRole(this.role);
-          this.authService.setToken(this.token);
+          this.authService.setId(response.id);
+          this.authService.setRole(response.role);
+          this.authService.setToken(response.token);
           this.authService.setIsLoggedIn("true");
           this.router.navigate(['/departement']);
-        }else this.router.navigate(['/error']);
-      },error : (err)=>{
+        }
+        else if(response.role == "TECHNICIEN"){
+          console.log("TECHNICIEN");
+              this.authService.setLogin(this.user.login);
+              this.authService.setId(response.id);
+              this.authService.setRole(response.role);
+              this.authService.setToken(response.token);
+              this.authService.setIsLoggedIn("true");
+              this.router.navigate(['/service-de-maintenance']);
+            }
+              else this.router.navigate(['/error']);
+        },error : (err)=>{
         console.log(err);
         const errorCode = err.status;
         if (errorCode === 403) {
@@ -55,7 +62,6 @@ export class LoginComponent implements OnInit {
     });
    //}
   }
-  //getToken(){return this.token;}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({

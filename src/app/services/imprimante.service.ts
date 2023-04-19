@@ -53,7 +53,8 @@ export class ImprimanteService {
         "Authorization": "Bearer " + token
       }
     };
-  return this.httpClient.get<Imprimante[]>("http://localhost:8080/getBesoinsImpriments/1",httpOptions);
+    const id = this.auth.getId();
+  return this.httpClient.get<Imprimante[]>("http://localhost:8080/getBesoinsImpriments/"+id,httpOptions);
   }
   validerImprimente(imprimente:Imprimante){
     const token= this.auth.getToken();

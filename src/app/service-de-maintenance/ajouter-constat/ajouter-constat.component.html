@@ -1,0 +1,89 @@
+<div class="pagetitle">
+    <h1> {{this.title}}</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">{{this.title}}</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  <div *ngIf="notif==1" class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="bi bi-star me-1"></i>
+    Votre constat a ete ajoute avec <strong>succes</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div *ngIf="notif==2" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <i class="bi bi-star me-1"></i>
+    Votre constat a ete supprimer avec <strong>succes</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div *ngIf="notif==3" class="alert alert-primary alert-dismissible fade show" role="alert">
+    <i class="bi bi-star me-1"></i>
+    Votre constat a ete modifie avec <strong>succes</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-8">
+  
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Ajouter un constat</h5>
+            <p>Cet espace est réservé pour l'ajoute des constats si vous rencontrez une panne <code>sévère</code> dans un matériel.
+            </p>
+  
+            <!-- Browser Default Validation -->
+  
+            <label for="validationDefault04" class="form-label">Code a barre de matériel</label>
+            <!--<select (change)="onOptionSelected($event.target)" class="form-select" id="validationDefault04" required>
+              <option selected value=1>Ordinateur</option>
+              <option value=2>Imprimante</option>
+            </select>-->
+            <input [(ngModel)]="newConstat.code_barre" type="text" id="code" name="code">
+            <hr>
+  
+            <form class="row g-3">
+              <div class="col-md-4">
+                <label for="validationDefault02" class="form-label">Date d'apparition</label>
+                <input [(ngModel)]="newConstat.date_apparition" type="date" id="dateInput" name="date">
+              </div>
+              <div class="col-md-4">
+                <label for="validationDefault02" class="form-label">Fréquence</label>
+                <select [(ngModel)]="newConstat.frequence" name="frequence" class="form-select" id="validationDefault04"
+                  required>
+                  <option selected value="Rare">Rare</option>
+                  <option value="Fréquente">Fréquente</option>
+                  <option value="Permanente">Permanente</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="validationDefault02" class="form-label">Ordre</label>
+                <select [(ngModel)]="newConstat.ordre" name="ordre" class="form-select" id="validationDefault04"
+                  required>
+                  <option selected value="Logiciel">Logiciel</option>
+                  <option value="Matériel">Matériel</option>
+                </select>
+              </div>
+              <div class="col-md-5">
+                <label for="validationDefault02" class="form-label">Explication de panne</label>
+                <textarea  [(ngModel)]="newConstat.explication_panne" id="explication" name="explication" rows="4" cols="50"></textarea>
+              </div>
+              <div class="col-12"> 
+              </div>
+
+              <div class="col-12">
+                <button (click)="saveConstat()" class="btn btn-primary" type="submit">Envoyer besoin</button>
+              </div>
+            </form>
+
+          </div>
+          <!-- End Browser Default Validation -->
+  
+        </div>
+      </div>
+    </div>
+  
+  
+  </section>
+  

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MaterielServiceService } from '../../services/materiel-service.service';
+import { Materiel } from 'src/app/models/materiel';
 declare var $: any;
 
 @Component({
@@ -8,7 +9,7 @@ declare var $: any;
   styleUrls: ['./ensignant.component.css']
 })
 export class EnsignantComponent {
-  materils:any;
+  materils: any;
   title='Dashboard - Les ressources affectees';
   stitle='les - affectations';
   enPannAlert:number;
@@ -17,6 +18,7 @@ export class EnsignantComponent {
     setTimeout(()=>{
       $(document).ready(function() {
         $('#myTable').DataTable();
+        //$('.datatable').dataTable();
       });
     },500);
 
@@ -28,6 +30,9 @@ export class EnsignantComponent {
    this.materielServiceService.getMateriels().subscribe({
       next:(res)=>{
         this.materils=res;
+        for(let i: number = 0; i < this.materils.length; i++){
+          console.log(this.materils[i].marque);
+        }
         },error:(err)=>{
           alert("error")
           console.log(err)

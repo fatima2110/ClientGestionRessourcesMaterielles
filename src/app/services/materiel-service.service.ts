@@ -25,6 +25,7 @@ export class MaterielServiceService {
     // use dateObj
   }
   getMateriels(): Observable<Materiel[]> {
+    const id = this.auth.getId();
     const token= this.auth.getToken();
     const httpOptions = {
       headers: {
