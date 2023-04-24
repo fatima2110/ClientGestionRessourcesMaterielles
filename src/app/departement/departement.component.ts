@@ -14,9 +14,13 @@ export class DepartementComponent  {
   title='Dashboard - Departement';
   login !:any;
   role !:any;
+  isChef: boolean = false;
   constructor(private authService:AuthService, private router:Router){
     this.login = this.authService.getLogin();
     this.role = this.authService.getRole();
+    if (this.role == "CHEF_DEPARTEMENT"){
+      this.isChef = true;
+    }
   }
 
   ngAfterViewInit(): void {

@@ -20,15 +20,15 @@ export class ChefComponent implements OnInit {
   besoinsImprimantes: BesoinImprimante[];
   besoinOrdinateur = new Ordinateur();
   besoinImprimente = new Imprimante();
-  idEnseignat:number;
-  notif:number;
-  title='Dashboard - Gestion des besoins';
-  stitle='gerer-besoins';
+  idEnseignat: number;
+  notif: number;
+  title = 'Dashboard - Gestion des besoins';
+  stitle = 'gerer-besoins';
   constructor(private besoinservice: BesoinService, private ordinateurService: OrdinateurService, private impriService: ImprimanteService) {
     this.besoinsImprimantes = [];
     this.besoinsOrdinateurs = [];
-    this.idEnseignat=0;
-    this.notif=0;
+    this.idEnseignat = 0;
+    this.notif = 0;
 
   }
   ngAfterViewInit(): void {
@@ -37,12 +37,12 @@ export class ChefComponent implements OnInit {
       $('.datatable').dataTable();
     });*/
 
-    setTimeout(()=>{
-      $(document).ready(function() {
+    setTimeout(() => {
+      $(document).ready(function () {
         $('#myTable').DataTable();
         //$('.datatable').dataTable();
       });
-    },500);
+    }, 500);
 
   }
   onOptionSelected(value: any) {
@@ -78,7 +78,7 @@ export class ChefComponent implements OnInit {
       this.impriService.deleteBesoin(besoin.id).subscribe({
         next: (res) => {
           this.ngOnInit();
-    this.notif=2;
+          this.notif = 2;
 
           // this.ngOnInit();
         }, error: (err) => {
@@ -92,7 +92,7 @@ export class ChefComponent implements OnInit {
       this.ordinateurService.deleteBesoin(besoin.id).subscribe({
         next: (res) => {
           this.ngOnInit();
-    this.notif=2;
+          this.notif = 2;
 
           // this.ngOnInit();
         }, error: (err) => {
@@ -109,16 +109,16 @@ export class ChefComponent implements OnInit {
     this.besoinOrdinateur.ecran = besoin.ecran;
 
   }
-  getImprimenteChef(besoinImprimente:BesoinImprimante){
-    this.besoinImprimente.id=besoinImprimente.id;
-    this.besoinImprimente.resolution=besoinImprimente.resolution;
-    this.besoinImprimente.vitesse=besoinImprimente.vitesse;
+  getImprimenteChef(besoinImprimente: BesoinImprimante) {
+    this.besoinImprimente.id = besoinImprimente.id;
+    this.besoinImprimente.resolution = besoinImprimente.resolution;
+    this.besoinImprimente.vitesse = besoinImprimente.vitesse;
   }
   saveOrdinateurChef(ordinateur: Ordinateur) {
     this.ordinateurService.modifyBesoin(ordinateur).subscribe({
       next: (res) => {
         this.ngOnInit();
-    this.notif=1;
+        this.notif = 1;
 
         // this.ngOnInit();
       }, error: (err) => {
@@ -131,7 +131,7 @@ export class ChefComponent implements OnInit {
     this.impriService.modifyBesoin(imprimente).subscribe({
       next: (res) => {
         this.ngOnInit();
-    this.notif=1;
+        this.notif = 1;
 
         // this.ngOnInit();
       }, error: (err) => {
@@ -140,50 +140,50 @@ export class ChefComponent implements OnInit {
       }
     });
   }
-  valider(){
-    if(confirm("Vous arriver a valider les ordinateurs de votre departement")){
+  valider() {
+    if (confirm("Vous arriver a valider les ordinateurs de votre departement")) {
       this.besoinsOrdinateurs.forEach(element => {
         this.besoinOrdinateur.id = element.id;
         this.besoinOrdinateur.ram = element.ram;
         this.besoinOrdinateur.cpu = element.cpu;
         this.besoinOrdinateur.disque = element.disque;
         this.besoinOrdinateur.ecran = element.ecran;
-this.ordinateurService.validerOrdinateur(this.besoinOrdinateur).subscribe({
-  next: (res) => {
-    this.ngOnInit();
-this.notif=3;
+        this.ordinateurService.validerOrdinateur(this.besoinOrdinateur).subscribe({
+          next: (res) => {
+            this.ngOnInit();
+            this.notif = 3;
 
-    // this.ngOnInit();
-  }, error: (err) => {
-    alert("error")
-    console.log(err)
-  }
-});
+            // this.ngOnInit();
+          }, error: (err) => {
+            alert("error")
+            console.log(err)
+          }
+        });
       });
     }
 
 
-}
-validerImprimentes(){
-  if(confirm("Vous arriver a valider les imprimentes de votre departement")){
-    this.besoinsImprimantes.forEach(element => {
-      this.besoinImprimente.id = element.id;
-      this.besoinImprimente.resolution = element.resolution;
-      this.besoinImprimente.vitesse = element.vitesse;
-this.impriService.validerImprimente(this.besoinImprimente).subscribe({
-next: (res) => {
-  this.ngOnInit();
-this.notif=3;
-  // this.ngOnInit();
-}, error: (err) => {
-  alert("error")
-  console.log(err)
-}
-});
-    });
   }
+  validerImprimentes() {
+    if (confirm("Vous arriver a valider les imprimentes de votre departement")) {
+      this.besoinsImprimantes.forEach(element => {
+        this.besoinImprimente.id = element.id;
+        this.besoinImprimente.resolution = element.resolution;
+        this.besoinImprimente.vitesse = element.vitesse;
+        this.impriService.validerImprimente(this.besoinImprimente).subscribe({
+          next: (res) => {
+            this.ngOnInit();
+            this.notif = 3;
+            // this.ngOnInit();
+          }, error: (err) => {
+            alert("error")
+            console.log(err)
+          }
+        });
+      });
+    }
 
 
-}
+  }
 }
 
