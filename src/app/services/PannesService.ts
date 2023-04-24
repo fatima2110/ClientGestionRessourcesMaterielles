@@ -54,4 +54,14 @@ export class PanneService {
     return this.httpClient.post("http://localhost:8080/ajouterConstat",constat,httpOptions);
   }
   
+  getConstats():Observable<Constat[]>{
+    const id = this.auth.getId();
+    const token= this.auth.getToken();
+    const httpOptions = {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    };
+    return this.httpClient.get<Constat[]>("http://localhost:8080/getConstats",httpOptions);
+  }
 }

@@ -20,9 +20,13 @@ export class DepartementComponent  {
   }
 
   ngAfterViewInit(): void {
-    $(document).ready(function() {
-      $('#myTable').DataTable();
-    });}
+    setTimeout(()=>{
+      $(document).ready(function() {
+        $('#myTable').DataTable();
+        //$('.datatable').dataTable();
+      });
+    },500);
+  }
   
   async signOut() {
     try {

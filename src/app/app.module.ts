@@ -16,6 +16,7 @@ import { EnsignantComponent } from './departement/ensignant/ensignant.component'
 import { ServiceDeMaintenanceComponent } from './service-de-maintenance/service-de-maintenance.component';
 import { AjouterConstatComponent } from './service-de-maintenance/ajouter-constat/ajouter-constat.component';
 import { PannesComponent } from './service-de-maintenance/pannes/pannes.component';
+import { ListeConstatsComponent } from './service-de-maintenance/liste-constats/liste-constats.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PannesComponent } from './service-de-maintenance/pannes/pannes.componen
     ChefComponent,
     ServiceDeMaintenanceComponent,
     AjouterConstatComponent,
-    PannesComponent
+    PannesComponent,
+    ListeConstatsComponent
   ],
   imports: [
     BrowserModule,

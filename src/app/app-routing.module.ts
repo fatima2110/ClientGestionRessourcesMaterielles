@@ -11,6 +11,7 @@ import { AuthGuard } from './services/AuthGuard';
 import { AjouterConstatComponent } from './service-de-maintenance/ajouter-constat/ajouter-constat.component';
 import { ServiceDeMaintenanceComponent } from './service-de-maintenance/service-de-maintenance.component';
 import { PannesComponent } from './service-de-maintenance/pannes/pannes.component';
+import { ListeConstatsComponent } from './service-de-maintenance/liste-constats/liste-constats.component';
 
 const routes: Routes = [
   {path: 'departement',
@@ -51,6 +52,11 @@ const routes: Routes = [
       {
         path: 'pannes',
         component: PannesComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'constats',
+        component: ListeConstatsComponent,
         canActivate: [AuthGuard]
       }
     ]
