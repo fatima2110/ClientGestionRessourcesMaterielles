@@ -1,34 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Imprimante } from 'src/app/models/imprimante';
 import { Ordinateur } from 'src/app/models/ordinateur';
 import { PanneImprimente } from 'src/app/models/panne-imprimente';
 import { PanneOrdinateur } from 'src/app/models/panne-ordinateur';
 import { PanneService } from 'src/app/services/PannesService';
+declare var $: any;
 
 @Component({
   selector: 'app-pannes',
   templateUrl: './pannes.component.html',
   styleUrls: ['./pannes.component.css']
 })
-export class PannesComponent implements OnInit{
+export class PannesComponent implements OnInit, AfterViewInit{
   title : string = "";
-  pannesOrdinateurs : PanneOrdinateur[]= []; /*[
-    {"enseignant":"test1",
-    "code_barre":"QZHDTYEAT746Z8",
-    "cpu":"12 CPU",
-    "disque":"128Go SSD",
-    "ecran":"3840x2160 (Ultra HD ou 4K)",
-    "marque":"HP",
-    "ram":"16 GO"},
-    {"enseignant":"test2",
-    "code_barre":"QZHDTYEAT746Z8",
-    "cpu":"12 CPU",
-    "disque":"128Go SSD",
-    "ecran":"3840x2160 (Ultra HD ou 4K)",
-    "marque":"HP",
-    "ram":"16 GO"}
-  ];*/
+  pannesOrdinateurs : PanneOrdinateur[]= []; 
   pannesImprimentes : PanneImprimente[]=[];
 
   notif: number;
@@ -63,8 +49,13 @@ export class PannesComponent implements OnInit{
     }
   }
 
-  saveConstat(){
-    
+  ngAfterViewInit(): void {
+    //setTimeout(()=>{
+      $(document).ready(function() {
+        $('#myTable').DataTable();
+        //$('.datatable').dataTable();
+      });
+    //},100);
   }
 
   materielRepare(){
