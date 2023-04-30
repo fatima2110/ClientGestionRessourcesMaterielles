@@ -1,0 +1,167 @@
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Proposition</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">GestionFournisseurs</li>
+          <li class="breadcrumb-item active">Voir Proposition</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center;">Proposition</h5>
+              <div class="datatable-top">
+                <div class="datatable-dropdown">
+                        <label>
+                          <select class="datatable-selector" [(ngModel)]="selectedItem">
+                            <option *ngFor="let item of items" [value]="item.value">{{ item.label }}</option>
+                          </select>
+                             </label>
+                    </div>
+                    <div class="datatable-search">
+                      <input class="datatable-input" placeholder="Search..." type="search" title="Search within table" id="myInput" (keyup)="myFunction()" >
+                    </div>
+                    
+            </div>
+              <!-- Table with stripped rows -->
+              <table   *ngIf="selectedItem === 'ordinateur' " class="table datatable" id="myTable">
+                <thead>
+                  <tr >
+                    
+                    <th scope="col">#</th>
+                    <th>Marque</th>
+                    <th>CPU</th>
+                    <th>Disque</th>
+                    <th>Ecran</th>
+                    <th>Ram</th>
+                    <th>Quantité</th>
+                    <th>Prix</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let Ordinateur of groupedOrdinateurs;let i=index" >
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{Ordinateur.marque}}</td>
+                    <td>{{Ordinateur.cpu}}</td>
+                    <td>{{Ordinateur.disque}}</td>
+                 
+                    <td>{{Ordinateur.ecran}}</td>
+                    <td>{{Ordinateur.ram}}</td>
+                    
+                    <td>{{Ordinateur.qte}}</td>
+                    <td>{{Ordinateur.prix}}</td>
+                  </tr>
+                  
+                  
+                </tbody>
+                <!-- <tfoot>
+                  <tr  >
+                    <th></th>
+                    </tr> <tr></tr><tr></tr>
+                  <div style="position:absolute;right:30px;"> <tr>
+                    <th   id="total" colspan="3">Total :</th>
+                    <td >200</td>
+                  </tr></div>
+                 </tfoot> -->
+                 <div style="position:absolute;right:170px;"> <tr>
+                  <th   id="total" colspan="3">Total :</th>
+                  <td >{{Montant}}</td>
+                </tr></div>
+              </table>
+              <!-- End Table with stripped rows -->
+              <table *ngIf="selectedItem === 'imprimante' "  class="table datatable" id="myTable">
+                <thead>
+                  <tr>
+                    
+                    <th scope="col">#</th>
+                    <th>Marque</th>
+                    <th>Résolution</th>
+                    <th>Vitesse</th>
+                    <th>Quantité</th>
+                    <th>Prix</th>
+                  
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let imprimante of groupedImprimentes;let i=index" >
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{imprimante.marque}}</td>
+                    <td>{{imprimante.resolution}}</td>
+                    <td>{{imprimante.vitesse}}</td>
+                    <td>{{imprimante.qte}}</td>
+                    <td>{{imprimante.prix}}</td>
+                  </tr>
+                  
+                </tbody><div style="position:absolute;right:170px;"> <tr>
+                  <th   id="total" colspan="3">Total :</th>
+                  <td >{{Montant}}</td>
+                </tr></div>
+              </table><br><br> <nav aria-label="...">
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+            </div>
+          </div>
+
+        </div>
+      </div> 
+      <div style="position: absolute; right: 50px; "><button style="margin-right: 10px;" routerLink="/fournisseurs"  type="button" class="btn btn-secondary" >Annuler</button>
+      <button style="margin-right: 10px;"  (click)="afficherModele1()" type="button" class="btn btn-primary" >Accepter</button>
+      <button style="margin-right: 10px;" (click)="afficherModele2()"  type="button" class="btn btn-danger btn-xs dt-delete" >Rejeter</button></div>
+      
+      <div class="modal fade show"  *ngIf="modeleAffiche1"  tabindex="-1" aria-modal="true" role="dialog" style="display: block; background-color: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Acceptation</h5>
+              <button (click)="cacherModele1()"  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>     </div>
+            <div class="modal-body">
+              voulez-vous accepter cette proposition?
+            </div>
+            <div class="modal-footer">
+              <button (click)="cacherModele1()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+              <button (click)="accepterProposition();EnvoyerNotif();cacherModele1()" type="button" class="btn btn-primary">Accepter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade show"  *ngIf="modeleAffiche2"  tabindex="-1" aria-modal="true" role="dialog" style="display: block; background-color: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Rejet</h5>
+              <button (click)="cacherModele2()"  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>     </div>
+            <div class="modal-body">
+              voulez-vous rejeter cette proposition?
+            </div>
+            <div class="modal-footer">
+              <button (click)="cacherModele2()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+              <button (click)="rejeterProposition();EnvoyerNotifR();cacherModele2()" type="button" class="btn btn-danger btn-xs dt-delete">Rejeter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+
+  </main><!-- End #main -->

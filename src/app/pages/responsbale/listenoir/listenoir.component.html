@@ -1,0 +1,79 @@
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Data Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">GestionListeNoir</li>
+          
+        </ol>
+      </nav>
+    </div>
+  
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+  
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-align: center;">Liste Noir</h5>
+                <div class="datatable-top">
+                 
+                  <div class="datatable-search">
+                          <input class="datatable-input" placeholder="Search..." type="search" title="Search within table">
+                      </div>
+              </div>
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">NomSociété</th>
+                      <th scope="col">Adresse</th>
+                      <th scope="col">Email</th>
+                      <th  scope="col">Action</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let fournisseur of Fournisseurs;let i=index">
+                      <th scope="row">{{i+1}}</th>
+                      <td >{{fournisseur.nom_societe}}</td>
+                      <td >{{fournisseur.adresse}}</td>
+                      <td >{{fournisseur.email}}</td>
+                      <td >
+                        <button (click)="afficherModele(fournisseur.id)"  type="button" class="btn btn-danger btn-xs dt-delete" >Retirer</button></td>
+                     
+                    </tr>
+                    
+                  </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+                
+              </div>
+            </div>
+  
+          </div>
+        </div>
+        <div class="modal fade show"  *ngIf="modeleAffiche"  tabindex="-1" aria-modal="true" role="dialog" style="display: block; background-color: rgba(0, 0, 0, 0.5);">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Eliminer Fournisseur de la listeNoir</h5>
+                <button (click)="cacherModele()"  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>     </div>
+              <div class="modal-body">
+                voulez-vous retirer ce fournisseur de la liste noir?
+              </div>
+              <div class="modal-footer">
+                <button (click)="cacherModele()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button (click)="retirerFournisseur();cacherModele()" type="button" class="btn btn-danger btn-xs dt-delete">Retirer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </section>
+    
+  
+    </main><!-- End #main -->

@@ -1,0 +1,126 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Data Tables</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">GestionMatérielles</li>
+        
+      </ol>
+    </nav>
+  </div>
+ 
+  <div *ngIf="imprimantes.length > 0  || ordinateur.length>0">  </div>
+    
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center;">Liste Matérielles</h5>
+              <div class="datatable-top">
+               
+                <div class="datatable-search">
+                        <input class="datatable-input" placeholder="Search..." type="search" title="Search within table"id="myInput" (keyup)="myFunction()">
+                    </div>
+            </div>
+              <!-- Table with stripped rows -->
+              
+              <table class="table datatable" id="myTable" >
+                <thead>
+                  <tr>
+                   
+                    <th scope="col">Material</th>
+                    <th scope="col">Code Bare</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Duree de Garantie</th>
+                    <th scope="col">Date de laivraison</th>
+                    <th scope="col">Fournisseur</th>
+                    <th scope="col">Action</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let imp of imprimantes;let i=index">
+                    
+                    <td>Imprimente</td>
+                    <td>{{ imp.code_barre}}</td>
+        
+                    <td>Vetesse:{{ imp.vitesse }}<br>Resolution:{{imp.resolution}}<br>Prix:{{ imp.prix }} DH<br>
+                 <br> {{imp.marque}} </td>
+        
+        
+                    <td>{{ imp.dureegarantie }} ans</td>
+                    <td>{{ imp.datelivraison|  date:'dd/MM/yyyy'}}</td>
+        
+                    <td>{{ imp.fournissuer}} </td>
+                    <td ><button  class="btn btn-danger" (click)="afficherModele1(imp.id,'imprimente')">Supprimer</button>
+                     
+                  </tr>
+                  <tr *ngFor="let imp of ordinateur;let i = index" >
+                    
+                      <td>Ordinateur</td>
+                    <td>{{ imp.code_barre}}<br> </td>
+        
+        
+                    <td>CPU:{{ imp.cpu}}<br>Disque:{{imp.disque}}<br>Ram:{{imp.ram}}<br>Ecran:{{imp.ecran}}<br>
+                    Marque:{{imp.marque}} <br>Prix:{{imp.prix}} DH</td>
+        
+                    <td>{{ imp.dureegarantie }} ans</td>
+                    <td>{{ imp.datelivraison|  date:'dd/MM/yyyy'}}</td>
+        
+                    <td>{{ imp.fournissuer}} </td>
+        
+                    <td><button class="btn btn-danger" (click)="afficherModele1(imp.id,'ordinateur')" >Supprimer</button>
+                    </tr>
+                </tbody>
+              </table><nav aria-label="...">
+                <ul class="pagination">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">2</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+              <!-- End Table with stripped rows -->
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div style="position: absolute; right: 50px;background-color: rgba(0, 0, 0, 0.5); ">
+        <div class="modal fade show"  *ngIf="edit"  tabindex="-1" aria-modal="true" role="dialog" style="display: block;background-color:rgba(0, 0, 0, 0.5); ">
+          <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-content" >
+              <div class="modal-header">
+                <h5 class="modal-title">Gestion des ressources</h5>
+                <button (click)="cacherModele()"  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>     </div>
+                <div class="modal-body">
+                  Voulez  vous varaiment Suprimmer .
+                </div>
+              <div class="modal-footer">
+                <button (click)="cacherModele()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button  type="button" class="btn btn-primary" (click)="suprimmer()">Suprimmer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+          </div>
+        
+    </section>
+  
+
+  </main><!-- End #main -->
