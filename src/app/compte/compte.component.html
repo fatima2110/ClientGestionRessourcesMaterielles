@@ -1,0 +1,120 @@
+<section class="section">
+  <div class="row">
+    <div class="col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">J'ajoute un Compte</h5>
+          <p>Cet espace pour ajouter les comptes des Ensiegnants.</p>
+
+          <form class="row g-3">
+            <div *ngIf="succes == 1" class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>Compte</strong> ajoute avec succes .
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div *ngIf="succes == 2" class="alert alert-primary alert-dismissible fade show" role="alert">
+              <strong>Compte</strong> modifie avec succes .
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          
+            <div *ngIf="succes == 3" class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Probleme !</strong> dans l'ajout de compte.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div *ngIf="succes == 4" class="alert alert-primary alert-dismissible fade show" role="alert">
+              <strong>Compte</strong> supprimer avec succes .
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          
+            <div *ngIf="succes == 5" class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Probleme !</strong> dans la suppression du compte.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          
+            <div class="col-6">
+              <label for="Username" class="form-label">Username</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input type="text" name="login" value="{{compte.login}}" [(ngModel)]="compte.login" class="form-control" />
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="Nom" class="form-label">Nom</label>
+              <div class="input-group has-validation">
+                <input type="text" name="nom" value="{{compte.nom}}" [(ngModel)]="compte.nom" class="form-control" />
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="Prenom" class="form-label">Prenom</label>
+              <div class="input-group has-validation">
+                <input type="text" name="prenom" value="{{compte.prenom}}" [(ngModel)]="compte.prenom" class="form-control" />
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="Telephone" class="form-label">Telephone</label>
+              <div class="input-group has-validation">
+                <input type="tel" name="telephone" value="{{compte.telephone}}" [(ngModel)]="compte.telephone" class="form-control" />
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="Password" class="form-label">Password</label>
+              <div class="input-group has-validation">
+                <input type="password" name="password" value="{{compte.password}}" [(ngModel)]="compte.password" class="form-control" />
+              </div>
+            </div>
+            <div class="col-12">
+                <button *ngIf="!editMode"(click)="createCompte()" class="btn btn-primary" type="submit">
+                  Enregister Compte
+                </button><span class="mx-1"></span>
+                <button *ngIf="editMode" (click)="editCompte()" class="btn btn-primary" type="submit">
+                  Modifier Compte
+                </button>
+                <span class="mx-1"></span>
+                <button (click)="annuler()" class="btn btn-primary" type="submit">
+                  Annuler
+                </button>
+              </div>
+          </form>
+          
+        </div>
+        <!-- End add form -->
+      </div>
+    </div>
+    <div class="col-7">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Gestion des comptes</h5>
+
+          <!-- data table -->
+          <table class="table datatable" id="myTable">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <!--<th scope="col">Role</th>-->
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Operations</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let c of comptes; let i = index">
+                <th scope="row">{{ c.id }}</th>
+                <!--<td>{{ compte.role }}</td>-->
+                <td>{{ c.nom }}</td>
+                <td>{{ c.prenom }}</td>
+                <td>
+                  <button class="btn btn-primary" (click)="getCompte(c)">
+                    <i class="bi bi-pencil-square"></i></button><button class="btn btn-warning"
+                    (click)="confirmerDeleteCompte(c.nom + ' ' + c.prenom, c.id)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- End data table -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { PagesErrorComponent } from './pages-error/pages-error.component';
 import { RouterModule } from '@angular/router';
@@ -17,6 +17,9 @@ import { ServiceDeMaintenanceComponent } from './service-de-maintenance/service-
 import { AjouterConstatComponent } from './service-de-maintenance/ajouter-constat/ajouter-constat.component';
 import { PannesComponent } from './service-de-maintenance/pannes/pannes.component';
 import { ListeConstatsComponent } from './service-de-maintenance/liste-constats/liste-constats.component';
+import { CompteComponent } from './compte/compte.component';
+import { ProfileComponent } from './profile/profile.component';
+import { JwtInterceptor } from './Utils/JwtInterceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { ListeConstatsComponent } from './service-de-maintenance/liste-constats/
     ServiceDeMaintenanceComponent,
     AjouterConstatComponent,
     PannesComponent,
-    ListeConstatsComponent
+    ListeConstatsComponent,
+    CompteComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,10 @@ import { ListeConstatsComponent } from './service-de-maintenance/liste-constats/
     ReactiveFormsModule,
     RouterModule
   ],
-  providers: [DatePipe],
+  providers: [
+    DatePipe,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

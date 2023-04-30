@@ -12,6 +12,9 @@ import { AjouterConstatComponent } from './service-de-maintenance/ajouter-consta
 import { ServiceDeMaintenanceComponent } from './service-de-maintenance/service-de-maintenance.component';
 import { PannesComponent } from './service-de-maintenance/pannes/pannes.component';
 import { ListeConstatsComponent } from './service-de-maintenance/liste-constats/liste-constats.component';
+import { CompteComponent } from './compte/compte.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ChefDepartementGuard } from './services/ChefDepartementGuard';
 
 const routes: Routes = [
   {path: 'departement',
@@ -21,7 +24,7 @@ const routes: Routes = [
       {
         path: 'gestion-besoins',
         component: ChefComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, ChefDepartementGuard]   
       },
       {
         path: 'home',
@@ -31,6 +34,16 @@ const routes: Routes = [
       {
         path: 'besoin',
         component: BesoinComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'compte',
+        component: CompteComponent,
+        canActivate: [AuthGuard, ChefDepartementGuard]
+      },
+      {
+        path: 'myProfile',
+        component: ProfileComponent,
         canActivate: [AuthGuard]
       }
     ]
@@ -57,6 +70,11 @@ const routes: Routes = [
       {
         path: 'constats',
         component: ListeConstatsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'myProfile',
+        component: ProfileComponent,
         canActivate: [AuthGuard]
       }
     ]

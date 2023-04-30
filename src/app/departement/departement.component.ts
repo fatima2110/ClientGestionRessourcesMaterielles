@@ -15,6 +15,7 @@ export class DepartementComponent  {
   login !:any;
   role !:any;
   isChef: boolean = false;
+  photo:string='';
   constructor(private authService:AuthService, private router:Router){
     this.login = this.authService.getLogin();
     this.role = this.authService.getRole();

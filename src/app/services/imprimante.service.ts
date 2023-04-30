@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Imprimante } from '../models/imprimante';
-import { Besoin } from '../models/besoin';
 import { Observable } from 'rxjs';
 import { AuthService } from './AuthService';
 
@@ -10,7 +9,9 @@ import { AuthService } from './AuthService';
   providedIn: 'root'
 })
 export class ImprimanteService {
-  private url = "http://localhost:8080/saveImprimante/1";
+  id = this.auth.getId();
+  private url = "http://localhost:8080/saveImprimante/"+this.id;
+  
 
 
   constructor(private httpClient: HttpClient, private auth:AuthService) { }

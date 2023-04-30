@@ -10,10 +10,9 @@ import { AuthService } from './AuthService';
   providedIn: 'root'
 })
 export class MaterielServiceService {
-  private url = "http://localhost:8080/getMateriels/1";
-  private url_panne = "http://localhost:8080/enPanne/8";
-  private url_service = "http://localhost:8080/enService/8";
-
+   id = this.auth.getId();
+  private url = "http://localhost:8080/getMateriels/"+this.id;
+ 
 
   constructor(private datePipe: DatePipe,private httpClient:HttpClient, private auth:AuthService) { }
   myFunction(dateString: string | null) {

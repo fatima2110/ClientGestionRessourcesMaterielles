@@ -8,7 +8,7 @@ import { AuthService } from './AuthService';
   providedIn: 'root'
 })
 export class OrdinateurService {
-
+  id = this.auth.getId();
   private url="http://localhost:8080/saveOrdinateur/";
   constructor(private httpClient:HttpClient, private auth:AuthService) { }
   addOrdinateur(newOrdinateur:Ordinateur):Observable<any>{
@@ -52,7 +52,7 @@ export class OrdinateurService {
         "Authorization": "Bearer " + token
       }
     };
-    return this.httpClient.get<Ordinateur[]>("http://localhost:8080/getBesoinsOrdinateurs/1",httpOptions);
+    return this.httpClient.get<Ordinateur[]>("http://localhost:8080/getBesoinsOrdinateurs/"+this.id,httpOptions);
   }
   validerOrdinateur(ordinateur:Ordinateur){
     const token= this.auth.getToken();

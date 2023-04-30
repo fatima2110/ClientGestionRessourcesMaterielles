@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/AuthService';
 
 @Component({
@@ -44,13 +44,13 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/departement']);
             break;
           case 'CHEF_DEPARTEMENT':
-            this.router.navigate(['/departement']);
+            this.router.navigate(['/departement/home']);
             break;
           case 'TECHNICIEN':
             this.router.navigate(['/service-de-maintenance']);
             break;
           default:
-            this.router.navigate(['/error']);
+            this.pageError(403,"Vous n'êtes pas autorisé à consulter cette page");
             break;
         }
       },
@@ -72,4 +72,20 @@ export class LoginComponent implements OnInit {
       password: this.formBuilder.control(null, [Validators.required]),
     });
   }
+
+  pageError(code:number, message:string){
+    const data = {
+      message: message,
+      code : code
+    };
+    
+    // Créez un objet NavigationExtras et utilisez-le pour transmettre l'objet state contenant les données
+    const navigationExtras: NavigationExtras = {
+      state: {
+        data: data
+      }
+    };
+    this.router.navigate(['/error'], navigationExtras);
+  }
+
 }
