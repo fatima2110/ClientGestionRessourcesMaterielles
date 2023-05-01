@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (err) => {
-        console.log(err);
+        console.log("ici",err);
         const errorCode = err.status;
         if (errorCode === 403) {
           this.errorMessage = 'Login ou mot de passe incorrect';
@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.clear();
     this.loginForm = this.formBuilder.group({
       username: this.formBuilder.control(null, [Validators.required]),
       password: this.formBuilder.control(null, [Validators.required]),

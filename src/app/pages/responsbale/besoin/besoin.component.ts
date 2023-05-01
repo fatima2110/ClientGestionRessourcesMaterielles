@@ -12,7 +12,7 @@ import { OrdinateurDTO } from 'src/app/Classes/OrdinateurDTO';
   templateUrl: './besoin.component.html',
   styleUrls: ['./besoin.component.css']
 })
-export class BesoinComponent  {
+export class BesoinComponentResponsable  {
   ordinateur: OrdinateurDTO[] = [];
 
   imprimantes: ImprimenteDTO[] = [];

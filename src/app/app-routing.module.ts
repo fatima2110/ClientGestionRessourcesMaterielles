@@ -6,7 +6,8 @@ import { FournisseursComponent } from './pages/responsbale/fournisseurs/fourniss
 import { PropositionsComponent } from './pages/responsbale/propositions/propositions.component';
 import { ListenoirComponent } from './pages/responsbale/listenoir/listenoir.component';
 import { AppComponent } from './app.component';
-import { BesoinComponent } from './pages/responsbale/besoin/besoin.component';
+import { BesoinComponent } from './departement/besoin/besoin.component';
+import { BesoinComponentResponsable } from './pages/responsbale/besoin/besoin.component';
 import { EnregistererMatComponent } from './pages/responsbale/enregisterer-mat/enregisterer-mat.component';
 import { GestionRessourcesComponent } from './pages/responsbale/gestion-ressources/gestion-ressources.component';
 
@@ -91,7 +92,7 @@ const routes: Routes = [
   { path: 'error', component: PagesErrorComponent },
   { path: '**', component: PagesErrorComponent },
   {
-    path: '' , 
+    path: 'responsable' , 
     component: ResponsbaleComponent,
     children: [
       {
@@ -108,7 +109,7 @@ const routes: Routes = [
       },
       {
         path:'consulterBesoin',
-        component:BesoinComponent
+        component:BesoinComponentResponsable
       },
       {
         path:'EnregistrerMat',

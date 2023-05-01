@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { PagesErrorComponent } from './pages-error/pages-error.component';
 import { RouterModule } from '@angular/router';
 import { BesoinComponent } from './departement/besoin/besoin.component';
+import { BesoinComponentResponsable } from './pages/responsbale/besoin/besoin.component';
 import { ChefComponent } from './departement/chef/chef.component';
 import { DepartementComponent } from './departement/departement.component';
 import { EnsignantComponent } from './departement/ensignant/ensignant.component';
@@ -47,7 +48,7 @@ import { ResponsbaleComponent } from './pages/responsbale/responsbale.component'
     ListeConstatsComponent,
     CompteComponent,
     ProfileComponent,
-    
+    BesoinComponentResponsable,
     MenuComponent,
     DashboardComponent,
     HeaderComponent,
