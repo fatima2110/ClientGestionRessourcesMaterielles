@@ -15,6 +15,7 @@ export class ServiceDeMaintenanceComponent {
 
   login !:any;
   role !:any;
+  photo:string='';
   constructor(private authService:AuthService, private router:Router){
     this.login = this.authService.getLogin();
     this.role = this.authService.getRole();

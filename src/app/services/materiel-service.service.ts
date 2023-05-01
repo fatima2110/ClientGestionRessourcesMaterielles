@@ -10,11 +10,11 @@ import { AuthService } from './AuthService';
   providedIn: 'root'
 })
 export class MaterielServiceService {
-   id = this.auth.getId();
-  private url = "http://localhost:8080/getMateriels/"+this.id;
- 
+  private id = this.auth.getId();
+  private url = "http://localhost:8080/getMateriels/" + this.id;
 
-  constructor(private datePipe: DatePipe,private httpClient:HttpClient, private auth:AuthService) { }
+
+  constructor(private datePipe: DatePipe, private httpClient: HttpClient, private auth: AuthService) { }
   myFunction(dateString: string | null) {
     if (dateString === null) {
       // handle null case
@@ -24,25 +24,32 @@ export class MaterielServiceService {
     // use dateObj
   }
   getMateriels(): Observable<Materiel[]> {
-    const id = this.auth.getId();
-    const token= this.auth.getToken();
+    const token = this.auth.getToken();
     const httpOptions = {
       headers: {
         "Authorization": "Bearer " + token
       }
     };
-    var materiels=this.httpClient.get<Materiel[]>(this.url,httpOptions);
-    console.log(materiels);
+    var materiels = this.httpClient.get<Materiel[]>(this.url, httpOptions);
     return materiels;
   }
-  enPanne(id:number):Observable<void>{
-    const token= this.auth.getToken();
+  enPanne(id: number): Observable<void> {
+    const token = this.auth.getToken();
     const httpOptions = {
       headers: {
         "Authorization": "Bearer " + token
       }
     };
-    return this.httpClient.get<void>("http://localhost:8080/enPanne/"+id,httpOptions);
+    return this.httpClient.get<void>("http://localhost:8080/enPanne/" + id, httpOptions);
+  }
+  materielstate(id: string, state: string): Observable<void> {
+    const token = this.auth.getToken();
+    const httpOptions = {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    };
+    return this.httpClient.get<void>("http://localhost:8080/materielstate/" + id + "/" + state, httpOptions);
   }
 
 

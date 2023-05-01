@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MaterielStatus } from 'src/app/models/MaterielStatus';
 import { Imprimante } from 'src/app/models/imprimante';
 import { Ordinateur } from 'src/app/models/ordinateur';
 import { PanneImprimente } from 'src/app/models/panne-imprimente';
 import { PanneOrdinateur } from 'src/app/models/panne-ordinateur';
 import { PanneService } from 'src/app/services/PannesService';
+import { MaterielServiceService } from 'src/app/services/materiel-service.service';
 declare var $: any;
 
 @Component({
@@ -24,7 +26,7 @@ export class PannesComponent implements OnInit, AfterViewInit{
   newOrdinateur = new Ordinateur();
   newImprimante = new Imprimante();
 
-  constructor(private panne:PanneService, private router: Router){
+  constructor(private panne:PanneService, private router: Router, private materielServiceService:MaterielServiceService){
     this.notif=0;
   }
   ngOnInit(): void {
@@ -58,8 +60,20 @@ export class PannesComponent implements OnInit, AfterViewInit{
     //},100);
   }
 
-  materielRepare(){
-    console.log("materielRepare");
+  materielState(event: MouseEvent, id:string){
+    let state = '';
+    const target = event.target as HTMLButtonElement;
+    if (target.id === "btn-reparer"){
+      alert("reparer")
+      state = "REPAREE";
+    }
+    this.materielServiceService.materielstate(id, state).subscribe({
+      next: (res) => {
+        this.ngOnInit();
+      }, error: (err) => {
+        console.log(err)
+      }
+    });
   }
 
   redigerConstat(code_barre:string){

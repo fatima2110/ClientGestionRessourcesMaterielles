@@ -37,7 +37,8 @@
                 <th scope="col">Materiel</th>
                 <th scope="col">Code a barre</th>
                 <th scope="col">Date d'affectation</th>
-                <th scope="col">Operations</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -45,15 +46,16 @@
                 <th scope="row">{{i+1}}</th>
                 <td>{{materiel.marque}}</td>
                 <td>{{materiel.code_barre}}</td>
-
                 <td>{{materiel.date_affectation}}</td>
-                <td *ngIf="materiel.enPanne!=='en_Panne';else alternative"> <button class="btn btn-warning"
-                    (click)="confirmerPanne(materiel.type+materiel.marque,materiel.id)">
-                    en Panne
+                <td>{{materiel.materielState}}</td>
+                <td *ngIf="materiel.materielState!=='EnPanne';else alternative"> <button class="btn btn-warning"
+                    (click)="confirmerPanne(materiel.type+materiel.marque,materiel.id)"
+                    title="Signaler panne">
+                    <i class="bi bi-exclamation-diamond-fill text-danger"></i>
                   </button></td>
                 <ng-template #alternative>
-                  <td> <button class="btn btn-warning disabled">
-                    en Panne
+                  <td> <button class="btn btn-primary disabled">
+                    <i class="bi bi-exclamation-diamond-fill text-danger"></i>
                   </button></td>
 
                 </ng-template>

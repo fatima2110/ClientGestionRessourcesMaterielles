@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pages-error',
@@ -10,9 +10,17 @@ export class PagesErrorComponent implements OnInit {
   code:number= 403;
   message: string="Vous n'êtes pas autorisé à consulter cette page";
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.data.subscribe(data => {
+      if (data.hasOwnProperty('message')) {
+        this.message = data['message'];
+      }
+      if (data.hasOwnProperty('code')) {
+        this.code = data['code'];
+      }
+    });
     /*const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras && navigation.extras.state) {
       const state = navigation.extras.state;

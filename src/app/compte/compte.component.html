@@ -68,8 +68,7 @@
                 </button><span class="mx-1"></span>
                 <button *ngIf="editMode" (click)="editCompte()" class="btn btn-primary" type="submit">
                   Modifier Compte
-                </button>
-                <span class="mx-1"></span>
+                </button><span>&nbsp;</span>
                 <button (click)="annuler()" class="btn btn-primary" type="submit">
                   Annuler
                 </button>
@@ -104,7 +103,8 @@
                 <td>{{ c.prenom }}</td>
                 <td>
                   <button class="btn btn-primary" (click)="getCompte(c)">
-                    <i class="bi bi-pencil-square"></i></button><button class="btn btn-warning"
+                    <i class="bi bi-pencil-square"></i></button><span>&nbsp;</span>
+                    <button class="btn btn-warning"
                     (click)="confirmerDeleteCompte(c.nom + ' ' + c.prenom, c.id)">
                     <i class="bi bi-trash"></i>
                   </button>

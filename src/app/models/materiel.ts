@@ -1,4 +1,4 @@
-import { Panne } from "src/app/models/panne";
+import { MaterielStatus } from "src/app/models/MaterielStatus";
 
 export class Materiel {
   id:number;
@@ -7,15 +7,15 @@ export class Materiel {
   code_barre:string;
   qtn:number;
   date_affectation:Date;
-  panne:Panne;
+  materielState:MaterielStatus;
 
   constructor() {
     this.id=0;
     this.type='Ordinateur';
     this.marque='HP'
     this.code_barre='';
-    this.qtn=5;
+    this.qtn=1;
     this.date_affectation=new Date();
-    this.panne=Panne.active;
+    this.materielState=MaterielStatus.EnService;
    }
 }

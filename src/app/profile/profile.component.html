@@ -57,9 +57,9 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Departement</div>
-                    <div class="col-lg-9 col-md-8">{{profile.departement}}</div>
-                  </div>
+                  <div class="col-lg-3 col-md-4 label">Departement</div>
+                  <div class="col-lg-9 col-md-8">{{profile.departement}}</div>                    
+                </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Job</div>
@@ -105,7 +105,7 @@
                   <div class="row mb-3">
                     <label for="login" class="col-md-4 col-lg-3 col-form-label">Login</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="login" type="text" class="form-control" id="login" value="{{profile.login}}" [(ngModel)]="profile.login">
+                      <input name="login" type="text" class="form-control" id="login" value="{{profile.login}}" [(ngModel)]="profile.login" readonly>
                     </div>
                   </div>
 
@@ -134,8 +134,8 @@
                     <label for="departement" class="col-md-4 col-lg-3 col-form-label">Departement</label>
                     <div class="col-md-8 col-lg-9">
                       <input name="departement" type="text" class="form-control" id="departement" value="{{profile.departement}}" [(ngModel)]="profile.departement" readonly>
-                    </div>
-                  </div>
+                    </div>          
+                 </div>
 
                   <div class="row mb-3">
                     <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>

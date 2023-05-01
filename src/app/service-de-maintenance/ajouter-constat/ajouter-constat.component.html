@@ -14,12 +14,12 @@
   </div>
   <div *ngIf="notif==2" class="alert alert-warning alert-dismissible fade show" role="alert">
     <i class="bi bi-star me-1"></i>
-    Votre constat a ete supprimer avec <strong>succes</strong>
+    <strong>Probleme</strong> dans l'ajoute du constat.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-  <div *ngIf="notif==3" class="alert alert-primary alert-dismissible fade show" role="alert">
+  <div *ngIf="errorMsg" class="alert alert-warning alert-dismissible fade show" role="alert">
     <i class="bi bi-star me-1"></i>
-    Votre constat a ete modifie avec <strong>succes</strong>
+    <strong>{{errorMsg}}</strong>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   
@@ -32,9 +32,6 @@
             <h5 class="card-title">Ajouter un constat</h5>
             <p>Cet espace est réservé pour l'ajoute des constats si vous rencontrez une panne <code>sévère</code> dans un matériel.
             </p>
-  
-            <!-- Browser Default Validation -->
-  
             <label for="validationDefault04" class="form-label">Code a barre de matériel</label>
             <!--<select (change)="onOptionSelected($event.target)" class="form-select" id="validationDefault04" required>
               <option selected value=1>Ordinateur</option>

@@ -31,6 +31,7 @@ import { ListenoirComponent } from './pages/responsbale/listenoir/listenoir.comp
 import { EnregistererMatComponent } from './pages/responsbale/enregisterer-mat/enregisterer-mat.component';
 import { GestionRessourcesComponent } from './pages/responsbale/gestion-ressources/gestion-ressources.component';
 import { ResponsbaleComponent } from './pages/responsbale/responsbale.component';
+import { GestionPannesComponent } from './pages/responsbale/gestion-pannes/gestion-pannes.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { ResponsbaleComponent } from './pages/responsbale/responsbale.component'
     ResponsbaleComponent,
     EnregistererMatComponent,
     BesoinComponent,
-    GestionRessourcesComponent
+    GestionRessourcesComponent,
+    GestionPannesComponent
     
   ],
   imports: [ 

@@ -24,6 +24,9 @@ import { ListeConstatsComponent } from './service-de-maintenance/liste-constats/
 import { CompteComponent } from './compte/compte.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChefDepartementGuard } from './services/ChefDepartementGuard';
+import { TechnicienGuard } from './services/TechnicienGuard';
+import { ResponsableGuard } from './services/ResponsableGuard';
+import { GestionPannesComponent } from './pages/responsbale/gestion-pannes/gestion-pannes.component';
 
 const routes: Routes = [
   {
@@ -61,83 +64,96 @@ const routes: Routes = [
   {
     path: 'service-de-maintenance',
     component: ServiceDeMaintenanceComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, TechnicienGuard],
     children: [
       {
         path: 'home',
         component: PannesComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, TechnicienGuard]
       },
       {
         path: 'constat',
         component: AjouterConstatComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, TechnicienGuard]
       },
       {
         path: 'pannes',
         component: PannesComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, TechnicienGuard]
       },
       {
         path: 'constats',
         component: ListeConstatsComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, TechnicienGuard]
       },
       {
         path: 'myProfile',
         component: ProfileComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, TechnicienGuard]
       }
     ]
   },
   { path: '', component: LoginComponent },
   { path: 'error', component: PagesErrorComponent },
-  //{ path: '**', component: PagesErrorComponent },
   {
     path: 'responsable',
     component: ResponsbaleComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, ResponsableGuard],
     children: [
       {
         path: 'fournisseurs',
         component: FournisseursComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, ResponsableGuard]
       },
       {
         path: 'propositions',
         component: PropositionsComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, ResponsableGuard]
       },
       {
         path: 'listenoir',
         component: ListenoirComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, ResponsableGuard]
       },
       {
         path: 'consulterBesoin',
         component: BesoinComponentResponsable,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, ResponsableGuard]
       },
       {
         path: 'EnregistrerMat',
         component: EnregistererMatComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, ResponsableGuard]
       },
       {
         path: 'Home',
         component: AppComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, ResponsableGuard]
       },
       {
         path: 'gestionRessources',
         component: GestionRessourcesComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, ResponsableGuard]
+      },
+      {
+        path: 'myProfile',
+        component: ProfileComponent,
+        canActivate: [AuthGuard, ResponsableGuard]
+      },
+      {
+        path: 'compte',
+        component: CompteComponent,
+        canActivate: [AuthGuard, ResponsableGuard]
+      },
+      {
+        path: 'gestionPannes',
+        component: GestionPannesComponent,
+        canActivate: [AuthGuard, ResponsableGuard]
       }
+
     ]
-  }
-
-
-
+  },
+  { path: '**', component: PagesErrorComponent, data: { code:404, message: 'La page demandée est introuvable.' } }
 ];
 
 @NgModule({

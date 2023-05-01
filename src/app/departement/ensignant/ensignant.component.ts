@@ -10,52 +10,51 @@ declare var $: any;
 })
 export class EnsignantComponent {
   materils: any;
-  title='Dashboard - Les ressources affectees';
-  stitle='les - affectations';
-  enPannAlert:number;
+  title = 'Dashboard - Les ressources affectees';
+  stitle = 'les - affectations';
+  enPannAlert: number;
 
   ngAfterViewInit(): void {
-    setTimeout(()=>{
-      $(document).ready(function() {
+    setTimeout(() => {
+      $(document).ready(function () {
         $('#myTable').DataTable();
         //$('.datatable').dataTable();
       });
-    },500);
+    }, 500);
 
   }
-  constructor(private materielServiceService:MaterielServiceService){
-    this.enPannAlert=0;
+  constructor(private materielServiceService: MaterielServiceService) {
+    this.enPannAlert = 0;
   }
   ngOnInit(): void {
-   this.materielServiceService.getMateriels().subscribe({
-      next:(res)=>{
-        this.materils=res;
-        for(let i: number = 0; i < this.materils.length; i++){
+    this.materielServiceService.getMateriels().subscribe({
+      next: (res) => {
+        this.materils = res;
+        console.log("materiels : ", this.materils);
+        for (let i: number = 0; i < this.materils.length; i++) {
           console.log(this.materils[i].marque);
         }
-        },error:(err)=>{
-          alert("error")
-          console.log(err)
-        }
+      }, error: (err) => {
+        alert("error")
+        console.log(err)
+      }
     });
 
-    }
-    enPanne(id:number):void{
-
-this.materielServiceService.enPanne(id).subscribe({
-  next:(res)=>{
-    this.ngOnInit();
-    this.enPannAlert=1;
-    },error:(err)=>{
-      alert("error")
-      console.log(err)
-    }
-});
-    }
-    confirmerPanne(mat:string,id:number) {
-      if(confirm("vous etes sur "+mat +"en panne ?"))
+  }
+  enPanne(id: number): void {
+    this.materielServiceService.enPanne(id).subscribe({
+      next: (res) => {
+        this.ngOnInit();
+        this.enPannAlert = 1;
+      }, error: (err) => {
+        console.log(err)
+      }
+    });
+  }
+  confirmerPanne(mat: string, id: number) {
+    if (confirm("vous etes sur " + mat + "en panne ?"))
       this.enPanne(id);
-    }
+  }
 
 
 }

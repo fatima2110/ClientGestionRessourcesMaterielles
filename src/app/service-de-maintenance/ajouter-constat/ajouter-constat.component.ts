@@ -13,12 +13,13 @@ import { PanneService } from 'src/app/services/PannesService';
 export class AjouterConstatComponent implements OnInit{
   title = 'Dashboard - Ajouter Constat';
   notif: number;
+  errorMsg!:string;
   showOrdinateur = true;
   code_barre:string = "";
   
   newConstat = new Constat();
 
-  constructor(private route: ActivatedRoute, private panne:PanneService){
+  constructor(private route: ActivatedRoute, private panneService:PanneService){
     this.notif=0;
   }
   ngOnInit(): void {
@@ -29,10 +30,21 @@ export class AjouterConstatComponent implements OnInit{
 
   saveConstat(){
     this.newConstat.code_barre=this.code_barre;
-    this.panne.ajouterConstat(this.newConstat).subscribe({
-      next:(resp)=>{console.log(resp);},
-      error:(err)=>{console.log(err);}
+    this.panneService.ajouterConstat(this.newConstat).subscribe({
+      next:(resp)=>{console.log(resp);this.clear();this.notif=1;},
+      error:(err)=>{
+        const codeError = err.status;
+        if(codeError === 404){
+          this.clear();
+          this.errorMsg= "le materiel n'existe pas";
+        }
+        console.log(err);
+        }
     });
+  }
+  clear(){
+    this.newConstat = new Constat();
+    this.code_barre = '';
   }
 
 }

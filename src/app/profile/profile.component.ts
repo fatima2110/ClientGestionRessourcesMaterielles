@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Register } from '../models/register';
+import { Register, Role } from '../models/register';
 import { AuthService } from '../services/AuthService';
 import { PassWord } from '../models/Password';
 
@@ -10,6 +10,7 @@ import { PassWord } from '../models/Password';
 })
 export class ProfileComponent implements OnInit{
   profile = new Register();
+  isTech = false;
   password = new PassWord();
   matchPassword = '';
   id!:number;
@@ -43,6 +44,9 @@ export class ProfileComponent implements OnInit{
       next: (res) => {
         console.log(res)
         this.profile = res;
+        if(this.profile.role.toString() === "TECHNICIEN"){
+          this.profile.departement = "Service de maintenance";
+        }
       }, error: (err) => {
         console.log(err)
       }
