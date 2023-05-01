@@ -61,8 +61,7 @@ import { ResponsbaleComponent } from './pages/responsbale/responsbale.component'
     GestionRessourcesComponent
     
   ],
-  imports: [
-  
+  imports: [ 
     BrowserModule,
     AppRoutingModule,
     FormsModule,

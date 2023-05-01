@@ -3,7 +3,13 @@ import { Role } from "./Role";
 export const ROLES: Role[] = [
   {
     name: 'RESPONSABLE', path: [
-      
+      '/responsable/home',
+      '/responsable/fournisseurs',
+      '/responsable/propositions',
+      '/responsable/listenoir',
+      '/responsable/consulterBesoin',
+      '/responsable/EnregistrerMat',
+      '/responsable/gestionRessources'
     ]
   },
   {

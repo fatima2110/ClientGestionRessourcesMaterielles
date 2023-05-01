@@ -26,14 +26,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChefDepartementGuard } from './services/ChefDepartementGuard';
 
 const routes: Routes = [
-  {path: 'departement',
+  {
+    path: 'departement',
     component: DepartementComponent,
     canActivate: [AuthGuard],
     children: [
       {
         path: 'gestion-besoins',
         component: ChefComponent,
-        canActivate: [AuthGuard, ChefDepartementGuard]   
+        canActivate: [AuthGuard, ChefDepartementGuard]
       },
       {
         path: 'home',
@@ -57,7 +58,8 @@ const routes: Routes = [
       }
     ]
   },
-  {path: 'service-de-maintenance',
+  {
+    path: 'service-de-maintenance',
     component: ServiceDeMaintenanceComponent,
     canActivate: [AuthGuard],
     children: [
@@ -90,46 +92,52 @@ const routes: Routes = [
   },
   { path: '', component: LoginComponent },
   { path: 'error', component: PagesErrorComponent },
-  { path: '**', component: PagesErrorComponent },
+  //{ path: '**', component: PagesErrorComponent },
   {
-    path: 'responsable' , 
+    path: 'responsable',
     component: ResponsbaleComponent,
+    canActivate: [AuthGuard],
     children: [
       {
-        path: 'fournisseurs' , 
-        component: FournisseursComponent
+        path: 'fournisseurs',
+        component: FournisseursComponent,
+        canActivate: [AuthGuard]
       },
       {
-        path: 'propositions' , 
-        component: PropositionsComponent
+        path: 'propositions',
+        component: PropositionsComponent,
+        canActivate: [AuthGuard]
       },
       {
-        path: 'listenoir' , 
-        component: ListenoirComponent
+        path: 'listenoir',
+        component: ListenoirComponent,
+        canActivate: [AuthGuard]
       },
       {
-        path:'consulterBesoin',
-        component:BesoinComponentResponsable
+        path: 'consulterBesoin',
+        component: BesoinComponentResponsable,
+        canActivate: [AuthGuard]
       },
       {
-        path:'EnregistrerMat',
-        component:EnregistererMatComponent
+        path: 'EnregistrerMat',
+        component: EnregistererMatComponent,
+        canActivate: [AuthGuard]
       },
-       {
-        path:'Home',
-        component:AppComponent
+      {
+        path: 'Home',
+        component: AppComponent,
+        canActivate: [AuthGuard]
       },
-       {
-        path:'gestionRessources',
-        component:GestionRessourcesComponent
-       }
-      
-    
+      {
+        path: 'gestionRessources',
+        component: GestionRessourcesComponent,
+        canActivate: [AuthGuard]
+      }
     ]
   }
 
 
-  
+
 ];
 
 @NgModule({
