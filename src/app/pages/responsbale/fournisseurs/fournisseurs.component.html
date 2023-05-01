@@ -1,0 +1,116 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Data Tables</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">GestionFournisseurs</li>
+        
+      </ol>
+    </nav>
+  </div>
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center;">Liste Fournisseurs</h5>
+              <div class="datatable-top">
+               
+                <div class="datatable-search">
+                        <input class="datatable-input" placeholder="Search..." type="search" title="Search within table">
+                    </div>
+            </div>
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NomSociété</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">Email</th>
+                    <th  scope="col">Action</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let fournisseur of Fournisseurs;let i=index">
+                    <th scope="row">{{i+1}}</th>
+                    <td >{{fournisseur.nom_societe}}</td>
+                    <td >{{fournisseur.adresse}}</td>
+                    <td >{{fournisseur.email}}</td>
+                    <td ><button style="margin-right: 10px;" (click)="voirPropositions(fournisseur.id)"  routerLink="/propositions" type="button" class="btn btn-primary" >Voir Proposition</button>
+                      <button *ngIf="fournisseur.listeNoir === false" (click)="afficherModele(fournisseur.id)"  type="button" class="btn btn-danger btn-xs dt-delete"style="background-color:black;border-color:black" >Ajouter a la listeNoir</button>
+                      <button *ngIf="fournisseur.listeNoir === true" (click)="afficherModeleR(fournisseur.id)" type="button" class="btn btn-danger btn-xs dt-delete" >Retirer de la listeNoir</button></td>
+                   
+                  </tr>
+                  
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal fade show"  *ngIf="modeleAffiche"  tabindex="-1" aria-modal="true" role="dialog" style="display: block; background-color: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Eliminer Fournisseur</h5>
+              <button (click)="cacherModele()"  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>     </div>
+            <div class="modal-body">
+              voulez-vous ajouter ce fournisseur a la liste noir?
+            </div>
+            <div class="modal-footer">
+              <button (click)="cacherModele()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+              <button (click)="afficherModeleMotifEliminer();cacherModele()" type="button" class="btn btn-danger btn-xs dt-delete" style="background-color:black;border-color:black">Ajouter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade show"  *ngIf=" modeleAfficheMotifEliminer"  tabindex="-1" aria-modal="true" role="dialog" style="display: block; background-color: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Motif d'élimination</h5>
+              <button (click)="cacherModeleMotifEliminer()"  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>     </div>
+            <div class="modal-body">
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Motif:</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" #ref>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button (click)="cacherModeleMotifEliminer()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+              <button  type="button" (click)="eliminerFournisseur();cacherModeleMotifEliminer();EnvoyerMotif(ref)" class="btn btn-primary">Envoyer Motif</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade show"  *ngIf="modeleAfficheR"  tabindex="-1" aria-modal="true" role="dialog" style="display: block; background-color: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Retirer Fournisseur de la listeNoir</h5>
+              <button (click)="cacherModeleR()"  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>     </div>
+            <div class="modal-body">
+              voulez-vous retirer ce fournisseur de la liste noir?
+            </div>
+            <div class="modal-footer">
+              <button (click)="cacherModeleR()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+              <button (click)="retirerFournisseur();cacherModeleR()" type="button" class="btn btn-danger btn-xs dt-delete">Retirer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+
+  </main><!-- End #main -->

@@ -1,9 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ResponsbaleComponent } from './pages/responsbale/responsbale.component';
+import { FournisseursComponent } from './pages/responsbale/fournisseurs/fournisseurs.component';
+
+import { PropositionsComponent } from './pages/responsbale/propositions/propositions.component';
+import { ListenoirComponent } from './pages/responsbale/listenoir/listenoir.component';
+import { AppComponent } from './app.component';
+import { BesoinComponent } from './pages/responsbale/besoin/besoin.component';
+import { EnregistererMatComponent } from './pages/responsbale/enregisterer-mat/enregisterer-mat.component';
+import { GestionRessourcesComponent } from './pages/responsbale/gestion-ressources/gestion-ressources.component';
 
 import { LoginComponent } from './login/login.component';
 import { PagesErrorComponent } from './pages-error/pages-error.component';
-import { BesoinComponent } from './departement/besoin/besoin.component';
 import { ChefComponent } from './departement/chef/chef.component';
 import { DepartementComponent } from './departement/departement.component';
 import { EnsignantComponent } from './departement/ensignant/ensignant.component';
@@ -81,7 +89,46 @@ const routes: Routes = [
   },
   { path: '', component: LoginComponent },
   { path: 'error', component: PagesErrorComponent },
-  { path: '**', component: PagesErrorComponent }
+  { path: '**', component: PagesErrorComponent },
+  {
+    path: '' , 
+    component: ResponsbaleComponent,
+    children: [
+      {
+        path: 'fournisseurs' , 
+        component: FournisseursComponent
+      },
+      {
+        path: 'propositions' , 
+        component: PropositionsComponent
+      },
+      {
+        path: 'listenoir' , 
+        component: ListenoirComponent
+      },
+      {
+        path:'consulterBesoin',
+        component:BesoinComponent
+      },
+      {
+        path:'EnregistrerMat',
+        component:EnregistererMatComponent
+      },
+       {
+        path:'Home',
+        component:AppComponent
+      },
+       {
+        path:'gestionRessources',
+        component:GestionRessourcesComponent
+       }
+      
+    
+    ]
+  }
+
+
+  
 ];
 
 @NgModule({
