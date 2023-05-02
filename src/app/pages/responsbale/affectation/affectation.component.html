@@ -1,0 +1,165 @@
+<div class="pagetitle">
+  <h1> {{this.title}}</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active">{{this.stitle}}</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
+
+
+
+
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">La gestion des ressources affectees et non affectees</h5>
+          <p>Cette escpace est pour la gestion des <strong>affectations.</strong> </p>
+
+
+          <!-- Table with stripped rows -->
+          <div class="row">
+            <div class="col-3 pb-5">
+              <select (change)="onOptionSelected($event.target)" class="form-select" id="validationDefault04" required>
+                <option selected value=1>Les ressources affectees</option>
+                <option value=2>Les ressources non-affectees</option>
+              </select>
+            </div>
+
+
+
+            <table *ngIf="showAffected;else alternative" class="table datatable" id="myTbale">
+              <thead>
+
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Enseignant</th>
+                  <td>Departement</td>
+                  <th scope="col">Code barre</th>
+                  <th scope="col">Date d'affectation</th>
+                  <th scope="col">Operations</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let affectation of affectations;let i=index">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{affectation.ensiegnant.nom}} {{affectation.ensiegnant.prenom}}</td>
+                  <td>{{affectation.ensiegnant.departement}}</td>
+                  <td>{{affectation.materiel.code_barre}}</td>
+                  <td>{{affectation.date_affectation}}</td>
+
+
+                  <td>
+                    <button (click)="retirerRessourceAffecte(affectation.id)" class="btn btn-warning">
+                      <i class="bi bi-dash-circle"></i>
+                    </button>
+                  </td>
+
+
+
+
+
+
+                </tr>
+
+
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+            <ng-template #alternative>
+              <table class="table datatable" id="myTbale">
+                <thead>
+
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Enseignant</th>
+                    <th scope="col">Departement</th>
+                    <th scope="col">Code barre</th>
+                    <th scope="col">Date Livraison</th>
+                    <th scope="col">Operations</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let materiel of materiels;let i=index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{materiel.ensiegnant.nom}} {{materiel.ensiegnant.prenom}}</td>
+                    <td>{{materiel.ensiegnant.departement}}</td>
+                    <td>{{materiel.code_barre}}</td>
+                    <td>{{materiel.date_livraison}}</td>
+
+
+                    <td> <button (click)="getMateriel(materiel)" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#affecteRessource">
+                        <i class="bi bi-check-square"></i>
+                      </button>
+
+                    </td>
+
+                    <div class="modal fade" id="affecteRessource" tabindex="-1">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Basic Modal</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+
+                            <form class="row g-3">
+                              <div class="col-md-4">
+                                <label for="validationDefault02" class="form-label">Code barre</label>
+                    <input type="text" name="code_barre" [(ngModel)]="materielPorter.code_barre" class=" form-select" disabled/>
+                              </div>
+                              <div class="col-md-4">
+                                <label for="validationDefault02" class="form-label">Departement</label>
+                                <select [(ngModel)]="materielPorter.ensiegnant.departement" name="departement" class="form-select" id="validationDefault04"
+                                required (change)="onDepartementSelected($event)">
+                                  <option value="Informatique">Informatique</option>
+                                  <option value="Mecanique">Mecanique</option>
+
+
+                                </select>
+                              </div>
+                              <div class="col-md-4">
+                                <label for="validationDefault02" class="form-label">Enseignant</label>
+                                <select [(ngModel)]="materielPorter.ensiegnant.id" name="id" class="form-select" id="validationDefault04"
+                                  required>
+                                  <ng-container *ngFor="let ens of ensiegnants">
+                                    <option [value]="ens.id">{{ ens.nom }} {{ens.prenom}}</option>
+                                  </ng-container>
+                                </select>
+                              </div>
+
+
+
+
+                              <div class="col-12">
+                                <button (click)="affecterRessource(materiel)" class="btn btn-primary" type="submit"
+                                  data-bs-dismiss="modal">Affecter la ressource</button>
+                              </div>
+                            </form>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- End Basic Modal-->
+
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>

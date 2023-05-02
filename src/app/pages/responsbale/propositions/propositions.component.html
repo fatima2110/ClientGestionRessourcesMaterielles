@@ -1,4 +1,4 @@
-<main id="main" class="main">
+
 
     <div class="pagetitle">
       <h1>Proposition</h1>
@@ -29,13 +29,13 @@
                     <div class="datatable-search">
                       <input class="datatable-input" placeholder="Search..." type="search" title="Search within table" id="myInput" (keyup)="myFunction()" >
                     </div>
-                    
+
             </div>
               <!-- Table with stripped rows -->
               <table   *ngIf="selectedItem === 'ordinateur' " class="table datatable" id="myTable">
                 <thead>
                   <tr >
-                    
+
                     <th scope="col">#</th>
                     <th>Marque</th>
                     <th>CPU</th>
@@ -44,7 +44,7 @@
                     <th>Ram</th>
                     <th>Quantité</th>
                     <th>Prix</th>
-                    
+
                   </tr>
                 </thead>
                 <tbody>
@@ -53,15 +53,15 @@
                     <td>{{Ordinateur.marque}}</td>
                     <td>{{Ordinateur.cpu}}</td>
                     <td>{{Ordinateur.disque}}</td>
-                 
+
                     <td>{{Ordinateur.ecran}}</td>
                     <td>{{Ordinateur.ram}}</td>
-                    
+
                     <td>{{Ordinateur.qte}}</td>
                     <td>{{Ordinateur.prix}}</td>
                   </tr>
-                  
-                  
+
+
                 </tbody>
                 <!-- <tfoot>
                   <tr  >
@@ -81,14 +81,14 @@
               <table *ngIf="selectedItem === 'imprimante' "  class="table datatable" id="myTable">
                 <thead>
                   <tr>
-                    
+
                     <th scope="col">#</th>
                     <th>Marque</th>
                     <th>Résolution</th>
                     <th>Vitesse</th>
                     <th>Quantité</th>
                     <th>Prix</th>
-                  
+
                   </tr>
                 </thead>
                 <tbody>
@@ -100,7 +100,7 @@
                     <td>{{imprimante.qte}}</td>
                     <td>{{imprimante.prix}}</td>
                   </tr>
-                  
+
                 </tbody><div style="position:absolute;right:170px;"> <tr>
                   <th   id="total" colspan="3">Total :</th>
                   <td >{{Montant}}</td>
@@ -124,11 +124,11 @@
           </div>
 
         </div>
-      </div> 
+      </div>
       <div style="position: absolute; right: 50px; "><button style="margin-right: 10px;" routerLink="/fournisseurs"  type="button" class="btn btn-secondary" >Annuler</button>
       <button style="margin-right: 10px;"  (click)="afficherModele1()" type="button" class="btn btn-primary" >Accepter</button>
       <button style="margin-right: 10px;" (click)="afficherModele2()"  type="button" class="btn btn-danger btn-xs dt-delete" >Rejeter</button></div>
-      
+
       <div class="modal fade show"  *ngIf="modeleAffiche1"  tabindex="-1" aria-modal="true" role="dialog" style="display: block; background-color: rgba(0, 0, 0, 0.5);">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -161,7 +161,6 @@
           </div>
         </div>
       </div>
-      
+
     </section>
 
-  </main><!-- End #main -->

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './components/menuRespo/menu.component';
 import { DashboardComponent } from './pages/dashboardRespo/dashboard.component';
@@ -15,12 +15,14 @@ import { BesoinComponent } from './pages/responsbale/besoin/besoin.component';
 import { EnregistererMatComponent } from './pages/responsbale/enregisterer-mat/enregisterer-mat.component';
 import { GestionRessourcesComponent } from './pages/responsbale/gestion-ressources/gestion-ressources.component';
 import { ResponsbaleComponent } from './pages/responsbale/responsbale.component';
+import { AffectationComponent } from './pages/responsbale/affectation/affectation.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    
+
     MenuComponent,
     DashboardComponent,
     HeaderComponent,
@@ -30,11 +32,13 @@ import { ResponsbaleComponent } from './pages/responsbale/responsbale.component'
     ResponsbaleComponent,
     EnregistererMatComponent,
     BesoinComponent,
-    GestionRessourcesComponent
-    
+    GestionRessourcesComponent,
+    AffectationComponent,
+
+
   ],
   imports: [
-  
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

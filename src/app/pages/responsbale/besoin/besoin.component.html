@@ -1,20 +1,18 @@
-<main id="main" class="main">
-
   <div class="pagetitle">
     <h1>Data Tables</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
         <li class="breadcrumb-item">Consulter Les Besoins</li>
-        
+
       </ol>
     </nav>
   </div> <div *ngIf="imprimantes.length == 0  && ordinateur.length==0" style="margin-top: 20px;margin-left: 200px;margin-top:200px;font-size: 30px;font-style: italic;" >
     <p  >Liste des Besoins est vide .</p>
   </div>
- 
+
   <div *ngIf="imprimantes.length > 0  || ordinateur.length>0">  </div>
-    
+
 
     <section class="section">
       <div class="row">
@@ -24,23 +22,23 @@
             <div class="card-body">
               <h5 class="card-title" style="text-align: center;">Liste Matérielles</h5>
               <div class="datatable-top">
-               
+
                 <div class="datatable-search">
                         <input class="datatable-input" placeholder="Search..." type="search" title="Search within table"id="myInput" (keyup)="myFunction()">
                     </div>
             </div>
               <!-- Table with stripped rows -->
-              
+
               <table class="table datatable" id="myTable" >
                 <thead>
                   <tr>
-                   
+
                     <th> <input class="form-check-input" type="checkbox" id="selectAll" (change)="toggleSelectAll($event)"></th>
                     <th scope="col">Material</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Enseignant</th>       
+                    <th scope="col">Enseignant</th>
                     <th scope="col">Departement</th>
-                    
+
                   </tr>
                 </thead>
                 <tbody>
@@ -50,11 +48,11 @@
                       (change)="genererListF(imp)"></td>
                    <td>Imprimante</td>
                      <td>Vetesse:{{ imp.vitesse }}<br>Resolution:{{imp.resolution}}</td>
-        
+
                      <td>{{imp.enseignant}}</td>
                      <td>{{imp.departement}}</td>
                    </tr>
-        
+
                   <tr *ngFor="let imp of ordinateur;let i = index" >
                       <td>    <input class="form-check-input"
                         type="checkbox" id="gridCheck1"
@@ -81,14 +79,14 @@
                 </ul>
               </nav>
               <!-- End Table with stripped rows -->
-              
+
             </div>
           </div>
 
         </div>
       </div>
-   
-        
+
+
     </section>
     <div class="modal-footer">
       <button class="btn btn-primary" (click)="afficherModele1()" type="button" >Generer Appel d'offre</button>
@@ -148,4 +146,3 @@
 
           </div>
 
-  </main><!-- End #main -->
