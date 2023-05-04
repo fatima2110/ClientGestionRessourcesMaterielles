@@ -5,7 +5,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
         <li class="breadcrumb-item">GestionFournisseurs</li>
-        
+
       </ol>
     </nav>
   </div>
@@ -18,7 +18,7 @@
             <div class="card-body">
               <h5 class="card-title" style="text-align: center;">Liste Fournisseurs</h5>
               <div class="datatable-top">
-               
+
                 <div class="datatable-search">
                         <input class="datatable-input" placeholder="Search..." type="search" title="Search within table">
                     </div>
@@ -32,7 +32,7 @@
                     <th scope="col">Adresse</th>
                     <th scope="col">Email</th>
                     <th  scope="col">Action</th>
-                    
+
                   </tr>
                 </thead>
                 <tbody>
@@ -44,13 +44,13 @@
                     <td ><button style="margin-right: 10px;" (click)="voirPropositions(fournisseur.id)" type="button" class="btn btn-primary" >Voir Proposition</button>
                       <button *ngIf="fournisseur.listeNoir === false" (click)="afficherModele(fournisseur.id)"  type="button" class="btn btn-danger btn-xs dt-delete"style="background-color:black;border-color:black" >Ajouter a la listeNoir</button>
                       <button *ngIf="fournisseur.listeNoir === true" (click)="afficherModeleR(fournisseur.id)" type="button" class="btn btn-danger btn-xs dt-delete" >Retirer de la listeNoir</button></td>
-                   
+
                   </tr>
-                  
+
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
-              
+
             </div>
           </div>
 

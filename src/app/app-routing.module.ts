@@ -34,6 +34,7 @@ import { ListeMatPropoUpdComponent } from './FournisseurComponents/liste-mat-pro
 import { ListeMatPropoComponent } from './FournisseurComponents/liste-mat-propo/liste-mat-propo.component';
 import { ListePropComponent } from './FournisseurComponents/liste-prop/liste-prop.component';
 import { PoserPropoComponent } from './FournisseurComponents/poser-propo/poser-propo.component';
+import { AffectationComponent } from './pages/responsbale/affectation/affectation.component';
 
 const routes: Routes = [
   {
@@ -141,6 +142,10 @@ const routes: Routes = [
         path: 'gestionRessources',
         component: GestionRessourcesComponent,
         canActivate: [AuthGuard, ResponsableGuard],
+      },
+      {
+        path:'affectations',
+        component:AffectationComponent
       },
       {
         path: 'myProfile',

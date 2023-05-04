@@ -5,7 +5,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
         <li class="breadcrumb-item">GestionMatérielles</li>
-        
+
       </ol>
     </nav>
   </div>
@@ -18,17 +18,17 @@
             <div class="card-body">
               <h5 class="card-title" style="text-align: center;">Liste Matérielles</h5>
               <div class="datatable-top">
-               
+
                 <div class="datatable-search">
                         <input class="datatable-input" placeholder="Search..." type="search" title="Search within table"id="myInput" (keyup)="myFunction()">
                     </div>
             </div>
               <!-- Table with stripped rows -->
-              
+
               <table class="table datatable" id="myTable" >
                 <thead>
                   <tr>
-                   
+
                     <th scope="col">Material</th>
                     <th scope="col">Code Bare</th>
                     <th scope="col">Description</th>
@@ -36,40 +36,40 @@
                     <th scope="col">Date de laivraison</th>
                     <th scope="col">Fournisseur</th>
                     <th scope="col">Action</th>
-                    
+
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let imp of imprimantes;let i=index">
-                    
+
                     <td>Imprimente</td>
                     <td>{{ imp.code_barre}}</td>
-        
+
                     <td>Vetesse:{{ imp.vitesse }}<br>Resolution:{{imp.resolution}}<br>Prix:{{ imp.prix }} DH<br>
                  <br> {{imp.marque}} </td>
-        
-        
+
+
                     <td>{{ imp.dureegarantie }} ans</td>
                     <td>{{ imp.datelivraison|  date:'dd/MM/yyyy'}}</td>
-        
+
                     <td>{{ imp.fournissuer}} </td>
                     <td ><button  class="btn btn-danger" (click)="afficherModele1(imp.id,'imprimente')">Supprimer</button>
-                     
+
                   </tr>
                   <tr *ngFor="let imp of ordinateur;let i = index" >
-                    
+
                       <td>Ordinateur</td>
                     <td>{{ imp.code_barre}}<br> </td>
-        
-        
+
+
                     <td>CPU:{{ imp.cpu}}<br>Disque:{{imp.disque}}<br>Ram:{{imp.ram}}<br>Ecran:{{imp.ecran}}<br>
                     Marque:{{imp.marque}} <br>Prix:{{imp.prix}} DH</td>
-        
+
                     <td>{{ imp.dureegarantie }} ans</td>
                     <td>{{ imp.datelivraison|  date:'dd/MM/yyyy'}}</td>
-        
+
                     <td>{{ imp.fournissuer}} </td>
-        
+
                     <td><button class="btn btn-danger" (click)="afficherModele1(imp.id,'ordinateur')" >Supprimer</button>
                     </tr>
                 </tbody>
@@ -89,7 +89,7 @@
                 </ul>
               </nav>
               <!-- End Table with stripped rows -->
-              
+
             </div>
           </div>
 

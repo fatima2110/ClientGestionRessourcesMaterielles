@@ -36,6 +36,7 @@ import { ListeMatPropoUpdComponent } from './FournisseurComponents/liste-mat-pro
 import { ListeMatPropoComponent } from './FournisseurComponents/liste-mat-propo/liste-mat-propo.component';
 import { ListePropComponent } from './FournisseurComponents/liste-prop/liste-prop.component';
 import { PoserPropoComponent } from './FournisseurComponents/poser-propo/poser-propo.component';
+import { AffectationComponent } from './pages/responsbale/affectation/affectation.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { PoserPropoComponent } from './FournisseurComponents/poser-propo/poser-p
     PropositionsComponent,
     ListenoirComponent,
     ResponsbaleComponent,
+    AffectationComponent,
     EnregistererMatComponent,
     BesoinComponent,
     GestionRessourcesComponent,
