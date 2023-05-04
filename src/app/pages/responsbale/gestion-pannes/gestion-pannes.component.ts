@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Constat } from 'src/app/models/constat';
 import { PanneService } from 'src/app/services/PannesService';
+import { MaterielServiceService } from 'src/app/services/materiel-service.service';
 declare var $: any;
 
 @Component({
@@ -12,7 +13,7 @@ export class GestionPannesComponent {
 
   title : string = "";
   constats : Constat[] = [];
-  constructor(private panne:PanneService){
+  constructor(private panne:PanneService, private materielServiceService:MaterielServiceService){
     
   }
   ngAfterViewInit(): void {
@@ -30,12 +31,24 @@ export class GestionPannesComponent {
       }, error:(err)=>{console.log(err);}
     });
   }
-  action(in_constat:number, action:string){
+  action(id_constat:number, action:string){
     if(action === "reparer"){
-      //envoyer des messages aux fournisseurs
+      this.materielServiceService.materielstate(id_constat, "EnReparation").subscribe({
+        next: (res) => {
+          this.ngOnInit();
+        }, error: (err) => {
+          console.log(err)
+        }
+      });
     }
     if(action === "changer"){
-
+      this.materielServiceService.materielstate(id_constat, "DoitChange").subscribe({
+        next: (res) => {
+          this.ngOnInit();
+        }, error: (err) => {
+          console.log(err)
+        }
+      });
     }
 
   }

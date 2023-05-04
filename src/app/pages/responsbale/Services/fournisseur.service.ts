@@ -8,7 +8,7 @@ import { Message } from '../../../Classes/Message';
 })
 export class FournisseurService {
 
-    readonly API_URL = "http://localhost:8088"
+    readonly API_URL = "http://localhost:8080"
 
     readonly ENDPOINT_fournisseurs = "/fournisseur/getFournisseurs"
     readonly ENDPOINT_eliminer = "/fournisseur/delete"

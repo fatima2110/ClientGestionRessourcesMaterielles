@@ -4,7 +4,15 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">J'ajoute un Compte</h5>
-          <p>Cet espace pour ajouter les comptes des Ensiegnants.</p>
+          <p>Cet espace pour ajouter les comptes</p>
+
+          <div *ngIf="admin">
+            <label for="validationDefault04" class="form-label">Type de compte</label>
+          <select (change)="onOptionSelected($event.target)" class="form-select" id="validationDefault04" required>
+            <option selected value=2>Compte Technicien</option>
+            <option value=1>Compte Enseignant</option>
+          </select>
+          </div>
 
           <form class="row g-3">
             <div *ngIf="succes == 1" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -29,6 +37,18 @@
             <div *ngIf="succes == 5" class="alert alert-warning alert-dismissible fade show" role="alert">
               <strong>Probleme !</strong> dans la suppression du compte.
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div></div>
+
+            <div class="col-12" *ngIf="showEns">             
+              <label for="dept" class="form-label">Departement</label><span>&nbsp;</span>
+              <div class="input-group has-validation">
+                <select (change)="onOptionDeptSelected($event.target)" class="form-select" id="validationDefault04" required>
+                  <option selected value="Informatique">Informatique</option>
+                  <option value="Mecanique">Mecanique</option>
+                  <option value="Electrique">Electrique</option>
+                </select>
+              </div>
             </div>
           
             <div class="col-6">
@@ -85,20 +105,22 @@
           <h5 class="card-title">Gestion des comptes</h5>
 
           <!-- data table -->
-          <table class="table datatable" id="myTable">
+         <div *ngIf="admin;else alternativeNonAdmin">
+          <table class="table datatable" id="myTable" *ngIf="showEns;else alternativeTable">
             <thead>
               <tr>
                 <th scope="col">#</th>
                 <!--<th scope="col">Role</th>-->
+                <th scope="col">Departement</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prenom</th>
-                <th scope="col">Operations</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let c of comptes; let i = index">
+              <tr *ngFor="let c of comptesChef; let i = index">
                 <th scope="row">{{ c.id }}</th>
-                <!--<td>{{ compte.role }}</td>-->
+                <td>{{ c.departement }}</td>
                 <td>{{ c.nom }}</td>
                 <td>{{ c.prenom }}</td>
                 <td>
@@ -112,6 +134,62 @@
               </tr>
             </tbody>
           </table>
+          <ng-template #alternativeTable>
+            <table class="table datatable" id="myTable" >
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Prenom</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of comptesTech; let i = index">
+                  <th scope="row">{{ c.id }}</th>
+                  <td>{{ c.nom }}</td>
+                  <td>{{ c.prenom }}</td>
+                  <td>
+                    <button class="btn btn-primary" (click)="getCompte(c)">
+                      <i class="bi bi-pencil-square"></i></button><span>&nbsp;</span>
+                      <button class="btn btn-warning"
+                      (click)="confirmerDeleteCompte(c.nom + ' ' + c.prenom, c.id)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-template>
+         </div>
+        <ng-template #alternativeNonAdmin>
+          <table class="table datatable" id="myTable">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <!--<th scope="col">Role</th>-->
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let c of comptesEns; let i = index">
+                <th scope="row">{{ c.id }}</th>
+                <td>{{ c.nom }}</td>
+                <td>{{ c.prenom }}</td>
+                <td>
+                  <button class="btn btn-primary" (click)="getCompte(c)">
+                    <i class="bi bi-pencil-square"></i></button><span>&nbsp;</span>
+                    <button class="btn btn-warning"
+                    (click)="confirmerDeleteCompte(c.nom + ' ' + c.prenom, c.id)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-template>
           <!-- End data table -->
         </div>
       </div>

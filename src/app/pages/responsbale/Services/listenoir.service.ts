@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ListenoirService {
-  readonly API_URL = "http://localhost:8088"
+  readonly API_URL = "http://localhost:8080"
 
   readonly ENDPOINT_fournisseurs = "/fournisseur/listeNoir"
   readonly ENDPOINT_retirer = "/fournisseur/retirer"

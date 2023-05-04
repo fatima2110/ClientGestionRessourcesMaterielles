@@ -42,13 +42,14 @@ export class MaterielServiceService {
     };
     return this.httpClient.get<void>("http://localhost:8080/enPanne/" + id, httpOptions);
   }
-  materielstate(id: string, state: string): Observable<void> {
+  materielstate(id: number, state: string): Observable<void> {
     const token = this.auth.getToken();
     const httpOptions = {
       headers: {
         "Authorization": "Bearer " + token
       }
     };
+    alert(id +" "+state)
     return this.httpClient.get<void>("http://localhost:8080/materielstate/" + id + "/" + state, httpOptions);
   }
 

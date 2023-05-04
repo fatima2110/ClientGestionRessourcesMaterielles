@@ -27,6 +27,13 @@ import { ChefDepartementGuard } from './services/ChefDepartementGuard';
 import { TechnicienGuard } from './services/TechnicienGuard';
 import { ResponsableGuard } from './services/ResponsableGuard';
 import { GestionPannesComponent } from './pages/responsbale/gestion-pannes/gestion-pannes.component';
+import { AppelOffreComponent } from './FournisseurComponents/appel-offre/appel-offre.component';
+import { CnxCompComponent } from './FournisseurComponents/cnx-comp/cnx-comp.component';
+import { InscriptionComponent } from './FournisseurComponents/inscription/inscription.component';
+import { ListeMatPropoUpdComponent } from './FournisseurComponents/liste-mat-propo-upd/liste-mat-propo-upd.component';
+import { ListeMatPropoComponent } from './FournisseurComponents/liste-mat-propo/liste-mat-propo.component';
+import { ListePropComponent } from './FournisseurComponents/liste-prop/liste-prop.component';
+import { PoserPropoComponent } from './FournisseurComponents/poser-propo/poser-propo.component';
 
 const routes: Routes = [
   {
@@ -37,29 +44,29 @@ const routes: Routes = [
       {
         path: 'gestion-besoins',
         component: ChefComponent,
-        canActivate: [AuthGuard, ChefDepartementGuard]
+        canActivate: [AuthGuard, ChefDepartementGuard],
       },
       {
         path: 'home',
         component: EnsignantComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'besoin',
         component: BesoinComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'compte',
         component: CompteComponent,
-        canActivate: [AuthGuard, ChefDepartementGuard]
+        canActivate: [AuthGuard, ChefDepartementGuard],
       },
       {
         path: 'myProfile',
         component: ProfileComponent,
-        canActivate: [AuthGuard]
-      }
-    ]
+        canActivate: [AuthGuard],
+      },
+    ],
   },
   {
     path: 'service-de-maintenance',
@@ -69,29 +76,29 @@ const routes: Routes = [
       {
         path: 'home',
         component: PannesComponent,
-        canActivate: [AuthGuard, TechnicienGuard]
+        canActivate: [AuthGuard, TechnicienGuard],
       },
       {
         path: 'constat',
         component: AjouterConstatComponent,
-        canActivate: [AuthGuard, TechnicienGuard]
+        canActivate: [AuthGuard, TechnicienGuard],
       },
       {
         path: 'pannes',
         component: PannesComponent,
-        canActivate: [AuthGuard, TechnicienGuard]
+        canActivate: [AuthGuard, TechnicienGuard],
       },
       {
         path: 'constats',
         component: ListeConstatsComponent,
-        canActivate: [AuthGuard, TechnicienGuard]
+        canActivate: [AuthGuard, TechnicienGuard],
       },
       {
         path: 'myProfile',
         component: ProfileComponent,
-        canActivate: [AuthGuard, TechnicienGuard]
-      }
-    ]
+        canActivate: [AuthGuard, TechnicienGuard],
+      },
+    ],
   },
   { path: '', component: LoginComponent },
   { path: 'error', component: PagesErrorComponent },
@@ -103,61 +110,78 @@ const routes: Routes = [
       {
         path: 'fournisseurs',
         component: FournisseursComponent,
-        canActivate: [AuthGuard, ResponsableGuard]
+        canActivate: [AuthGuard, ResponsableGuard],
       },
       {
         path: 'propositions',
         component: PropositionsComponent,
-        canActivate: [AuthGuard, ResponsableGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'listenoir',
         component: ListenoirComponent,
-        canActivate: [AuthGuard, ResponsableGuard]
+        canActivate: [AuthGuard, ResponsableGuard],
       },
       {
         path: 'consulterBesoin',
         component: BesoinComponentResponsable,
-        canActivate: [AuthGuard, ResponsableGuard]
+        canActivate: [AuthGuard, ResponsableGuard],
       },
       {
         path: 'EnregistrerMat',
         component: EnregistererMatComponent,
-        canActivate: [AuthGuard, ResponsableGuard]
+        canActivate: [AuthGuard, ResponsableGuard],
       },
       {
         path: 'Home',
         component: AppComponent,
-        canActivate: [AuthGuard, ResponsableGuard]
+        canActivate: [AuthGuard, ResponsableGuard],
       },
       {
         path: 'gestionRessources',
         component: GestionRessourcesComponent,
-        canActivate: [AuthGuard, ResponsableGuard]
+        canActivate: [AuthGuard, ResponsableGuard],
       },
       {
         path: 'myProfile',
         component: ProfileComponent,
-        canActivate: [AuthGuard, ResponsableGuard]
+        canActivate: [AuthGuard, ResponsableGuard],
       },
       {
         path: 'compte',
         component: CompteComponent,
-        canActivate: [AuthGuard, ResponsableGuard]
+        canActivate: [AuthGuard, ResponsableGuard],
       },
       {
         path: 'gestionPannes',
         component: GestionPannesComponent,
-        canActivate: [AuthGuard, ResponsableGuard]
-      }
-
-    ]
+        canActivate: [AuthGuard, ResponsableGuard],
+      },
+    ],
   },
-  { path: '**', component: PagesErrorComponent, data: { code:404, message: 'La page demandée est introuvable.' } }
+  { path: 'inscription', component: InscriptionComponent },
+  {
+    path: 'fournisseur',
+    component: CnxCompComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'AppelOffre', component: AppelOffreComponent },
+      { path: 'AppelOffre/NvProposition/:id', component: PoserPropoComponent },
+      { path: 'ListePropo', component: ListePropComponent },
+      { path: 'ListePropo/MatProp/:id', component: ListeMatPropoComponent },
+      { path: 'ListePropo/UpdProp/:id', component: ListeMatPropoUpdComponent },
+      //{path:"contact",component:ContactComponent}
+    ],
+  },
+  /*{
+    path: '**',
+    component: PagesErrorComponent,
+    data: { code: 404, message: 'La page demandée est introuvable.' },
+  },*/
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

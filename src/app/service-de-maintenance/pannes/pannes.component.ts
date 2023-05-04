@@ -60,7 +60,7 @@ export class PannesComponent implements OnInit, AfterViewInit{
     //},100);
   }
 
-  materielState(event: MouseEvent, id:string){
+  materielState(event: MouseEvent, id:number){
     let state = '';
     const target = event.target as HTMLButtonElement;
     if (target.id === "btn-reparer"){

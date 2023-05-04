@@ -43,6 +43,9 @@ export class Register {
             case 'FOURNISSEUR':
                 this.role=Role.FOURNISSEUR;
                 break;
+            case 'TECHNICIEN':
+                this.role=Role.TECHNICIEN;
+                break;
             default:
                 break;
         }

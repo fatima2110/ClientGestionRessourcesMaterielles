@@ -103,6 +103,24 @@ export class AuthService {
     };
     return this.http.get('http://localhost:8080/getEnseignants/' + dept, httpOptions);
   }
+  getAllTechs(): Observable<any> {
+    const token = this.getToken();
+    const httpOptions = {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    };
+    return this.http.get('http://localhost:8080/getTechniciens', httpOptions);
+  }
+  getAllChefs(): Observable<any> {
+    const token = this.getToken();
+    const httpOptions = {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    };
+    return this.http.get('http://localhost:8080/getChefs', httpOptions);
+  }
   deleteCompte(idUser: number): Observable<any> {
     const token = this.getToken();
     const httpOptions = {

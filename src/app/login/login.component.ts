@@ -49,9 +49,12 @@ export class LoginComponent implements OnInit {
           case 'TECHNICIEN':
             this.router.navigate(['/service-de-maintenance']);
             break;
-            case 'RESPONSABLE':
-              this.router.navigate(['/responsable']);
-              break;
+          case 'RESPONSABLE':
+            this.router.navigate(['/responsable']);
+            break;
+          case 'FOURNISSEUR':
+            this.router.navigate(['/fournisseur']);
+            break;
           default:
             this.pageError(403,"Vous n'êtes pas autorisé à consulter cette page");
             break;

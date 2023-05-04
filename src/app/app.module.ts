@@ -22,9 +22,6 @@ import { CompteComponent } from './compte/compte.component';
 import { ProfileComponent } from './profile/profile.component';
 import { JwtInterceptor } from './Utils/JwtInterceptor';
 import { CommonModule } from '@angular/common';
-import { MenuComponent } from './components/menuRespo/menu.component';
-import { DashboardComponent } from './pages/dashboardRespo/dashboard.component';
-import { HeaderComponent } from './components/header/header.component';
 import { FournisseursComponent } from './pages/responsbale/fournisseurs/fournisseurs.component';
 import { PropositionsComponent } from './pages/responsbale/propositions/propositions.component';
 import { ListenoirComponent } from './pages/responsbale/listenoir/listenoir.component';
@@ -32,6 +29,13 @@ import { EnregistererMatComponent } from './pages/responsbale/enregisterer-mat/e
 import { GestionRessourcesComponent } from './pages/responsbale/gestion-ressources/gestion-ressources.component';
 import { ResponsbaleComponent } from './pages/responsbale/responsbale.component';
 import { GestionPannesComponent } from './pages/responsbale/gestion-pannes/gestion-pannes.component';
+import { AppelOffreComponent } from './FournisseurComponents/appel-offre/appel-offre.component';
+import { CnxCompComponent } from './FournisseurComponents/cnx-comp/cnx-comp.component';
+import { InscriptionComponent } from './FournisseurComponents/inscription/inscription.component';
+import { ListeMatPropoUpdComponent } from './FournisseurComponents/liste-mat-propo-upd/liste-mat-propo-upd.component';
+import { ListeMatPropoComponent } from './FournisseurComponents/liste-mat-propo/liste-mat-propo.component';
+import { ListePropComponent } from './FournisseurComponents/liste-prop/liste-prop.component';
+import { PoserPropoComponent } from './FournisseurComponents/poser-propo/poser-propo.component';
 
 
 @NgModule({
@@ -50,9 +54,6 @@ import { GestionPannesComponent } from './pages/responsbale/gestion-pannes/gesti
     CompteComponent,
     ProfileComponent,
     BesoinComponentResponsable,
-    MenuComponent,
-    DashboardComponent,
-    HeaderComponent,
     FournisseursComponent,
     PropositionsComponent,
     ListenoirComponent,
@@ -60,7 +61,14 @@ import { GestionPannesComponent } from './pages/responsbale/gestion-pannes/gesti
     EnregistererMatComponent,
     BesoinComponent,
     GestionRessourcesComponent,
-    GestionPannesComponent
+    GestionPannesComponent,
+    InscriptionComponent,
+    PoserPropoComponent,
+    ListePropComponent,
+    ListeMatPropoComponent,
+    ListeMatPropoUpdComponent,
+    CnxCompComponent,
+    AppelOffreComponent,
     
   ],
   imports: [ 

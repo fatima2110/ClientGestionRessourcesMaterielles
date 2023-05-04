@@ -1,0 +1,63 @@
+<h1>LISTE DES MATERIELS</h1>
+<div class="col-3 pb-5">
+  <select (change)="onOptionSelected($event.target)" class="form-select" id="validationDefault04" required>
+    <option selected value=1>Ordinateur</option>
+    <option value=2>Imprimante</option>
+  </select>
+</div>
+
+<table *ngIf="showOrdinateur;else alternative" class="table datatable" id="myTbale">
+  <thead>
+
+  <tr>
+    <th scope="col">CPU</th>
+    <th scope="col">RAM</th>
+    <th scope="col">Disque </th>
+    <th scope="col">Ecran</th>
+    <th scope="col"> Marque</th>
+    <th scope="col"> Prix</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor= "let ordi of ListeOrdi" >
+    <th>{{ordi.cpu}}</th>
+    <th>{{ordi.ram}}</th>
+    <th>{{ordi.disque}}</th>
+    <th>{{ordi.ecran}}</th>
+    <th>{{ordi.marque}}</th>
+    <th>{{ordi.prix}}</th>
+
+  </tr>
+
+  </tbody>
+
+</table>
+<!-- End Table with stripped rows -->
+<ng-template #alternative>
+  <table class="table datatable" id="myTbale">
+    <thead>
+
+    <tr>
+      <th scope="col">Resolution</th>
+      <th scope="col">Vitesse</th>
+      <th scope="col"> Marque</th>
+      <th scope="col"> Prix</th>
+      <th scope="col">valider</th>
+    </tr>
+    <tr *ngFor= "let imp of ListeImp" >
+      <th>{{imp.resolution}}</th>
+      <th>{{imp.vitesse}}</th>
+      <th>{{imp.marque}}</th>
+      <th>{{imp.prix}}</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+
+
+
+    </tbody>
+  </table>
+
+</ng-template>

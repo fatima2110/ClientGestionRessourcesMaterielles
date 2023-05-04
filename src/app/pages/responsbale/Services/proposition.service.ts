@@ -8,7 +8,7 @@ import { Message } from '../../../Classes/Message';
   providedIn: 'root'
 })
 export class PropositionService {
-  readonly API_URL = "http://localhost:8088"
+  readonly API_URL = "http://localhost:8080"
 
   readonly ENDPOINT_imprimantes = "/fournisseur/getImprimenteProposition"
   readonly ENDPOINT_ordinnateurs = "/fournisseur/getOrdinateurProposition"

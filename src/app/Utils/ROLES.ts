@@ -7,6 +7,7 @@ export const ROLES: Role[] = [
       '/responsable/home',
       '/responsable/fournisseurs',
       '/responsable/propositions',
+      '/responsable/propositions?id=:id',
       '/responsable/listenoir',
       '/responsable/consulterBesoin',
       '/responsable/EnregistrerMat',
@@ -44,7 +45,12 @@ export const ROLES: Role[] = [
   },
   {
     name: 'FOURNISSEUR', path: [
-      
+      '/fournisseur',
+      '/fournisseur/AppelOffre',
+      '/fournisseur/AppelOffre/NvProposition/:id',
+      '/fournisseur/ListePropo',
+      '/fournisseur/ListePropo/MatProp/:id',
+      '/fournisseur/ListePropo/UpdProp/:id'
     ]
   }
 ];

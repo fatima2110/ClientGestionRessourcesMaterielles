@@ -48,7 +48,7 @@
                 <td>{{materiel.code_barre}}</td>
                 <td>{{materiel.date_affectation}}</td>
                 <td>{{materiel.materielState}}</td>
-                <td *ngIf="materiel.materielState!=='EnPanne';else alternative"> <button class="btn btn-warning"
+                <td *ngIf="materiel.materielState!=='EnPanne' && materiel.materielState!=='EnReparation' && materiel.materielState!=='DoitChange' ;else alternative"> <button class="btn btn-warning"
                     (click)="confirmerPanne(materiel.type+materiel.marque,materiel.id)"
                     title="Signaler panne">
                     <i class="bi bi-exclamation-diamond-fill text-danger"></i>

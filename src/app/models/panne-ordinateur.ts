@@ -1,4 +1,5 @@
 export class PanneOrdinateur{
+    id_mat!:number;
     enseignant!:string;
     code_barre!:string;
     marque!:string;

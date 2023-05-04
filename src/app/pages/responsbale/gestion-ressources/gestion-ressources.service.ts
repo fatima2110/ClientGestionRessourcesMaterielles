@@ -9,7 +9,7 @@ import { OrdinateurDTO } from 'src/app/Classes/OrdinateurDTO';
 })
 export class GestionRessourcesService {
 
-  private apiUrl="http://localhost:8088/api";
+  private apiUrl="http://localhost:8080/api";
   constructor(private http: HttpClient) { }
   //recuperation les Materiels
   //Récupère la liste des imprimente

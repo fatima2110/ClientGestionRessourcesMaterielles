@@ -32,7 +32,7 @@ export class FournisseursComponent implements OnInit{
    
   }
   voirPropositions(id: number) {
-    this.router.navigate(['/propositions'], { queryParams: { id: id } });
+    this.router.navigate(['/responsable/propositions'], { queryParams: { id: id } });
   }
   modeleAffiche = false;
 

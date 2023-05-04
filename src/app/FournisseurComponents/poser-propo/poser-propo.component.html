@@ -1,0 +1,93 @@
+<h1>LISTE DES MATERIELS</h1>
+<div class="col-3 pb-5">
+  <select (change)="onOptionSelected($event.target)" class="form-select" id="validationDefault04" required>
+    <option selected value=1>Ordinateur</option>
+    <option value=2>Imprimante</option>
+  </select>
+</div>
+<form [formGroup]="FormAjtOrdi">
+<table *ngIf="showOrdinateur;else alternative" class="table datatable" id="myTbale">
+  <thead>
+
+  <tr>
+    <th scope="col">CPU</th>
+    <th scope="col">RAM</th>
+    <th scope="col">Disque </th>
+    <th scope="col">Ecran</th>
+    <th scope="col"> Marque</th>
+    <th scope="col"> Prix</th>
+    <th scope="col">valider</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor= "let ordi of ListeOrdi" >
+    <th>{{ordi.cpu}}</th>
+    <th>{{ordi.ram}}</th>
+    <th>{{ordi.disque}}</th>
+    <th>{{ordi.ecran}}</th>
+
+    <th><input type="text" formControlName="MarqueOrdi"></th>
+    <th><input type="number" formControlName="PrixOrdi"></th>
+    <th>
+      <button *ngIf="AddOrdi;else cdt2" (click)="ADDOrdi(ordi)" type="button" class="btn btn-danger">
+        MODIFIER
+      </button>
+      <ng-template #cdt2>
+      <button (click)="ADDOrdi(ordi)" type="button" class="btn btn-success">
+        <i class="bi bi-currency-dollar"></i>
+      </button>
+      </ng-template>
+
+    </th>
+
+  </tr>
+
+  </tbody>
+
+</table>
+</form>
+<!-- End Table with stripped rows -->
+<ng-template #alternative>
+  <form [formGroup]="FormAjtImp" >
+  <table class="table datatable" id="myTbale">
+    <thead>
+
+    <tr>
+      <th scope="col">Resolution</th>
+      <th scope="col">Vitesse</th>
+      <th scope="col"> Marque</th>
+      <th scope="col"> Prix</th>
+      <th scope="col">valider</th>
+    </tr>
+    <tr *ngFor= "let imp of ListeImp" >
+      <th>{{imp.resolution}}</th>
+      <th>{{imp.vitesse}}</th>
+      <th><input type="text" formControlName="MarqueImp" class="form-control"></th>
+      <th><input type="number" formControlName="PrixImp"></th>
+      <th>
+        <button *ngIf="AddImp;else cd2" (click)="ADDImp(imp)" type="button" class="btn btn-danger">
+          MODIFIER
+        </button>
+        <ng-template #cd2>
+          <button (click)="ADDImp(imp)" type="button" class="btn btn-success">
+            <i class="bi bi-currency-dollar"></i>
+          </button>
+        </ng-template>
+
+      </th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+
+
+
+    </tbody>
+  </table>
+  </form>
+</ng-template>
+<div class="text-center">
+<button (click)="PoserPropo()" type="button" class="btn btn-outline-warning">Confirmer Votre Proposition</button>
+</div>
+
