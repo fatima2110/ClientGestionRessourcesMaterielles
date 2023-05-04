@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ImprimenteDTO} from 'src/app/Classes/ImprimenteDTO';
 import { BesoinService } from './besoin.service';
 import { OrdinateurDTO } from 'src/app/Classes/OrdinateurDTO';
+declare var $: any;
 
 
 
@@ -12,7 +13,7 @@ import { OrdinateurDTO } from 'src/app/Classes/OrdinateurDTO';
   templateUrl: './besoin.component.html',
   styleUrls: ['./besoin.component.css']
 })
-export class BesoinComponentResponsable  {
+export class BesoinComponentResponsable  implements OnInit{
   ordinateur: OrdinateurDTO[] = [];
 
   imprimantes: ImprimenteDTO[] = [];
@@ -29,10 +30,20 @@ console.log("on va aficher la list")
 });
 this.service.getOrdinateurs().subscribe((Ordinateur:OrdinateurDTO[]) => {
   this.ordinateur =Ordinateur;
-});
+});}
 
-
+ngAfterViewInit(): void {
+  setTimeout(()=>{
+    $(document).ready(function() {
+      $('#myTable').DataTable();
+      //$('.datatable').dataTable();
+    });
+  },500);
+}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
+
   genererListF(imprimante: ImprimenteDTO): void {
     const index = this.selectedImprimantes.indexOf(imprimante);
     if (index === -1) {
@@ -196,5 +207,9 @@ let txtValue: string;
   }
 
 
+}
+
+function ngAfterViewInit() {
+  throw new Error('Function not implemented.');
 }
 

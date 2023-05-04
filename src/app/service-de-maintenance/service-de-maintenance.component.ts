@@ -22,37 +22,16 @@ export class ServiceDeMaintenanceComponent {
   }
 
   ngAfterViewInit(): void {
-    $(document).ready(function() {
-      $('#myTable').DataTable();
-    });}
+    setTimeout(()=>{
+      $(document).ready(function() {
+        $('#myTable').DataTable();
+        //$('.datatable').dataTable();
+      });
+    },500);
+  }
   
-  async signOut() {
-    try {
-      const resp = await firstValueFrom(this.authService.singOut());
-      console.log(resp);
-      const code = resp.status;
-      if (code === 200) {
-        this.authService.setIsLoggedIn("false");
-          this.authService.setId("");
-          this.authService.setLogin("");
-          this.authService.setRole("");
-          this.authService.setToken("");
-          this.router.navigate([""]);
-      } 
-    } catch (err) {
-      console.log(err);
-      if (err instanceof HttpErrorResponse) {
-        const code = err.status;
-        if (code === 200) {
-          this.authService.setIsLoggedIn("false");
-          this.authService.setId("");
-          this.authService.setLogin("");
-          this.authService.setRole("");
-          this.authService.setToken("");
-          this.router.navigate([""]);
-        } 
-      }
-    }
+  signOut() {
+    this.authService.singOut();
   }
 
 }

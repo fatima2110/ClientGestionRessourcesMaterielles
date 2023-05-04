@@ -17,10 +17,10 @@ export class ListeConstatsComponent implements OnInit, AfterViewInit{
   ngAfterViewInit(): void {
     setTimeout(()=>{
       $(document).ready(function() {
-        //$('#myTable').DataTable();
-        $('.datatable').dataTable();
+        $('#myTable').DataTable();
+        //$('.datatable').dataTable();
       });
-    },100)
+    },500);
   }
   ngOnInit(): void {
     this.panne.getConstats().subscribe({

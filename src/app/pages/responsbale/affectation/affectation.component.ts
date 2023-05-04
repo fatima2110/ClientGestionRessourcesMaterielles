@@ -4,11 +4,7 @@ import { Ensiegnant } from './../../../modules/Ensiegnant';
 import { Component, OnInit } from '@angular/core';
 import { AffectationService } from '../Services/Affectation.service';
 import { Affectation } from 'src/app/modules/Affectation';
-import { Enseignant } from 'src/app/Classes/Enseignant';
 import { Materiel } from 'src/app/modules/Materiel';
-import { cloneDeep } from 'lodash';
-import _ from 'lodash';
-import { EnsiegnantAffectation } from 'src/app/modules/EnsiegnantAffectation';
 declare var $: any;
 
 @Component({
@@ -78,7 +74,7 @@ export class AffectationComponent implements OnInit {
   }
   getMateriel(mate: Materiel) {
     // this.materielPorter = { ...mate };
-    this.materielPorter = cloneDeep(mate);
+    this.materielPorter = mate;
     this.affeService.getAllEnsOfDepart(mate.ensiegnant.departement).subscribe(
       (res) => { this.ensiegnants = res; console.log(this.ensiegnants); },
       (err) => { console.log(err) }
@@ -86,7 +82,7 @@ export class AffectationComponent implements OnInit {
 
   }
   getAffectation(affectation:Affectation){
-    this.affictationPorter = cloneDeep(affectation);
+    this.affictationPorter = affectation;
     alert(affectation.departement)
     this.affeService.getAllEnsOfDepart(affectation.departement).subscribe(
       (res) => { this.ensiegnants = res; console.log(this.ensiegnants); },
@@ -139,7 +135,7 @@ export class AffectationComponent implements OnInit {
       (err) => { console.log(err) }
     );
     this.affeService.getNonAffectations().subscribe(
-      (res) => { this.materiels = res; console.log(this.materiels); },
+      (res) => { console.log("response : ",res) ;this.materiels = res; console.log(this.materiels); },
       (err) => { console.log(err) }
     );
   }

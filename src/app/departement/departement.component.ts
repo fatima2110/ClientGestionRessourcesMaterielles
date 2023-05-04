@@ -10,30 +10,34 @@ declare var $: any;
   templateUrl: './departement.component.html',
   styleUrls: ['./departement.component.css']
 })
-export class DepartementComponent  {
-  title='Dashboard - Departement';
-  login !:any;
-  role !:any;
+export class DepartementComponent {
+  title = 'Dashboard - Departement';
+  login !: any;
+  role !: any;
   isChef: boolean = false;
-  photo:string='';
-  constructor(private authService:AuthService, private router:Router){
+  photo: string = '';
+  constructor(private authService: AuthService) {
     this.login = this.authService.getLogin();
     this.role = this.authService.getRole();
-    if (this.role == "CHEF_DEPARTEMENT"){
+    if (this.role == "CHEF_DEPARTEMENT") {
       this.isChef = true;
     }
   }
 
   ngAfterViewInit(): void {
-    setTimeout(()=>{
-      $(document).ready(function() {
+    setTimeout(() => {
+      $(document).ready(function () {
         $('#myTable').DataTable();
         //$('.datatable').dataTable();
       });
-    },500);
+    }, 500);
   }
-  
-  async signOut() {
+
+  signOut() {
+    this.authService.singOut();
+  }
+
+  /*async signOut() {
     try {
       const resp = await firstValueFrom(this.authService.singOut());
       console.log(resp);
@@ -60,6 +64,6 @@ export class DepartementComponent  {
         } 
       }
     }
-  }
+  }*/
 }
 

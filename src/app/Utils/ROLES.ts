@@ -5,6 +5,7 @@ export const ROLES: Role[] = [
     name: 'RESPONSABLE', path: [
       '/responsable',
       '/responsable/home',
+      '/responsable/affectations',
       '/responsable/fournisseurs',
       '/responsable/propositions',
       '/responsable/propositions?id=:id',

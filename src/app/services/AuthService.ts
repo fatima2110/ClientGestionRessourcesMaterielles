@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
 import { Register } from '../models/register';
 import { PassWord } from '../models/Password';
 import { Role } from '../Utils/Role';
 import { ROLES } from '../Utils/ROLES';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import { ROLES } from '../Utils/ROLES';
 export class AuthService {
   private userRoles: Role[] = ROLES;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   setLogin(login: string) { localStorage.setItem("login", login); }
   getLogin() { return localStorage.getItem("login"); }
@@ -52,7 +53,19 @@ export class AuthService {
         "Authorization": "Bearer " + token
       }
     };
-    return this.http.get<any>('http://localhost:8080/api/auth/logout', httpOptions);
+    return this.http.get<any>('http://localhost:8080/api/auth/logout', httpOptions).subscribe({
+      next: (res) => {
+
+      }, error: (err) => {
+        if (err instanceof HttpErrorResponse) {
+          const code = err.status;
+          if (code === 200) {
+            localStorage.clear();
+            this.router.navigate([""]);
+          }
+        }
+      }
+    });
   }
   register(register: Register) {
     return this.http.post('http://localhost:8080/api/auth/register', register);

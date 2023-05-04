@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/services/AuthService';
 declare var $: any;
 
@@ -35,33 +33,8 @@ export class CnxCompComponent {
     },500);
   }
   
-  async signOut() {
-    try {
-      const resp = await firstValueFrom(this.authService.singOut());
-      console.log(resp);
-      const code = resp.status;
-      if (code === 200) {
-        this.authService.setIsLoggedIn("false");
-          this.authService.setId("");
-          this.authService.setLogin("");
-          this.authService.setRole("");
-          this.authService.setToken("");
-          this.router.navigate([""]);
-      } 
-    } catch (err) {
-      console.log(err);
-      if (err instanceof HttpErrorResponse) {
-        const code = err.status;
-        if (code === 200) {
-          this.authService.setIsLoggedIn("false");
-          this.authService.setId("");
-          this.authService.setLogin("");
-          this.authService.setRole("");
-          this.authService.setToken("");
-          this.router.navigate([""]);
-        } 
-      }
-    }
+  signOut() {
+    this.authService.singOut();
   }
 
 }
