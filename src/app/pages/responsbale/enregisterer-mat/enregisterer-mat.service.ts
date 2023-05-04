@@ -10,12 +10,13 @@ import { Observable } from 'rxjs';
 })
 export class EnregistererMatService {
 
-  private apiUrl="http://localhost:8088/api";
+  private apiUrl="http://localhost:8080/api";
   constructor(private http: HttpClient) { }
   //recuperation des besoins
   //Récupère la liste des imprimente
   getImprimantes(): Observable<ImprimenteDTO[]> {
     var Imprimetes= this.http.get<ImprimenteDTO[]>(this.apiUrl+"/EnregistrerIm");
+    console.log(Imprimetes)
     //console.log(Imprimetes);
     return Imprimetes;
   }
@@ -31,12 +32,14 @@ console.log("matrial");
 // Enregistrer les materiels (code barre et date de livraison)
 save(imprimantes: ImprimenteDTO[]): Observable<void> {
   const url = `${this.apiUrl}/EnregistrerMateLivreIm`;
-   console.log("bonjour save");
+   console.log("bonjour save Imprimenet");
+   console.log(imprimantes)
   return this.http.post<void>(url, imprimantes);
 }
 saveOm(ordinateur: OrdinateurDTO[]): Observable<void> {
   const url = `${this.apiUrl}/EnregistrerMateLivreOr`;
-   console.log("bonjour save");
+   console.log("bonjour save ordinateur");
+   console.log(ordinateur)
   return this.http.post<void>(url, ordinateur);
 }
 }

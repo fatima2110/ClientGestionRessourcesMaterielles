@@ -7,6 +7,7 @@ import { OrdinateurDTO } from 'src/app/Classes/OrdinateurDTO';
 
 
 
+
 @Component({
   selector: 'app-besoin',
   templateUrl: './besoin.component.html',
@@ -22,16 +23,20 @@ export class BesoinComponent  {
 
   constructor( private service:BesoinService)
   {
-this.service.getImprimantes().subscribe((imprimantes: ImprimenteDTO[]) => {
-console.log("on va aficher la list")
-  this.imprimantes = imprimantes;
-  console.log(imprimantes)
-});
-this.service.getOrdinateurs().subscribe((Ordinateur:OrdinateurDTO[]) => {
-  this.ordinateur =Ordinateur;
-});
 
 
+
+  }
+  ngOnInit(): void {
+    console.log("on va aficher la list pour enregistrer")
+    this.service.getImprimantes().subscribe((imprimantes: ImprimenteDTO[]) => {
+
+        this.imprimantes = imprimantes;
+        console.log(imprimantes)
+      });
+      this.service.getOrdinateurs().subscribe((Ordinateur:OrdinateurDTO[]) => {
+        this.ordinateur =Ordinateur;
+      });
   }
   genererListF(imprimante: ImprimenteDTO): void {
     const index = this.selectedImprimantes.indexOf(imprimante);
@@ -118,13 +123,8 @@ sauvegarder() {
   this.service.saveOrd(this.selectedOrdinateur).subscribe(() => {
     console.log('Les imprimantes ont été sauvegardées avec succès !');
   });
-  this.service.getImprimantes().subscribe((imprimantes: ImprimenteDTO[]) => {
-    this.imprimantes = imprimantes;
-  });
-  this.service.getOrdinateurs().subscribe((Ordinateur:OrdinateurDTO[]) => {
-    this.ordinateur =Ordinateur;
-  });
- 
+this.ngOnInit()
+
 }
 //generer Nouvelle apple d'offre
 count=0;

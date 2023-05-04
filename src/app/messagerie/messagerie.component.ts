@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
+import { Message } from '../Classes/Message';
 import { Router } from '@angular/router';
-import { Message } from 'src/app/Classes/Message';
-import { MessagerieService } from './Services/messagerie.service';
+import { MessagerieService } from '../pages/responsbale/Services/messagerie.service';
 
 @Component({
-  selector: 'app-responsbale',
-  templateUrl: './responsbale.component.html',
-  styleUrls: ['./responsbale.component.css']
+  selector: 'app-messagerie',
+  templateUrl: './messagerie.component.html',
+  styleUrls: ['./messagerie.component.css']
 })
-export class ResponsbaleComponent {
-
+export class MessagerieComponent {
   message: Message[] = [];
   id:number= 2;
   m: Message = new Message;
-
  vue:number=0;
   constructor( private service:MessagerieService,private router: Router)
   {
@@ -32,7 +30,7 @@ this.service.getvue(this.id).subscribe((n:number) => {
 
 suprimmer(id:number){
   console.log("on va suprimmer")
-
+  alert(id)
   this.service.getsuprimmer(id).subscribe(() => {
 
 
@@ -75,4 +73,3 @@ else
 
 
 }
-

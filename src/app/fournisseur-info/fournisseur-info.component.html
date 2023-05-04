@@ -1,0 +1,44 @@
+<section class="section" style="margin-left: 350px;margin-top: 80px;">
+  <div class="row">
+
+
+    <div class="col-lg-6">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Information </h5>
+
+          <!-- Vertical Form -->
+          <form class="row g-3">
+            <div class="col-12">
+              <label for="inputNanme4" class="form-label">Nom de la societe</label>
+              <input type="text" class="form-control" id="inputNanme4" value="{{Fournisseur.nom_societe}}" disabled>
+            </div>
+            <div class="col-12">
+              <label for="inputEmail4" class="form-label">Email</label>
+              <input type="email" class="form-control" id="inputEmail4" #ref>
+            </div>
+            <div class="col-12">
+              <label for="inputPassword4" class="form-label">Gerant</label>
+              <input type="text" class="form-control" id="inputPassword4" #ref1>
+            </div>
+            <div class="col-12">
+              <label for="inputPassword4" class="form-label">Adresse</label>
+              <input type="text" class="form-control" id="inputPassword4" #ref2>
+            </div>
+
+            <div class="text-center">
+              <button  class="btn btn-secondary" style="margin-right: 10px;" (click)="Annuler(ref,ref1,ref2)">Annuler</button>
+              <button type="submit" class="btn btn-primary" (click)="InfoFournisseur(ref,ref1,ref2)">Enregistrer</button>
+
+            </div>
+          </form><!-- Vertical Form -->
+
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</section>

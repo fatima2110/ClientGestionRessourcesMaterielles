@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
-import { MenuComponent } from './components/menuRespo/menu.component';
+
 import { DashboardComponent } from './pages/dashboardRespo/dashboard.component';
-import { HeaderComponent } from './components/header/header.component';
+
 import { FournisseursComponent } from './pages/responsbale/fournisseurs/fournisseurs.component';
 import { PropositionsComponent } from './pages/responsbale/propositions/propositions.component';
 import { ListenoirComponent } from './pages/responsbale/listenoir/listenoir.component';
@@ -15,22 +15,26 @@ import { BesoinComponent } from './pages/responsbale/besoin/besoin.component';
 import { EnregistererMatComponent } from './pages/responsbale/enregisterer-mat/enregisterer-mat.component';
 import { GestionRessourcesComponent } from './pages/responsbale/gestion-ressources/gestion-ressources.component';
 import { ResponsbaleComponent } from './pages/responsbale/responsbale.component';
+import { MessagerieComponent } from './messagerie/messagerie.component';
+import { FournisseurInfoComponent } from './fournisseur-info/fournisseur-info.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     
-    MenuComponent,
+   
     DashboardComponent,
-    HeaderComponent,
+ 
     FournisseursComponent,
     PropositionsComponent,
     ListenoirComponent,
     ResponsbaleComponent,
     EnregistererMatComponent,
     BesoinComponent,
-    GestionRessourcesComponent
+    GestionRessourcesComponent,
+    MessagerieComponent,
+    FournisseurInfoComponent
     
   ],
   imports: [

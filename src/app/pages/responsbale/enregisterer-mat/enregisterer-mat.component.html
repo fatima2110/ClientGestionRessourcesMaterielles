@@ -6,16 +6,14 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
         <li class="breadcrumb-item">EnregistrerMatérielles</li>
-        
+
       </ol>
     </nav>
   </div>
- 
- 
-  <div *ngIf="imprimantes.length == 0  && ordinateur.length==0" style="margin-top: 20px;margin-left: 200px;font-size: 30px;font-style: italic;" >
-    <p >Aucune Ressource a ajouter.</p>
-  </div> 
- <div *ngIf="imprimantes.length > 0  || ordinateur.length>0">
+
+
+
+ <div>
     <section class="section">
       <div class="row">
         <div class="col-lg-12">
@@ -24,13 +22,13 @@
             <div class="card-body">
               <h5 class="card-title" style="text-align: center;">Liste Matérielles</h5>
               <div class="datatable-top">
-               
+
                 <div class="datatable-search">
                         <input class="datatable-input" placeholder="Search..." type="search" title="Search within table"id="myInput" (keyup)="myFunction()">
                     </div>
             </div>
               <!-- Table with stripped rows -->
-              
+
               <table class="table datatable" id="myTable" >
                 <thead>
                   <tr>
@@ -38,13 +36,13 @@
                     <th scope="col">Code Bare</th>
                     <th scope="col">Material</th>
                     <th scope="col">Description</th>
-      
-      
+
+
                     <th scope="col">Duree de Garantie</th>
                     <th scope="col">Date de laivraison</th>
                     <th scope="col">Fournisseur</th>
-      
-      
+
+
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -57,31 +55,31 @@
                     <td>Impriment</td>
                     <td>Vetesse:{{ imp.vitesse }}<br>Resolution:{{imp.resolution}}<br>Prix:{{ imp.prix }} DH<br>
                    Marque:hp </td>
-      
-      
+
+
                     <td>{{ imp.dureegarantie }} <span *ngIf="imp.dureegarantie">ans</span></td>
                     <td>{{ imp.datelivraison|  date:'yyyy-mmm-dd'}}</td>
-      
+
                     <td>{{ imp.fournissuer}} </td>
                     <td ><button  class="btn btn-primary" (click)="afficherModele1(i)">Modifier</button>
-                     
+
                   </tr>
                   <tr *ngFor="let imp of ordinateur;let i = index" >
                     <td>    <input class="form-check-input"
                       type="checkbox" id="gridCheck1"
                       (change)="genererListFor(imp)"></td>
-      
+
                     <td>{{ imp.code_barre}}<br> </td>
                     <!-- <td><img [src]="imp.code_barre_img"></td> -->
                     <td>Ordinateur</td>
                     <td>CPU:{{ imp.cpu}}<br>Disque:{{imp.disque}}<br>Ram:{{imp.ram}}<br>Ecran:{{imp.ecran}}<br>
                     Marque:{{imp.marque}} <br>Prix:{{imp.prix}} DH</td>
-      
+
                     <td>{{ imp.dureegarantie }} <span *ngIf="imp.dureegarantie">ans</span></td>
                     <td>{{ imp.datelivraison|  date:'yyyy-mm-dd'}}</td>
-      
+
                     <td>{{ imp.fournissuer}} </td>
-      
+
                     <td><button class="btn btn-primary" (click)="afficherModele1(i)" >Modifier</button>
                     </tr>
                 </tbody>
@@ -101,13 +99,13 @@
                 </ul>
               </nav>
               <!-- End Table with stripped rows -->
-              
+
             </div>
           </div>
 
         </div>
       </div>
-      
+
       <div style="position: absolute; right: 50px;background-color: rgba(0, 0, 0, 0.5); ">
         <div class="modal fade show"  *ngIf="edit"  tabindex="-1" aria-modal="true" role="dialog" style="display: block;background-color:rgba(0, 0, 0, 0.5); ">
           <div class="modal-dialog modal-dialog-centered" >
@@ -226,5 +224,5 @@
 
 </div>
 
- </div> 
+ </div>
 </main>

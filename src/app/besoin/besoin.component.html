@@ -1,0 +1,71 @@
+
+
+  <section class="section">
+    <h5 class="card-title">Liste Des Besoins</h5>
+    <div class="search-bar" id="search">
+    <form class="search-form d-flex align-items-center" method="POST" action="#">
+      <input type="text" name="query" placeholder="Search" title="Enter search keyword" id="myInput" (keyup)="myFunction()">
+      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+    </form>
+  </div><!-- End Search Bar -->
+
+
+  <nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
+
+      <li class="nav-item d-block d-lg-none">
+        <a class="nav-link nav-icon search-bar-toggle " href="#">
+          <i class="bi bi-search"></i>
+        </a>
+      </li><!-- End Search Icon-->
+         <br>  <br>
+
+
+
+             <table id="myTable"  class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Material</th>
+                  <th scope="col">Dscription</th>
+                  <th scope="col">Enseignat</th>
+                  <th scope="col">Departement</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>ordinateur</td>
+                  <td>Ram:3<br>Ecran:34<br>Processus:2</td>
+                  <td>Nom Prenom</td>
+                  <td>Informatique</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>ordinateur</td>
+                  <td>Ram:3<br>Ecran:34<br>Processus:2</td>
+                  <td>Nom Prenom</td>
+                  <td>elictriq</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>ordinateur</td>
+                  <td>Ram:3<br>Ecran:34<br>Processus:2</td>
+                  <td>Nom Prenom</td>
+                  <td>Indus</td>
+                </tr>
+
+              </tbody>
+
+             </table>
+             <p id="noResultsMessage" style="display: none;">Aucun résultat trouvé</p>
+
+
+
+
+
+     </ul>
+     </nav>
+     </section>
+
+<!-- End #section -->

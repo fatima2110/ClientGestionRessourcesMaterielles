@@ -9,14 +9,16 @@
         
       </ol>
     </nav>
-  </div> <div *ngIf="imprimantes.length == 0  && ordinateur.length==0" style="margin-top: 20px;margin-left: 200px;margin-top:200px;font-size: 30px;font-style: italic;" >
-    <p  >Liste des Besoins est vide .</p>
-  </div>
+  </div> 
  
-  <div *ngIf="imprimantes.length > 0  || ordinateur.length>0">  </div>
-    
+  
+      <!-- <div *ngIf="imprimantes.length > 0  || ordinateur.length>0">  </div> -->
+      
+     <div *ngIf="imprimantes.length > 0  || ordinateur.length>0"></div>
 
     <section class="section">
+     
+    
       <div class="row">
         <div class="col-lg-12">
 

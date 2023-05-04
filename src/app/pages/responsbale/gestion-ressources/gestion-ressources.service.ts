@@ -9,7 +9,7 @@ import { OrdinateurDTO } from 'src/app/Classes/OrdinateurDTO';
 })
 export class GestionRessourcesService {
 
-  private apiUrl="http://localhost:8088/api";
+  private apiUrl="http://localhost:8080/api";
   constructor(private http: HttpClient) { }
   //recuperation les Materiels
   //Récupère la liste des imprimente
@@ -28,14 +28,14 @@ console.log("matrial");
   }
   suprimmerOr(id: number): Observable<void> {
     const url = `${this.apiUrl}/suprimerOr/${id}`;
-     console.log("suprimmer");
-     console.log(url)
-    return this.http.get<void>(url);
+    console.log("suprimmer");
+    console.log(url)
+   return this.http.get<void>(url);
   }
   suprimmerIm(id: number): Observable<void> {
     const url = `${this.apiUrl}/suprimerim/${id}`;
-     console.log("suprimmer im");
-     console.log(url)
-    return this.http.get<void>(url);
+    console.log("suprimmer");
+    console.log(url)
+   return this.http.get<void>(url);
   }
 }
