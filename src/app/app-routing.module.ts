@@ -70,6 +70,7 @@ const routes: Routes = [
         component: ProfileComponent,
         canActivate: [AuthGuard],
       },
+      { path:'messagerie', component:MessagerieComponent }
     ],
   },
   {
@@ -102,6 +103,7 @@ const routes: Routes = [
         component: ProfileComponent,
         canActivate: [AuthGuard, TechnicienGuard],
       },
+      { path:'messagerie', component:MessagerieComponent }
     ],
   },
   { path: '', component: LoginComponent },
@@ -172,7 +174,8 @@ const routes: Routes = [
       {
        path:'FournissuerInfo',
        component:FournisseurInfoComponent
-      }
+      },
+      { path:'messagerie', component:MessagerieComponent }
     ],
   },
   { path: 'inscription', component: InscriptionComponent },
@@ -186,14 +189,15 @@ const routes: Routes = [
       { path: 'ListePropo', component: ListePropComponent },
       { path: 'ListePropo/MatProp/:id', component: ListeMatPropoComponent },
       { path: 'ListePropo/UpdProp/:id', component: ListeMatPropoUpdComponent },
+      { path:'messagerie', component:MessagerieComponent }
       //{path:"contact",component:ContactComponent}
     ],
   },
-  /*{
+  {
     path: '**',
     component: PagesErrorComponent,
     data: { code: 404, message: 'La page demandée est introuvable.' },
-  },*/
+  }
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ import {Imprimente} from "../Model/Imprimente";
 import {Fournisseur} from "../Model/Fournisseur";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
+declare var $: any;
 
 @Component({
   selector: 'app-liste-mat-propo',
@@ -28,6 +29,14 @@ export class ListeMatPropoComponent implements  OnInit {
       this.showOrdinateur = true;
 
     }
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      $(document).ready(function() {
+        $('#myTable').DataTable();
+        //$('.datatable').dataTable();
+      });
+    },100);
   }
 
   getAllOrdi()

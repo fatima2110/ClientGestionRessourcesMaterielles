@@ -1,11 +1,20 @@
-<h1>LISTE DES MATERIELS</h1>
+<div class="pagetitle">
+  <h1>Liste des materiels</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item">Tables</li>
+      <li class="breadcrumb-item active">Data</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
 <div class="col-3 pb-5">
   <select (change)="onOptionSelected($event.target)" class="form-select" id="validationDefault04" required>
     <option selected value=1>Ordinateur</option>
     <option value=2>Imprimante</option>
   </select>
 </div>
-<form [formGroup]="FormAjtOrdi">
+<form [formGroup]="FormAjtOrdi" class="form">
 <table *ngIf="showOrdinateur;else alternative" class="table datatable" id="myTbale">
   <thead>
 
@@ -29,7 +38,7 @@
     <th><input type="text" formControlName="MarqueOrdi"></th>
     <th><input type="number" formControlName="PrixOrdi"></th>
     <th>
-      <button *ngIf="AddOrdi;else cdt2" (click)="ADDOrdi(ordi)" type="button" class="btn btn-danger">
+      <button *ngIf="ordi.prix!==0;else cdt2" (click)="ADDOrdi(ordi)" type="button" class="btn btn-danger">
         MODIFIER
       </button>
       <ng-template #cdt2>
@@ -48,7 +57,7 @@
 </form>
 <!-- End Table with stripped rows -->
 <ng-template #alternative>
-  <form [formGroup]="FormAjtImp" >
+  <form [formGroup]="FormAjtImp" class="form">
   <table class="table datatable" id="myTbale">
     <thead>
 
@@ -65,7 +74,7 @@
       <th><input type="text" formControlName="MarqueImp" class="form-control"></th>
       <th><input type="number" formControlName="PrixImp"></th>
       <th>
-        <button *ngIf="AddImp;else cd2" (click)="ADDImp(imp)" type="button" class="btn btn-danger">
+        <button *ngIf="imp.prix!==0;else cd2" (click)="ADDImp(imp)" type="button" class="btn btn-info">
           MODIFIER
         </button>
         <ng-template #cd2>
@@ -88,6 +97,6 @@
   </form>
 </ng-template>
 <div class="text-center">
-<button (click)="PoserPropo()" type="button" class="btn btn-outline-warning">Confirmer Votre Proposition</button>
+<button (click)="PoserPropo()" type="button" class="btn btn-outline-success">Confirmer Votre Proposition</button>
 </div>
 

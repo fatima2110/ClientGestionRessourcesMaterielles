@@ -41,32 +41,32 @@ rediriger(m: Message) {
   let link = "";
 
   if (m.message == "Nouvelle besoin sont ajouter  pour generer appelle d'offre") {
-    link = "/consulterBesoin";
+    link = "./consulterBesoin";
   }
    if (m.message == "votre proposition a ete acepte") {
     if(!m.exsist)
     {
-      link = "/FournissuerInfo";
+      link = "./FournissuerInfo";
     }
 
    else
-   link = "/consulterBesoin";
+   link = "./consulterBesoin";
 
   }
   else
   if (m.message == "votre Proposition a ete rejete") {
-    link = "/consulterBesoin";
+    link = "./consulterBesoin";
   }
 else
   if (m.message == "Vous pouvez maintenant ajouter des besoins si vous avez") {
-    link = "/consulterBesoin";
+    link = "./consulterBesoin";
   }
   else
   if (m.message == "Bonjour j'ai ajouter des besoins ") {
-    link = "/consulterBesoin";
+    link = "./consulterBesoin";
   }
  else
-    link = "/consulterBesoin";
+    link = "./consulterBesoin";
   this.router.navigateByUrl(link);
 }
 

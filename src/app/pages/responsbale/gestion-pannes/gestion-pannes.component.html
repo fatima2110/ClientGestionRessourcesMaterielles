@@ -35,17 +35,17 @@
                       <td>{{constat.frequence}}</td>
                       <td>{{constat.ordre}}</td>
                       <td *ngIf="!constat.treated;else alternative">
-                        <button id="btn-reparer" class="btn btn-warning" (click)="action(constat.code_barre, 'reparer')" title="Demander de réparer la ressource">
+                        <button id="btn-reparer" class="btn btn-warning" (click)="action(constat.code_barre, 'reparer', constat.id_constat)" title="Demander de réparer la ressource">
                             <i class="bi bi-tools"></i></button><span>&nbsp;</span>
-                          <button type="button" class="btn btn-info" (click)="action(constat.code_barre, 'changer')" title="Demander de la changer la ressource">
+                          <button type="button" class="btn btn-info" (click)="action(constat.code_barre, 'changer', constat.id_constat)" title="Demander de la changer la ressource">
                             <i class="bi bi-gear"></i>
                           </button>
                       </td>
                       <ng-template #alternative>
                       <td>
-                        <button id="btn-reparer" class="btn btn-warning" (click)="action(constat.code_barre, 'reparer')" title="Demander de réparer la ressource" disabled>
+                        <button id="btn-reparer" class="btn btn-warning" (click)="action(constat.code_barre, 'reparer', constat.id_constat)" title="Demander de réparer la ressource" disabled>
                             <i class="bi bi-tools"></i></button><span>&nbsp;</span>
-                          <button type="button" class="btn btn-info" (click)="action(constat.code_barre, 'changer')" title="Demander de la changer la ressource" disabled>
+                          <button type="button" class="btn btn-info" (click)="action(constat.code_barre, 'changer', constat.id_constat)" title="Demander de la changer la ressource" disabled>
                             <i class="bi bi-gear"></i>
                           </button>
                       </td>

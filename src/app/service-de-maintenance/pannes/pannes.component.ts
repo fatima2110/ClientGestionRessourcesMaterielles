@@ -64,10 +64,10 @@ export class PannesComponent implements OnInit, AfterViewInit{
     let state = '';
     const target = event.target as HTMLButtonElement;
     if (target.id === "btn-reparer"){
-      alert("reparer")
+      //alert("reparer")
       state = "REPAREE";
     }
-    this.materielServiceService.materielstate(id, state).subscribe({
+    this.materielServiceService.materielstate(id, state, 0).subscribe({
       next: (res) => {
         this.ngOnInit();
       }, error: (err) => {

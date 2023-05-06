@@ -25,6 +25,7 @@ export class ListeConstatsComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.panne.getConstats().subscribe({
       next:(resp)=>{
+        console.log("ici",resp)
         this.constats = resp;
       }, error:(err)=>{console.log(err);}
     });

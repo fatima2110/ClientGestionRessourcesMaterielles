@@ -24,19 +24,20 @@
   <div><header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+      <a href="" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="" />
+        <span class="d-none d-lg-block">FS<span style="color: aqua">T</span> FE<span style="color: aqua">S</span></span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
+    </div>
+    <!-- End Logo -->
 
-    <div class="search-bar">
+    <!--<div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
-    </div><!-- End Search Bar -->
+    </div>--><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -57,7 +58,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
               Vous avez {{vue}} notification
-              <a routerLink="/messagerie"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              <a routerLink="./messagerie"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -88,7 +89,7 @@
               <hr class="dropdown-divider">
             </li>
             <li class="dropdown-footer">
-              <a routerLink="/messagerie">Show all notifications</a>
+              <a routerLink="./messagerie">Show all notifications</a>
             </li>
 
           </ul><!-- End Notification Dropdown Items -->
@@ -98,60 +99,50 @@
 
 
         <li class="nav-item dropdown pe-3">
-
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-          </a><!-- End Profile Iamge Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+          <a
+            class="nav-link nav-profile d-flex align-items-center pe-0"
+            href="#"
+            data-bs-toggle="dropdown"
+          >
+          <img class="rounded-circle" [src]="this.photo ? this.photo : 'assets/img/inconnu.png'" alt="Profile picture">                           
+          <span class="d-none d-md-block dropdown-toggle ps-2">{{
+              this.login
+            }}</span> </a
+          ><!-- End Profile Iamge Icon -->
+  
+          <ul
+            class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
+          >
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>{{ this.login }}</h6>
+              <span>{{ this.role }}</span>
             </li>
             <li>
-              <hr class="dropdown-divider">
+              <hr class="dropdown-divider" />
             </li>
-
+  
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="responsable/myProfile">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
             </li>
             <li>
-              <hr class="dropdown-divider">
+              <hr class="dropdown-divider" />
             </li>
-
+  
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <div
+                class="dropdown-item d-flex align-items-center"
+                (click)="signOut()">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
-              </a>
+              </div>
             </li>
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
+          </ul>
+          <!-- End Profile Dropdown Items -->
+        </li>
+        <!-- End Profile Nav -->
 
       </ul>
     </nav><!-- End Icons Navigation -->
@@ -160,73 +151,86 @@
 </div>
 
   <!-- ======= Sidebar ======= -->
- <div> <aside id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar">
 
-  <ul class="sidebar-nav" id="sidebar-nav">
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="index.html">
-        <i class="bi bi-grid"></i>
-        <span>Dashboard</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-
-
-    <li class="nav-item">
-
-      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" routerLink="/consulterBesoin">
-        <i  class="bi bi-menu-button-wide" ></i><span>Consulter Les Besoins</span>
-     </a>
-    </li><li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" routerLink="/EnregistrerMat">
+    <ul class="sidebar-nav" id="sidebar-nav">
+  
+      <li class="nav-item">
+        <a class="nav-link" routerLink="./">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+       
+        <a class="nav-link" routerLink="./consulterBesoin"> 
+          <i class="bi bi-file-earmark-plus"></i>
+          <span>Consulter Les Besoins</span>
+       </a>
+       <!--<a class="nav-link" href="responsable/consulterBesoin">
         <i class="bi bi-file-earmark-plus"></i>
-        <span>Enregistrer Materiales</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" routerLink="/gestionRessources">
-        <i class="bi bi-gear"></i>
-        <span>Gestion des  Materiales</span>
-      </a>
-    </li>
-    <li class="nav-item">
-     <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" routerLink="/fournisseurs">
-        <i  class="bi bi-layout-text-window-reverse" ></i><span>Gestion Fournisseurs</span>
-     </a>
+        <span>Ajouter besoin</span>
+      </a>-->
+      </li><li class="nav-item">
+        <a class="nav-link" routerLink="./EnregistrerMat">
+          <i class="bi bi-file-earmark-plus"></i>
+          <span>Enregistrer Materiales</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="./gestionRessources">
+          <i class="bi bi-gear"></i>
+          <span>Gestion des  Materiales</span>
+        </a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link" routerLink="./fournisseurs"> 
+          <i  class="bi bi-layout-text-window-reverse" ></i><span>Gestion Fournisseurs</span>
+       </a>
+        
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="./listenoir"> 
+           <i  class="bi bi-layout-text-window-reverse" ></i><span>Gestion Liste Noir</span>
+        </a>      
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" routerLink="./affectations">
+          <i class="bi bi-calendar2-check-fill"></i>
+          <span>Gestion d'affectations</span>
+        </a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" routerLink="./compte"> 
+           <i  class="bi bi-layout-text-window-reverse" ></i><span>Gestion des comptes</span>
+        </a>         
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" routerLink="./gestionPannes"> 
+           <i  class="bi bi-layout-text-window-reverse" ></i><span>Gestion des pannes</span>
+        </a>
+       
+        <!--<li class="nav-heading">Pages</li>
+  
+     
+      
+     <li class="nav-item">
+        <a class="nav-link" routerLink="./">
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </li>--><!-- End Contact Page Nav -->
+  
+      
+  
+      
+      
+      
+    </ul>
+  
+  </aside><!-- End Sidebar-->
 
-    </li>
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" routerLink="/listenoir">
-         <i  class="bi bi-layout-text-window-reverse" ></i><span>Gestion Liste Noir</span>
-      </a>
-
-     </li><!-- End Tables Nav -->
-     <!-- End Dashboard Nav -->
-   <!-- End Dashboard Nav -->
-
-
-    <li class="nav-heading">Pages</li>
-
-
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="pages-contact.html">
-        <i class="bi bi-envelope"></i>
-        <span>Contact</span>
-      </a>
-    </li><!-- End Contact Page Nav -->
-
-
-
-
-
-
-  </ul>
-
-</aside><!-- End Sidebar-->
-</div>
-
-  <div><router-outlet></router-outlet></div>
+<main id="main" class="main"><router-outlet></router-outlet></main>
 
 
   <!-- ======= Footer ======= -->

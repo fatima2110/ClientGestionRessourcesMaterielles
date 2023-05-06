@@ -42,7 +42,7 @@ ngAfterViewInit(): void {
   },500);
 }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    console.log("")
   }
 
   genererListF(imprimante: ImprimenteDTO): void {

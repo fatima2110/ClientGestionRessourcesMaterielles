@@ -4,6 +4,8 @@ import { OrdinateurDTO } from 'src/app/Classes/OrdinateurDTO';
 import { PropositionService } from 'src/app/pages/responsbale/Services/proposition.service';
 import { ActivatedRoute } from '@angular/router';
 import { Message } from 'src/app/Classes/Message';
+declare var $: any;
+
 @Component({
   selector: 'app-propositions',
   templateUrl: './propositions.component.html',
@@ -22,6 +24,14 @@ export class PropositionsComponent {
   fournisseurId: number = 0;
   id: number = 0;
   constructor(private PropositionService: PropositionService,private route: ActivatedRoute){}
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      $(document).ready(function() {
+        $('#myTable').DataTable();
+        //$('.datatable').dataTable();
+      });
+    },100);
+  }
   ngOnInit(): void {
     console.log('On init..')
     
@@ -73,7 +83,7 @@ export class PropositionsComponent {
     this.PropositionService.accepterProposition1(this.fournisseurId).subscribe({
       next: (res) => {
         //this.besoinsOrdinateurs = res;
-        // this.ngOnInit();
+        this.ngOnInit();
         alert(this.fournisseurId)
         console.log(res)
 

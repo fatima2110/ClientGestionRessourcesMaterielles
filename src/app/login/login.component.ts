@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private formBuilder: FormBuilder
-  ) {}
+  ) {this.router.navigateByUrl("/");}
 
   onSubmit() {
     this.errorMessage = '';
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/departement']);
             break;
           case 'CHEF_DEPARTEMENT':
-            this.router.navigate(['/departement/home']);
+            this.router.navigate(['/departement']);
             break;
           case 'TECHNICIEN':
             this.router.navigate(['/service-de-maintenance']);

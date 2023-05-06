@@ -5,6 +5,8 @@ export const ROLES: Role[] = [
     name: 'RESPONSABLE', path: [
       '/responsable',
       '/responsable/home',
+      '/responsable/messagerie',
+      '/responsable/FournissuerInfo',
       '/responsable/affectations',
       '/responsable/fournisseurs',
       '/responsable/propositions',
@@ -24,14 +26,16 @@ export const ROLES: Role[] = [
       '/departement/myProfile',
       '/departement/besoin',
       '/departement/gestion-besoins',
-      '/departement/compte'
+      '/departement/compte',
+      '/departement/messagerie'
     ]
   },
   {
     name: 'ENSEIGNANT', path: [
       '/departement/home',
       '/departement/myProfile',
-      '/departement/besoin'
+      '/departement/besoin',
+      '/departement/messagerie'
       ]
   },
   {
@@ -41,7 +45,8 @@ export const ROLES: Role[] = [
       '/service-de-maintenance/myProfile',
       '/service-de-maintenance/pannes',
       '/service-de-maintenance/constats',
-      '/service-de-maintenance/constat'
+      '/service-de-maintenance/constat',
+      '/service-de-maintenance/messagerie'
     ]
   },
   {
@@ -51,7 +56,8 @@ export const ROLES: Role[] = [
       '/fournisseur/AppelOffre/NvProposition/:id',
       '/fournisseur/ListePropo',
       '/fournisseur/ListePropo/MatProp/:id',
-      '/fournisseur/ListePropo/UpdProp/:id'
+      '/fournisseur/ListePropo/UpdProp/:id',
+      '/fournisseur/messagerie'
     ]
   }
 ];

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OrdinateurDTO } from 'src/app/Classes/OrdinateurDTO';
-import { ImprimenteDTO} from 'src/app/Classes/ImprimenteDTO';
-import {EnregistererMatService} from './enregisterer-mat.service';
+import { ImprimenteDTO } from 'src/app/Classes/ImprimenteDTO';
+import { EnregistererMatService } from './enregisterer-mat.service';
 import { v4 as uuidv4 } from 'uuid';
 
 import { BarcodeFormat } from '@zxing/library';
@@ -10,7 +10,7 @@ import { BarcodeFormat } from '@zxing/library';
   templateUrl: './enregisterer-mat.component.html',
   styleUrls: ['./enregisterer-mat.component.css']
 })
-export class EnregistererMatComponent {
+export class EnregistererMatComponent implements OnInit {
 
   ordinateur: OrdinateurDTO[] = [];
   codeBarreImages: string[] = [];
@@ -19,51 +19,74 @@ export class EnregistererMatComponent {
   selectedOrdinateur: OrdinateurDTO[] = [];
 
 
-  constructor( private service:EnregistererMatService)
-  {
-this.service.getImprimantes().subscribe((imprimantes: ImprimenteDTO[]) => {
+  constructor(private service: EnregistererMatService) {
+    this.service.getImprimantes().subscribe((imprimantes: ImprimenteDTO[]) => {
+      this.imprimantes = imprimantes;
+      for (let i = 0; i < this.imprimantes.length; i++) {
+        this.generateBarcodeIm(this.imprimantes[i]);
+        console.log(this.ordinateur[i])
+      }
+    });
 
-  this.imprimantes = imprimantes;
-  for (let i = 0; i < this.imprimantes.length; i++) {
-    this.generateBarcodeIm(this.imprimantes[i]);
-    console.log(this.ordinateur[i])
+    this.service.getOrdinateurs().subscribe({
+      next: (res) => {
+        this.ordinateur = res;
+        for (let i = 0; i < this.ordinateur.length; i++) {
+          this.generateBarcode(this.ordinateur[i]);
+          console.log(this.ordinateur[i])
+        }
+
+
+      },
+      error: (err) => {
+        alert("Erreur");
+        console.log(err);
+      }
+    });
   }
-});
+  ngOnInit(): void {
+    this.service.getImprimantes().subscribe((imprimantes: ImprimenteDTO[]) => {
+      this.imprimantes = imprimantes;
+      for (let i = 0; i < this.imprimantes.length; i++) {
+        this.generateBarcodeIm(this.imprimantes[i]);
+        console.log(this.ordinateur[i])
+      }
+    });
 
-this.service.getOrdinateurs().subscribe({
-  next: (res) => {
-    this.ordinateur= res;
-    for (let i = 0; i < this.ordinateur.length; i++) {
-      this.generateBarcode(this.ordinateur[i]);
-      console.log(this.ordinateur[i])
-    }
+    this.service.getOrdinateurs().subscribe({
+      next: (res) => {
+        this.ordinateur = res;
+        for (let i = 0; i < this.ordinateur.length; i++) {
+          this.generateBarcode(this.ordinateur[i]);
+          console.log(this.ordinateur[i])
+        }
 
 
-  },
-  error: (err) => {
-    alert("Erreur");
-    console.log(err);
+      },
+      error: (err) => {
+        alert("Erreur");
+        console.log(err);
+      }
+    });
   }
-});
-}
-generateBarcode(ordinateur: OrdinateurDTO) {
-  const barcodeValue = uuidv4();
-  console.log("code barre :");
-  console.log(barcodeValue);
-  ordinateur.code_barre=barcodeValue;
-  // Génère un UUID unique
-  ordinateur.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barcodeValue}&code=Code128&dpi=96`;
+  generateBarcode(ordinateur: OrdinateurDTO) {
+    const barcodeValue = uuidv4();
+    console.log("code barre :");
+    console.log(barcodeValue);
+    ordinateur.code_barre = barcodeValue;
+    // Génère un UUID unique
+    ordinateur.code_barre_img = `https://barcode.tec-it.com/barcode.ashx?data=${barcodeValue}&code=Code128&dpi=96`;
 
-}
-generateBarcodeIm(imprimente: ImprimenteDTO) {
-  const barcodeValue = uuidv4();
-  console.log("code barre :");
-  console.log(barcodeValue);
-  imprimente.code_barre=barcodeValue;
-  // Génère un UUID unique
-imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barcodeValue}&code=Code128&dpi=96`;
+  }
+  generateBarcodeIm(imprimente: ImprimenteDTO) {
+    const barcodeValue = uuidv4();
+    console.log("code barre :");
+    console.log(barcodeValue);
+    imprimente.code_barre = barcodeValue;
+    // Génère un UUID unique
+    imprimente.code_barre_img = `https://barcode.tec-it.com/barcode.ashx?data=${barcodeValue}&code=Code128&dpi=96`;
 
-}
+  }
 
 
 
@@ -73,10 +96,10 @@ imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barco
 
   //pour l'affichage des modal
   edit = false;
-  sauvgerderEchec=false;
-  afficherModele1(index:number) {
+  sauvgerderEchec = false;
+  afficherModele1(index: number) {
     this.edit = true;
-    this.editIndex=index
+    this.editIndex = index
   }
   afficherModele2() {
     this.edit = true;
@@ -93,33 +116,29 @@ imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barco
 
   }
   //Recuper L'indice de imprimente
-  getIndice(ref1: any,ref2: any)
-  {
-    if( ref1.value  && ref2.value)
-    {
+  getIndice(ref1: any, ref2: any) {
+    if (ref1.value && ref2.value) {
       for (let i = 0; i < this.imprimantes.length; i++) {
-      if(i==this.editIndex)
-      {
-        alert(this.editIndex)
-        this.imprimantes[i].datelivraison= ref2.value.split("/").reverse().join("-");
-        this.imprimantes[i].dureegarantie=ref1.value;
+        if (i == this.editIndex) {
+          alert(this.editIndex)
+          this.imprimantes[i].datelivraison = ref2.value.split("/").reverse().join("-");
+          this.imprimantes[i].dureegarantie = ref1.value;
+
+        }
+
+      }
+      for (let i = 0; i < this.ordinateur.length; i++) {
+        if (i == this.editIndex) {
+          this.ordinateur[i].datelivraison = ref2.value.split("/").reverse().join("-");
+          this.ordinateur[i].dureegarantie = ref1.value;
+
+
+        }
 
       }
 
-    }
-    for (let i = 0; i < this.ordinateur.length; i++) {
-      if(i==this.editIndex)
-      {
-        this.ordinateur[i].datelivraison=ref2.value.split("/").reverse().join("-");
-        this.ordinateur[i].dureegarantie=ref1.value;
 
-
-      }
-
-    }
-
-
-    this.cacherModele();
+      this.cacherModele();
     }
 
 
@@ -132,14 +151,14 @@ imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barco
       // Vérifier l'état de chaque case à cocher et exécuter une fonction en conséquence
       if (checkbox.checked) {
 
-        this.selectedImprimantes=this.imprimantes;
-        this.selectedOrdinateur=this.ordinateur;
+        this.selectedImprimantes = this.imprimantes;
+        this.selectedOrdinateur = this.ordinateur;
         console.log(this.selectedImprimantes)
         console.log(this.selectedOrdinateur)
 
       } else {
-        this.selectedImprimantes=[];
-        this.selectedOrdinateur=[];
+        this.selectedImprimantes = [];
+        this.selectedOrdinateur = [];
 
       }
     });
@@ -155,7 +174,7 @@ imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barco
     console.log(this.selectedImprimantes)
 
   }
-  genererListFor(ordinateur:OrdinateurDTO ): void {
+  genererListFor(ordinateur: OrdinateurDTO): void {
     const index = this.selectedOrdinateur.indexOf(ordinateur);
     if (index === -1) {
       console.log(ordinateur)
@@ -166,12 +185,12 @@ imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barco
     console.log(this.selectedOrdinateur)
 
   }
-   initialiser(ref1: any,ref2: any){
+  initialiser(ref1: any, ref2: any) {
 
-      ref1.value = "";
-      ref2.value = "";
-    }
-    //pour l'affichage des modal
+    ref1.value = "";
+    ref2.value = "";
+  }
+  //pour l'affichage des modal
   modeleAppeleOffre = false;
 
   afficherModele() {
@@ -184,18 +203,18 @@ imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barco
     this.modeleAppeleOffre = false;
   }
   modeleGenerationSucces = false;
-//pour afficher le message de succes
+  //pour afficher le message de succes
   afficherModele3() {
-    this. modeleAppeleOffre = false;
+    this.modeleAppeleOffre = false;
     this.modeleGenerationSucces = true;
 
     this.sauvegarder();
   }
   cacherModele3() {
-    this.modeleGenerationSucces= false;
+    this.modeleGenerationSucces = false;
   }
   cacherModele8() {
-    this.test1= false;
+    this.test1 = false;
   }
   sauvegarder() {
     this.service.save(this.selectedImprimantes).subscribe(() => {
@@ -205,54 +224,54 @@ imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barco
       console.log('Les imprimantes ont été sauvegardées avec succès !');
     });
   }
-  test1=false;
+  test1 = false;
   //Enregistrer Mat
-  EnregistrerMat()
-  {
-    if(this.selectedImprimantes.length === 0 && this.selectedOrdinateur.length === 0)
-    this.test1=true;
-    else{
-       let isFieldEmpty = false;
+  EnregistrerMat() {
+    if (this.selectedImprimantes.length === 0 && this.selectedOrdinateur.length === 0)
+      this.test1 = true;
+    else {
+      let isFieldEmpty = false;
 
-for (let i = 0; i < this.selectedImprimantes.length; i++) {
-  if ( this.selectedImprimantes[i].datelivraison === null|| this.selectedImprimantes[i].dureegarantie === null) {
-    isFieldEmpty = true;
-    break;
+      for (let i = 0; i < this.selectedImprimantes.length; i++) {
+        if (this.selectedImprimantes[i].datelivraison === null || this.selectedImprimantes[i].dureegarantie === null) {
+          isFieldEmpty = true;
+          break;
+        }
+
+      }
+      for (let i = 0; i < this.selectedOrdinateur.length; i++) {
+        if (this.selectedOrdinateur[i].datelivraison === null || this.selectedOrdinateur[i].dureegarantie === null) {
+          isFieldEmpty = true;
+          break;
+        }
+
+      }
+      if (isFieldEmpty) {
+
+        this.afficherModele4();
+
+      } else {
+
+        // continuer le traitement
+
+
+        this.afficherModele()
+      }
+    }
+    this.ngOnInit();
+
   }
-
-}
-for (let i = 0; i < this.selectedOrdinateur.length; i++) {
-  if ( this.selectedOrdinateur[i].datelivraison === null|| this.selectedOrdinateur[i].dureegarantie === null) {
-    isFieldEmpty = true;
-    break;
-  }
-
-}
-if (isFieldEmpty) {
-
-this.afficherModele4();
-
-} else {
-
-  // continuer le traitement
-
-
-  this.afficherModele()
-}}
-
-
-  }
- //pour la recherche
+  //pour la recherche
 
   myFunction() {
     // Declare variables
     let input = document.getElementById("myInput") as HTMLInputElement;
-let filter: string;
-let table = document.getElementById("myTable") as HTMLTableElement;
-let tr = Array.from(table.getElementsByTagName("tr")) as HTMLTableRowElement[];
-let td: HTMLTableCellElement;
-let i: number;
-let txtValue: string;
+    let filter: string;
+    let table = document.getElementById("myTable") as HTMLTableElement;
+    let tr = Array.from(table.getElementsByTagName("tr")) as HTMLTableRowElement[];
+    let td: HTMLTableCellElement;
+    let i: number;
+    let txtValue: string;
 
 
     filter = input.value.toUpperCase();

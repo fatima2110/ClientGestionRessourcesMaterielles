@@ -31,9 +31,9 @@ export class GestionPannesComponent {
       }, error:(err)=>{console.log(err);}
     });
   }
-  action(code_barre:string, action:string){
+  action(code_barre:string, action:string, id_constat:number){
     if(action === "reparer"){
-      this.materielServiceService.materielstate(code_barre, "EnReparation").subscribe({
+      this.materielServiceService.materielstate(code_barre, "EnReparation", id_constat).subscribe({
         next: (res) => {
           this.ngOnInit();
         }, error: (err) => {
@@ -42,7 +42,7 @@ export class GestionPannesComponent {
       });
     }
     if(action === "changer"){
-      this.materielServiceService.materielstate(code_barre, "DoitChange").subscribe({
+      this.materielServiceService.materielstate(code_barre, "DoitChange", id_constat).subscribe({
         next: (res) => {
           this.ngOnInit();
         }, error: (err) => {
