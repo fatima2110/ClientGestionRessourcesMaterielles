@@ -34,13 +34,22 @@
                       <td>{{constat.explication_panne}}</td>
                       <td>{{constat.frequence}}</td>
                       <td>{{constat.ordre}}</td>
-                      <td>
-                        <button id="btn-reparer" class="btn btn-warning" (click)="action(constat.id_constat, 'reparer')" title="Demander de réparer la ressource">
+                      <td *ngIf="!constat.treated;else alternative">
+                        <button id="btn-reparer" class="btn btn-warning" (click)="action(constat.code_barre, 'reparer')" title="Demander de réparer la ressource">
                             <i class="bi bi-tools"></i></button><span>&nbsp;</span>
-                          <button type="button" class="btn btn-info" (click)="action(constat.id_constat, 'changer')" title="Demander de la changer la ressource">
+                          <button type="button" class="btn btn-info" (click)="action(constat.code_barre, 'changer')" title="Demander de la changer la ressource">
                             <i class="bi bi-gear"></i>
                           </button>
                       </td>
+                      <ng-template #alternative>
+                      <td>
+                        <button id="btn-reparer" class="btn btn-warning" (click)="action(constat.code_barre, 'reparer')" title="Demander de réparer la ressource" disabled>
+                            <i class="bi bi-tools"></i></button><span>&nbsp;</span>
+                          <button type="button" class="btn btn-info" (click)="action(constat.code_barre, 'changer')" title="Demander de la changer la ressource" disabled>
+                            <i class="bi bi-gear"></i>
+                          </button>
+                      </td>
+                    </ng-template>
                     </tr>   
                   </tbody>
                 </table>

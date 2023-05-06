@@ -52,7 +52,7 @@
                   <td>{{ panneOrd.disque }}</td>
                   <td>{{ panneOrd.ecran }}</td>
                   <td>
-                    <button id="btn-reparer" class="btn btn-warning" (click)="materielState($event, panneOrd.id_mat)" title="Marquer le matériel comme réparé">
+                    <button id="btn-reparer" class="btn btn-warning" (click)="materielState($event, panneOrd.code_barre)" title="Marquer le matériel comme réparé">
                       <i class="bi bi-check-circle-fill text-success"></i></button><span>&nbsp;</span>
                     <a routerLink="#" (click)="redigerConstat(panneOrd.code_barre)" title="Rédiger un constat de panne">
                       <button type="button" class="btn btn-info">
@@ -86,7 +86,7 @@
                     <td>{{ panneImp.resolution }}</td>
                     <td>{{ panneImp.vitesse }}</td>
                     <td>
-                      <button id="btn-reparer" class="btn btn-warning" (click)="materielState($event, panneImp.id_mat)" title="Marquer le matériel comme réparé">
+                      <button id="btn-reparer" class="btn btn-warning" (click)="materielState($event, panneImp.code_barre)" title="Marquer le matériel comme réparé">
                         <i class="bi bi-check-circle-fill text-success"></i></button><span>&nbsp;</span>
                       <a routerLink="#" (click)="redigerConstat(panneImp.code_barre)" title="Rédiger un constat de panne">
                         <button type="button" class="btn btn-info">

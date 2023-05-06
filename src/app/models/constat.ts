@@ -5,5 +5,7 @@ export class Constat {
     date_apparition!: Date;
     explication_panne!:string;
     frequence!:string;
-    ordre!:string;   
+    ordre!:string; 
+    treated !:boolean;
+    send !:boolean;; 
 }

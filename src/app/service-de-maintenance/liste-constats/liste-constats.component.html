@@ -1,55 +1,68 @@
 <div class="pagetitle">
-    <h1> {{this.title}}</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">{{this.title}}</li>
-      </ol>
-    </nav>
-  </div><!-- End Page Title -->
-  <section class="section">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">les constats</h5>
-            <p>Vous trouverez ci-dessous toutes les constats <strong>rédigés</strong> </p>
-                <table class="table datatable" id="myTable">
-                  <thead>    
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">code_barre</th>
-                      <th scope="col">date_apparition</th>
-                      <th scope="col">explication_panne</th>
-                      <th scope="col">frequence</th>
-                      <th scope="col">ordre</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let constat of constats;let i =index">
-                      <th scope="row">{{i+1}}</th>
-                      <td>{{constat.code_barre}}</td>
-                      <td>{{constat.date_apparition}}</td>
-                      <td>{{constat.explication_panne}}</td>
-                      <td>{{constat.frequence}}</td>
-                      <td>{{constat.ordre}}</td>
-                      <td>
-                        <button id="btn-reparer" class="btn btn-info" title="Envoyer le constat au responsable">
-                          <i class="bi bi-envelope"></i>
-                        </button><span>&nbsp;</span>
-                        <button id="btn-reparer" class="btn btn-warning" title="Supprimer le constat">
-                          <i class="bi bi-trash"></i>
-                        </button>
-                      </td>
-                    </tr>   
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-            <!-- End Table with stripped rows -->
-  
-          </div>
-  </section>
-  
+  <h1> {{this.title}}</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active">{{this.title}}</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">les constats</h5>
+          <p>Vous trouverez ci-dessous toutes les constats <strong>rédigés</strong> </p>
+          <table class="table datatable" id="myTable">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">code_barre</th>
+                <th scope="col">date_apparition</th>
+                <th scope="col">explication_panne</th>
+                <th scope="col">frequence</th>
+                <th scope="col">ordre</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let constat of constats;let i =index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{constat.code_barre}}</td>
+                <td>{{constat.date_apparition}}</td>
+                <td>{{constat.explication_panne}}</td>
+                <td>{{constat.frequence}}</td>
+                <td>{{constat.ordre}}</td>
+                <td *ngIf="!constat.send;else alternative">
+                  <button id="btn-reparer" class="btn btn-info" title="Envoyer le constat au responsable"
+                    (click)="action(constat.id_constat,'envoyer')">
+                    <i class="bi bi-envelope"></i>
+                  </button><span>&nbsp;</span>
+                  <button id="btn-reparer" class="btn btn-warning" title="Supprimer le constat"
+                    (click)="action(constat.id_constat,'supprimer')">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+                <ng-template #alternative>
+                  <td>
+                    <button id="btn-reparer" class="btn btn-info" title="Envoyer le constat au responsable"
+                      (click)="action(constat.id_constat,'envoyer')" disabled>
+                      <i class="bi bi-envelope"></i>
+                    </button><span>&nbsp;</span>
+                    <button id="btn-reparer" class="btn btn-warning" title="Supprimer le constat"
+                      (click)="action(constat.id_constat,'supprimer')">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </ng-template>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- End Table with stripped rows -->
+
+  </div>
+</section>

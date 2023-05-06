@@ -29,4 +29,16 @@ export class ListeConstatsComponent implements OnInit, AfterViewInit{
       }, error:(err)=>{console.log(err);}
     });
   }
+
+  action(id:number, action:string){
+    this.panne.action(id, action).subscribe({
+      next:(resp)=>{
+        this.cancel();
+        console.log(resp);
+      }, error:(err)=>{console.log(err);}
+    });
+  }
+  cancel(){
+    this.constats = [];this.ngOnInit();
+  }
 }

@@ -64,4 +64,18 @@ export class PanneService {
     };
     return this.httpClient.get<Constat[]>("http://localhost:8080/getConstats",httpOptions);
   }
+  action(id:number, action:string){
+    const token= this.auth.getToken();
+    const httpOptions = {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    };
+    if(action==="envoyer"){
+      return this.httpClient.get("http://localhost:8080/sendConstat/"+id,httpOptions);
+    }
+    else{
+      return this.httpClient.delete("http://localhost:8080/deleteConstat/"+id,httpOptions);
+    }
+  }
 }
