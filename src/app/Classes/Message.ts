@@ -3,7 +3,12 @@ import { User } from "./User";
 export class Message {
   id!: number;
   message!: string;
-  emetteur!: User;
+  emteur!: string;
+  idem!:number;
+  idrec!:number;
+
   recepteur!: User;
   idFournisseur!: number;
+  date!:Date;
+  exsist!:boolean;
 }

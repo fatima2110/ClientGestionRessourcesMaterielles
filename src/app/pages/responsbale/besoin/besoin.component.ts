@@ -8,6 +8,7 @@ declare var $: any;
 
 
 
+
 @Component({
   selector: 'app-besoin',
   templateUrl: './besoin.component.html',
@@ -129,13 +130,8 @@ sauvegarder() {
   this.service.saveOrd(this.selectedOrdinateur).subscribe(() => {
     console.log('Les imprimantes ont été sauvegardées avec succès !');
   });
-  this.service.getImprimantes().subscribe((imprimantes: ImprimenteDTO[]) => {
-    this.imprimantes = imprimantes;
-  });
-  this.service.getOrdinateurs().subscribe((Ordinateur:OrdinateurDTO[]) => {
-    this.ordinateur =Ordinateur;
-  });
- 
+this.ngOnInit()
+
 }
 //generer Nouvelle apple d'offre
 count=0;

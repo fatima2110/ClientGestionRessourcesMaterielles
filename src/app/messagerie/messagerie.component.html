@@ -1,0 +1,73 @@
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Data Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Notification</li>
+
+        </ol>
+      </nav>
+    </div>
+
+</main><!-- End #main -->
+<section class="section" style="width: 470px; margin-left:350px">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Notification</h5>
+         <!-- Table with stripped rows -->
+
+         <nav class="header-nav ms-auto">
+          <ul class="d-flex align-items-center">
+
+
+
+            <li class="nav-item dropdown">
+
+
+
+              <ul class="  notifications">
+                <li class="dropdown-header">
+                  Vous avez {{vue}} notification
+
+                </li>
+                <li>
+                  <hr >
+                </li>
+
+                <li class="notification-item" *ngFor="let m of message ">
+                <i class="bi bi-x-circle text-danger" (click)="suprimmer(m.id)" style=" cursor:pointer;"></i>
+
+
+                  <div (click)="rediriger(m)" style=" cursor:pointer;">
+
+                    <h4>{{m.emteur}}</h4>
+                    <p>{{m.message}}</p>
+                    <p>{{m.date}}</p>
+                  </div>
+
+                </li>
+
+
+
+
+
+
+
+              </ul><!-- End Notification Dropdown Items -->
+
+            </li><!-- End Notification Nav -->
+          </ul>
+         </nav>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+          <!-- End Table with stripped rows -->
+

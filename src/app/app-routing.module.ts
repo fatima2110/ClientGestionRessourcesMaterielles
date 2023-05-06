@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ResponsbaleComponent } from './pages/responsbale/responsbale.component';
 import { FournisseursComponent } from './pages/responsbale/fournisseurs/fournisseurs.component';
+import { MessagerieComponent } from './messagerie/messagerie.component';
+
 
 import { PropositionsComponent } from './pages/responsbale/propositions/propositions.component';
 import { ListenoirComponent } from './pages/responsbale/listenoir/listenoir.component';
@@ -10,6 +12,7 @@ import { BesoinComponent } from './departement/besoin/besoin.component';
 import { BesoinComponentResponsable } from './pages/responsbale/besoin/besoin.component';
 import { EnregistererMatComponent } from './pages/responsbale/enregisterer-mat/enregisterer-mat.component';
 import { GestionRessourcesComponent } from './pages/responsbale/gestion-ressources/gestion-ressources.component';
+import { FournisseurInfoComponent } from './fournisseur-info/fournisseur-info.component';
 
 import { LoginComponent } from './login/login.component';
 import { PagesErrorComponent } from './pages-error/pages-error.component';
@@ -162,6 +165,14 @@ const routes: Routes = [
         component: GestionPannesComponent,
         canActivate: [AuthGuard, ResponsableGuard],
       },
+      {
+       path:'messagerie',
+       component:MessagerieComponent
+      },
+      {
+       path:'FournissuerInfo',
+       component:FournisseurInfoComponent
+      }
     ],
   },
   { path: 'inscription', component: InscriptionComponent },

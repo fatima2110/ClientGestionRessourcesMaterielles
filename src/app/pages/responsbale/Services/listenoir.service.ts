@@ -23,5 +23,5 @@ export class ListenoirService {
     const url = `${this.API_URL}${this.ENDPOINT_retirer}/${id}`;
   console.log("hada url dyali"+url)
     return this.httpClient.get<void>(url);
-  } 
+  }
 }

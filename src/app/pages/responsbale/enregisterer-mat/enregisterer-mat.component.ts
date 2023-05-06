@@ -100,7 +100,7 @@ imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barco
       for (let i = 0; i < this.imprimantes.length; i++) {
       if(i==this.editIndex)
       {
-
+        alert(this.editIndex)
         this.imprimantes[i].datelivraison= ref2.value.split("/").reverse().join("-");
         this.imprimantes[i].dureegarantie=ref1.value;
 
@@ -110,7 +110,6 @@ imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barco
     for (let i = 0; i < this.ordinateur.length; i++) {
       if(i==this.editIndex)
       {
-
         this.ordinateur[i].datelivraison=ref2.value.split("/").reverse().join("-");
         this.ordinateur[i].dureegarantie=ref1.value;
 
@@ -141,8 +140,7 @@ imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barco
       } else {
         this.selectedImprimantes=[];
         this.selectedOrdinateur=[];
-        console.log(this.selectedImprimantes)
-        console.log(this.selectedOrdinateur)
+
       }
     });
   }
@@ -150,6 +148,7 @@ imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barco
     const index = this.selectedImprimantes.indexOf(imprimante);
     if (index === -1) {
       this.selectedImprimantes.push(imprimante);
+      console.log(imprimante)
     } else {
       this.selectedImprimantes.splice(index, 1);
     }
@@ -159,6 +158,7 @@ imprimente.code_barre_img= `https://barcode.tec-it.com/barcode.ashx?data=${barco
   genererListFor(ordinateur:OrdinateurDTO ): void {
     const index = this.selectedOrdinateur.indexOf(ordinateur);
     if (index === -1) {
+      console.log(ordinateur)
       this.selectedOrdinateur.push(ordinateur);
     } else {
       this.selectedOrdinateur.splice(index, 1);

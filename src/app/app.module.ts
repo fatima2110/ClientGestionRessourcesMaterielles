@@ -37,6 +37,8 @@ import { ListeMatPropoComponent } from './FournisseurComponents/liste-mat-propo/
 import { ListePropComponent } from './FournisseurComponents/liste-prop/liste-prop.component';
 import { PoserPropoComponent } from './FournisseurComponents/poser-propo/poser-propo.component';
 import { AffectationComponent } from './pages/responsbale/affectation/affectation.component';
+import { MessagerieComponent } from './messagerie/messagerie.component';
+import { FournisseurInfoComponent } from './fournisseur-info/fournisseur-info.component';
 
 
 @NgModule({
@@ -71,6 +73,8 @@ import { AffectationComponent } from './pages/responsbale/affectation/affectatio
     ListeMatPropoUpdComponent,
     CnxCompComponent,
     AppelOffreComponent,
+    MessagerieComponent,
+    FournisseurInfoComponent
     
   ],
   imports: [ 

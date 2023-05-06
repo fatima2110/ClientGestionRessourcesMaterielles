@@ -26,18 +26,18 @@ export class FournisseurService {
       const url = `${this.API_URL}${this.ENDPOINT_eliminer}/${id}`;
     console.log("hada url dyali"+url)
       return this.httpClient.get<void>(url);
-    } 
+    }
     EnvoyerMotif(message:Message){
       const url = `${this.API_URL}${this.ENDPOINT_Motif}`;
       console.log("hada url dyali  ?"+url)
       console.log(message.idFournisseur);
       console.log(message.message);
-    
+
       return this.httpClient.post<void>(url,message);
     }
     retirerFournisseur(id: number){
       const url = `${this.API_URL}${this.ENDPOINT_retirer}/${id}`;
     console.log("hada url dyali"+url)
       return this.httpClient.get<void>(url);
-    } 
+    }
 }
