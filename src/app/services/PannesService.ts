@@ -36,14 +36,8 @@ export class PanneService {
   }
 
   ajouterConstat(constat:Constat){
-    const id:string | null = this.auth.getId();
-    let id_technicien;
-    if (id !== null){
-      id_technicien = parseInt(id);
-    }
-    if(id_technicien !== undefined){
-      constat.id_technicien=id_technicien;
-    }
+    const id_technicien = this.auth.getId();
+    constat.id_technicien=id_technicien;
     const token= this.auth.getToken();
     const httpOptions = {
       headers: {

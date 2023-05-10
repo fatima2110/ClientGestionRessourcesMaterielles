@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Message } from 'src/app/Classes/Message';
 import { MessagerieService } from './Services/messagerie.service';
 import { AuthService } from 'src/app/services/AuthService';
+import { HttpClient } from '@angular/common/http';
 declare var $: any;
 
 @Component({
@@ -16,16 +17,24 @@ export class ResponsbaleComponent {
   role !: any;
   isChef: boolean = false;
   photo: string = '';
-  constructor(private service: MessagerieService, private authService: AuthService, private router: Router) {
+
+  message: Message[] = [];
+  id: number = 0;
+  m: Message = new Message;
+
+  nbNotifs: number = 0;
+
+  constructor(private service: MessagerieService, private authService: AuthService, private router: Router, private http:HttpClient) {
+    this.id = this.authService.getId();
 
     this.service.getMessage(this.id).subscribe((message: Message[]) => {
-      console.log("on va aficher la list")
+      //console.log("on va aficher la list")
       this.message = message;
       console.log(message)
     });
     this.service.getvue(this.id).subscribe((n: number) => {
-      console.log("on va aficher la list")
-      this.vue = n;
+      //console.log("on va aficher la list")
+      this.nbNotifs = n;
       console.log(n)
     });
 
@@ -51,11 +60,6 @@ export class ResponsbaleComponent {
     this.authService.singOut();
   }
 
-  message: Message[] = [];
-  id: number = 2;
-  m: Message = new Message;
-
-  vue: number = 0;
 
   suprimmer(id: number) {
     console.log("on va suprimmer")
@@ -68,34 +72,19 @@ export class ResponsbaleComponent {
   }
   rediriger(m: Message) {
     let link = "";
-
-    if (m.message == "Nouvelle besoin sont ajouter  pour generer appelle d'offre") {
-      link = "./consulterBesoin";
+    if (m.message == "Nouvelles besoins sont ajoutes pour generer appel d'offre") {
+      link = "/responsable/consulterBesoin";
     }
-    if (m.message == "votre proposition a ete acepte") {
-      if (!m.exsist) {
-        link = "./FournissuerInfo";
-      }
+    //this.nbNotifs = this.nbNotifs=1;
+    /*this.vue(m.id).subscribe({
+      next:(res)=>{console.log(res)},
+      error:(err)=>{console.log(err)}
+    });*/
 
-      else
-        link = "./consulterBesoin";
+  }
 
-    }
-    else
-      if (m.message == "votre Proposition a ete rejete") {
-        link = "./consulterBesoin";
-      }
-      else
-        if (m.message == "Vous pouvez maintenant ajouter des besoins si vous avez") {
-          link = "./consulterBesoin";
-        }
-        else
-          if (m.message == "Bonjour j'ai ajouter des besoins ") {
-            link = "./consulterBesoin";
-          }
-          else
-            link = "./consulterBesoin";
-    this.router.navigateByUrl(link);
+  vue(msg_id:number){
+    return this.http.get("http://localhost:8080/fournisseur/vue/"+msg_id);
   }
 
 

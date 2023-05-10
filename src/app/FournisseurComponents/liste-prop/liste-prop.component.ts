@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { LoginService } from "../services/login.service";
 import { PropoUpdt } from "../Model/PropoUpdt";
 import { AuthService } from 'src/app/services/AuthService';
+declare var $: any;
 
 @Component({
   selector: 'app-liste-prop',
@@ -18,6 +19,7 @@ export class ListePropComponent implements OnInit {
 
 
   constructor(private http: HttpClient, private authService: AuthService, private Route: Router, private LogSer: LoginService) {
+    
   }
   getAllPropo() {
     this.LogSer.GetFournisseur().subscribe({
@@ -38,5 +40,13 @@ export class ListePropComponent implements OnInit {
   ngOnInit(): void {
     this.getAllPropo();
   }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      $(document).ready(function () {
+        $('#myTable').DataTable();
+        //$('.datatable').dataTable();
+      });
+    }, 500);}
 
 }

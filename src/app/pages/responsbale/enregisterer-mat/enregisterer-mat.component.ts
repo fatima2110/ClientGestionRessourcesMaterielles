@@ -20,29 +20,7 @@ export class EnregistererMatComponent implements OnInit {
 
 
   constructor(private service: EnregistererMatService) {
-    this.service.getImprimantes().subscribe((imprimantes: ImprimenteDTO[]) => {
-      this.imprimantes = imprimantes;
-      for (let i = 0; i < this.imprimantes.length; i++) {
-        this.generateBarcodeIm(this.imprimantes[i]);
-        console.log(this.ordinateur[i])
-      }
-    });
-
-    this.service.getOrdinateurs().subscribe({
-      next: (res) => {
-        this.ordinateur = res;
-        for (let i = 0; i < this.ordinateur.length; i++) {
-          this.generateBarcode(this.ordinateur[i]);
-          console.log(this.ordinateur[i])
-        }
-
-
-      },
-      error: (err) => {
-        alert("Erreur");
-        console.log(err);
-      }
-    });
+    
   }
   ngOnInit(): void {
     this.service.getImprimantes().subscribe((imprimantes: ImprimenteDTO[]) => {
@@ -219,9 +197,11 @@ export class EnregistererMatComponent implements OnInit {
   sauvegarder() {
     this.service.save(this.selectedImprimantes).subscribe(() => {
       console.log('Les imprimantes ont été sauvegardées avec succès !');
+      this.ngOnInit();
     });
     this.service.saveOm(this.selectedOrdinateur).subscribe(() => {
       console.log('Les imprimantes ont été sauvegardées avec succès !');
+      this.ngOnInit();
     });
   }
   test1 = false;
@@ -258,7 +238,6 @@ export class EnregistererMatComponent implements OnInit {
         this.afficherModele()
       }
     }
-    this.ngOnInit();
 
   }
   //pour la recherche

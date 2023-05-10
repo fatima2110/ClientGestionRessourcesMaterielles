@@ -57,7 +57,8 @@ export const ROLES: Role[] = [
       '/fournisseur/ListePropo',
       '/fournisseur/ListePropo/MatProp/:id',
       '/fournisseur/ListePropo/UpdProp/:id',
-      '/fournisseur/messagerie'
+      '/fournisseur/messagerie',
+      '/fournisseur/FournissuerInfo'
     ]
   }
 ];

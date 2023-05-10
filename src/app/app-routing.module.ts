@@ -170,12 +170,7 @@ const routes: Routes = [
       {
        path:'messagerie',
        component:MessagerieComponent
-      },
-      {
-       path:'FournissuerInfo',
-       component:FournisseurInfoComponent
-      },
-      { path:'messagerie', component:MessagerieComponent }
+      }
     ],
   },
   { path: 'inscription', component: InscriptionComponent },
@@ -189,7 +184,8 @@ const routes: Routes = [
       { path: 'ListePropo', component: ListePropComponent },
       { path: 'ListePropo/MatProp/:id', component: ListeMatPropoComponent },
       { path: 'ListePropo/UpdProp/:id', component: ListeMatPropoUpdComponent },
-      { path:'messagerie', component:MessagerieComponent }
+      { path:'messagerie', component:MessagerieComponent },
+      { path:'FournissuerInfo', component:FournisseurInfoComponent}
       //{path:"contact",component:ContactComponent}
     ],
   },

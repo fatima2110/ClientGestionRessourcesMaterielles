@@ -52,11 +52,7 @@ export class CompteComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.admin) {
-      const str = this.auth.getId();
-      let idUser: number = 0;
-      if (str != null) {
-        idUser = parseInt(str, 10);
-      }
+      const idUser = this.auth.getId();
       this.auth.getDepartement(idUser).subscribe((response: any) => {
         this.dept = response.departement;
         //console.log('Nouvelle valeur de dept:', this.dept);
@@ -70,7 +66,7 @@ export class CompteComponent implements OnInit {
           }
         });
       });
-    } else if (this.showEns) {
+    } else {
         this.auth.getAllChefs().subscribe({
           next: (res) => {
             this.comptesChef = res;
@@ -80,7 +76,7 @@ export class CompteComponent implements OnInit {
             console.log(err);
           }
         });
-      }else{
+
         this.auth.getAllTechs().subscribe({
           next: (res) => {
             this.comptesTech = res;
@@ -103,11 +99,7 @@ export class CompteComponent implements OnInit {
 
   createCompte() {
     if (!this.admin) {
-      const str = this.auth.getId();
-      let idUser: number = 0;
-      if (str != null) {
-        idUser = parseInt(str, 10);
-      }
+      const idUser = this.auth.getId();
       this.auth.getDepartement(idUser).subscribe((response: any) => {
         this.dept = response.departement;
         this.compte.departement = this.dept;
@@ -154,11 +146,8 @@ export class CompteComponent implements OnInit {
     this.compte = new Register();
   }
   editCompte() {
-    const str = this.auth.getId();
-    let idUser: number = 0;
-    if (str != null) {
-      idUser = parseInt(str, 10);
-    }
+    const idUser = this.auth.getId();
+
     this.auth.getDepartement(idUser).subscribe((response: any) => {
       this.dept = response.departement;
       //console.log('Nouvelle valeur de dept:', this.dept);

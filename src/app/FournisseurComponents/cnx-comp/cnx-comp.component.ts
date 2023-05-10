@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Message } from 'src/app/Classes/Message';
 import { MessagerieService } from 'src/app/pages/responsbale/Services/messagerie.service';
 import { AuthService } from 'src/app/services/AuthService';
+import { LoginService } from '../services/login.service';
 declare var $: any;
 
 
@@ -13,31 +14,40 @@ declare var $: any;
 })
 export class CnxCompComponent {
 
-  title = 'Dashboard - Responsable';
+  title = 'Dashboard - Fournisseur';
   login !: any;
   role !: any;
   isChef: boolean = false;
   photo: string = '';
-  constructor(private service: MessagerieService, private authService: AuthService, private router: Router) {
-
-    this.service.getMessage(this.id).subscribe((message: Message[]) => {
-      console.log("on va aficher la list")
-      this.message = message;
-      console.log(message)
-    });
-    this.service.getvue(this.id).subscribe((n: number) => {
-      console.log("on va aficher la list")
-      this.vue = n;
-      console.log(n)
-    });
+  nbNotifs = 0;
 
 
+  message: Message[] = [];
+  id: number = 0;
+  m: Message = new Message;
 
-    this.login = this.authService.getLogin();
-    this.role = this.authService.getRole();
-    if (this.role == "CHEF_DEPARTEMENT") {
-      this.isChef = true;
-    }
+  constructor(private service: MessagerieService, private authService: AuthService, private router: Router, private loginService: LoginService) {
+
+    this.loginService.GetFournisseur().subscribe({
+      next: (res) => {
+        this.id = res.id
+        this.service.getMessage(this.id).subscribe((message: Message[]) => {
+          console.log("on va aficher la list")
+          this.message = message;
+          console.log(message)
+        });
+        this.service.getvue(this.id).subscribe((n: number) => {
+          console.log("on va aficher la list")
+          this.nbNotifs = n;
+          console.log(n)
+        });
+
+        this.login = this.authService.getLogin();
+        this.role = this.authService.getRole();
+
+      },
+      error: (err) => { console.log(err) }
+    })
   }
 
   ngAfterViewInit(): void {
@@ -53,12 +63,6 @@ export class CnxCompComponent {
     this.authService.singOut();
   }
 
-  message: Message[] = [];
-  id: number = 2;
-  m: Message = new Message;
-
-  vue: number = 0;
-
   suprimmer(id: number) {
     console.log("on va suprimmer")
 
@@ -70,35 +74,11 @@ export class CnxCompComponent {
   }
   rediriger(m: Message) {
     let link = "";
+    if (m.message == "refuse Proposition")
+      link = "/fournisseur/ListePropo";
 
-    if (m.message == "Nouvelle besoin sont ajouter  pour generer appelle d'offre") {
-      link = "./consulterBesoin";
-    }
-    if (m.message == "votre proposition a ete acepte") {
-      if (!m.exsist) {
-        link = "./FournissuerInfo";
-      }
-
-      else
-        link = "./consulterBesoin";
-
-    }
-    else
-      if (m.message == "votre Proposition a ete rejete") {
-        link = "./consulterBesoin";
-      }
-      else
-        if (m.message == "Vous pouvez maintenant ajouter des besoins si vous avez") {
-          link = "./consulterBesoin";
-        }
-        else
-          if (m.message == "Bonjour j'ai ajouter des besoins ") {
-            link = "./consulterBesoin";
-          }
-          else
-            link = "./consulterBesoin";
     this.router.navigateByUrl(link);
+    this.nbNotifs = this.nbNotifs-1;
   }
-
 
 }

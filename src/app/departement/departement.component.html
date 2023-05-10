@@ -43,12 +43,12 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">{{vue}}</span>
+            <span class="badge bg-primary badge-number">{{nbNotifs}}</span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              Vous avez {{vue}} notification
+              Vous avez {{nbNotifs}} notification
               <a routerLink="./messagerie"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
@@ -147,13 +147,13 @@
       </li>
       <li *ngIf="isChef" class="nav-item">
         <a class="nav-link" href="departement/gestion-besoins">
-          <i class="bi bi-gear"></i>
+          <i class="bi bi-clipboard-check"></i>
           <span>Gestion des besoin</span>
         </a>
       </li>
       <li *ngIf="isChef" class="nav-item">
         <a class="nav-link" href="departement/compte">
-          <i class="bi bi-gear"></i>
+          <i class="bi bi-person-lines-fill"></i>
           <span>Gestion des comptes</span>
         </a>
       </li>

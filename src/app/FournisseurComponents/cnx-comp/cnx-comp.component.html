@@ -36,12 +36,12 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">{{vue}}</span>
+            <span class="badge bg-primary badge-number">{{nbNotifs}}</span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              Vous avez {{vue}} notification
+              Vous avez {{nbNotifs}} notification
               <a routerLink="./messagerie"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
@@ -140,7 +140,7 @@
     <li class="nav-item">
       <a class="nav-link" routerLink="./">
         <i class="bi bi-grid"></i>
-        <span>Dashboard</span>
+        <span>{{title}}</span>
       </a>
     </li><!-- End Dashboard Nav -->
 

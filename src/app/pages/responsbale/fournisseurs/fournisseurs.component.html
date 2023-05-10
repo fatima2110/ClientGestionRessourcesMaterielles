@@ -31,7 +31,7 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">NomSociété</th>
+                    <th scope="col">Nom de Société</th>
                     <th scope="col">Adresse</th>
                     <th scope="col">Email</th>
                     <th  scope="col">Action</th>
@@ -41,7 +41,7 @@
                 <tbody>
                   <tr *ngFor="let fournisseur of Fournisseurs;let i=index">
                     <th scope="row">{{i+1}}</th>
-                    <td >{{fournisseur.nom_societe}}</td>
+                    <td >{{fournisseur.nomSociete}}</td>
                     <td >{{fournisseur.adresse}}</td>
                     <td >{{fournisseur.email}}</td>
                     <td ><button style="margin-right: 10px;" (click)="voirPropositions(fournisseur.id)" type="button" class="btn btn-primary" >Voir Proposition</button>

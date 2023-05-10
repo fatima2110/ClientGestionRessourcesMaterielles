@@ -52,12 +52,12 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">{{vue}}</span>
+            <span class="badge bg-primary badge-number">{{nbNotifs}}</span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              Vous avez {{vue}} notification
+              Vous avez {{nbNotifs}} notification
               <a routerLink="./messagerie"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
@@ -158,13 +158,13 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="./">
           <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
+          <span>Dashboard - Responsable</span>
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
        
         <a class="nav-link" routerLink="./consulterBesoin"> 
-          <i class="bi bi-file-earmark-plus"></i>
+          <i class="bi bi-list-check"></i>
           <span>Consulter Les Besoins</span>
        </a>
        <!--<a class="nav-link" href="responsable/consulterBesoin">
@@ -173,41 +173,41 @@
       </a>-->
       </li><li class="nav-item">
         <a class="nav-link" routerLink="./EnregistrerMat">
-          <i class="bi bi-file-earmark-plus"></i>
+          <i class="bi bi-save"></i>
           <span>Enregistrer Materiales</span>
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
         <a class="nav-link" routerLink="./gestionRessources">
-          <i class="bi bi-gear"></i>
+          <i class="bi bi-briefcase"></i>
           <span>Gestion des  Materiales</span>
         </a>
       </li>
       <li class="nav-item">
        <a class="nav-link" routerLink="./fournisseurs"> 
-          <i  class="bi bi-layout-text-window-reverse" ></i><span>Gestion Fournisseurs</span>
+        <i class="bi bi-briefcase"></i><span>Gestion Fournisseurs</span>
        </a>
         
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="./listenoir"> 
-           <i  class="bi bi-layout-text-window-reverse" ></i><span>Gestion Liste Noir</span>
+          <i class="bi bi-exclamation-circle"></i><span>Gestion Liste Noir</span>
         </a>      
        </li>
        <li class="nav-item">
         <a class="nav-link" routerLink="./affectations">
-          <i class="bi bi-calendar2-check-fill"></i>
+          <i class="bi bi-link"></i>
           <span>Gestion d'affectations</span>
         </a>
       </li>
        <li class="nav-item">
         <a class="nav-link" routerLink="./compte"> 
-           <i  class="bi bi-layout-text-window-reverse" ></i><span>Gestion des comptes</span>
+          <i class="bi bi-person-lines-fill"></i><span>Gestion des comptes</span>
         </a>         
        </li>
        <li class="nav-item">
         <a class="nav-link" routerLink="./gestionPannes"> 
-           <i  class="bi bi-layout-text-window-reverse" ></i><span>Gestion des pannes</span>
+          <i class="bi bi-exclamation-triangle-fill"></i><span>Gestion des pannes</span>
         </a>
        
         <!--<li class="nav-heading">Pages</li>

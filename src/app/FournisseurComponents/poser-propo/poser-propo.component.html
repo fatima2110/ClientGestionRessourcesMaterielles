@@ -38,7 +38,7 @@
     <th><input type="text" formControlName="MarqueOrdi"></th>
     <th><input type="number" formControlName="PrixOrdi"></th>
     <th>
-      <button *ngIf="ordi.prix!==0;else cdt2" (click)="ADDOrdi(ordi)" type="button" class="btn btn-danger">
+      <button *ngIf="ordi.prix!==0;else cdt2" (click)="ADDOrdi(ordi)" type="button" class="btn btn-info">
         MODIFIER
       </button>
       <ng-template #cdt2>

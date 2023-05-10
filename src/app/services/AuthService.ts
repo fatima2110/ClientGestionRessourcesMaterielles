@@ -21,7 +21,13 @@ export class AuthService {
   getLogin() { return localStorage.getItem("login"); }
 
   setId(id: string) { localStorage.setItem("id", id); }
-  getId() { return localStorage.getItem("id"); }
+  getId() { 
+    const str = localStorage.getItem("id");
+    let id_user! : number ;
+    if( str != null && str != undefined)
+      id_user = parseInt(str);
+    return  id_user;
+  }
 
   setRole(role: string) { localStorage.setItem("role", role); }
   getRole() { return localStorage.getItem("role"); }

@@ -42,7 +42,16 @@
               <th>{{App.id}}</th>
               <th>{{App.dateDebut}}</th>
               <th>{{App.dateFin}}</th>
-              <th><a href="#" routerLink="./NvProposition/{{App.id}}">Poser une Proposition</a></th>
+              <!--*ngIf="dejaPostulerFor(App.id); else alter"-->
+              <th >
+                <a href="#" routerLink="./NvProposition/{{App.id}}">Poser une Proposition</a>
+              </th>
+              <!--<ng-template #alter>
+                <th>
+                  <a class="disabled-link" href="#">Poser une Proposition</a>
+                </th>
+              </ng-template>-->
+              
             </tr>
             </tbody>
           </table>

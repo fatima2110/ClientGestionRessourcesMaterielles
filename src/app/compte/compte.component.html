@@ -105,8 +105,8 @@
           <h5 class="card-title">Gestion des comptes</h5>
 
           <!-- data table -->
-         <div *ngIf="admin;else alternativeNonAdmin">
-          <table class="table datatable" id="myTable" *ngIf="showEns;else alternativeTable">
+         <div>
+          <table *ngIf="admin && showEns" class="table datatable" id="myTable">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -134,8 +134,7 @@
               </tr>
             </tbody>
           </table>
-          <ng-template #alternativeTable>
-            <table class="table datatable" id="myTable" >
+            <table *ngIf="admin && !showEns" class="table datatable" id="myTable">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -160,10 +159,8 @@
                 </tr>
               </tbody>
             </table>
-          </ng-template>
          </div>
-        <ng-template #alternativeNonAdmin>
-          <table class="table datatable" id="myTable">
+          <table *ngIf="!admin" class="table datatable" id="myTable">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -189,7 +186,6 @@
               </tr>
             </tbody>
           </table>
-        </ng-template>
           <!-- End data table -->
         </div>
       </div>

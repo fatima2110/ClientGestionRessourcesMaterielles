@@ -1,6 +1,6 @@
 export class Fournisseur {
    id!: number;
-    nom_societe!: string;
+   nomSociete!: string;
     adresse!: string;
     email!: string;
     gerant!: string;

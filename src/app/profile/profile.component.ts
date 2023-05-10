@@ -36,10 +36,7 @@ export class ProfileComponent implements OnInit{
 
   constructor(private auth:AuthService){}
   ngOnInit(): void {
-    const idString = this.auth.getId();
-    if (idString != null) {
-      this.id = parseInt(idString);
-    }
+    this.id = this.auth.getId();
     this.auth.getCompte(this.id).subscribe({
       next: (res) => {
         console.log(res)
@@ -53,11 +50,7 @@ export class ProfileComponent implements OnInit{
     });
   }
   editProfile(){
-    const str = this.auth.getId();
-    let idUser: number = 0;
-    if (str != null) {
-      idUser = parseInt(str, 10);
-    }
+    const idUser = this.auth.getId();
     this.auth.editProfile(this.profile.id, this.profile).subscribe({
         next: (res) => {
           this.notif = 3;

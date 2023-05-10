@@ -1,17 +1,19 @@
 export class Fournisseur {
   id:number
-  nom_societe:string
+  nomSociete:string
   adresse:string
   email:string
   gerant:string
   pass:string
+  listeNoir:boolean
 
   constructor(){
     this.id = 0;
     this.adresse= '';
     this.email = '';
-    this.nom_societe = '';
+    this.nomSociete = '';
     this.gerant = '';
     this.pass = '';
+    this.listeNoir = false;
   }
 }

@@ -4,6 +4,8 @@ import { Ordinateur } from '../../models/ordinateur';
 import { Imprimante } from '../../models/imprimante';
 import { OrdinateurService } from '../../services/ordinateur.service';
 import { ImprimanteService } from '../../services/imprimante.service';
+import { MessagerieService } from 'src/app/pages/responsbale/Services/messagerie.service';
+import { AuthService } from 'src/app/services/AuthService';
 declare var $: any;
 
 @Component({
@@ -12,6 +14,7 @@ declare var $: any;
   styleUrls: ['./besoin.component.css']
 })
 export class BesoinComponent implements OnInit {
+  isChef = false;
   showOrdinateur = true;
   newOrdinateur = new Ordinateur();
   newImprimante = new Imprimante();
@@ -21,12 +24,15 @@ export class BesoinComponent implements OnInit {
   besoinsImprimentes: Imprimante[];
   title = 'Dashboard - Mes besoins';
   notif: number;
-  stitle='ajouter-modifier-supprimer-mes besoins';
+  stitle = 'ajouter-modifier-supprimer-mes besoins';
 
-  constructor(private ordinateurService: OrdinateurService, private imprimanteService: ImprimanteService) {
+  constructor(private ordinateurService: OrdinateurService, private imprimanteService: ImprimanteService, private msgService: MessagerieService, private authService: AuthService) {
     this.besoinsOrdinateurs = [];
     this.besoinsImprimentes = [];
     this.notif = 0;
+    if (this.authService.getRole() == "CHEF_DEPARTEMENT") {
+      this.isChef = true;
+    }
   }
   ngAfterViewInit(): void {
     /*$(document).ready(function() {
@@ -34,12 +40,12 @@ export class BesoinComponent implements OnInit {
       $('.datatable').dataTable();
     });*/
 
-    setTimeout(()=>{
-      $(document).ready(function() {
+    setTimeout(() => {
+      $(document).ready(function () {
         $('#myTable').DataTable();
         //$('.datatable').dataTable();
       });
-    },500);
+    }, 500);
 
   }
   onOptionSelected(value: any) {
@@ -144,5 +150,12 @@ export class BesoinComponent implements OnInit {
   confirmerDeleteImprimante(mat: string, i: number) {
     if (confirm("vous etes sur de supprimer " + mat + " ?"))
       this.deleteBesoinImprimante(i);
+  }
+  notifier() {
+    const id_emett = this.authService.getId();
+
+    this.msgService.notifier(id_emett);
+
+
   }
 }

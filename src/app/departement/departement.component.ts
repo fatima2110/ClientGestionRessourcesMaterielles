@@ -20,21 +20,21 @@ export class DepartementComponent {
   photo: string = '';
 
   message: Message[] = [];
-  id: number = 2;
+  id: number = 0;
   m: Message = new Message;
-
-  vue: number = 0;
+  nbNotifs: number = 0;
 
   constructor(private authService: AuthService,private service: MessagerieService,private router: Router) {
+    this.id = this.authService.getId();
 
     this.service.getMessage(this.id).subscribe((message: Message[]) => {
-      console.log("on va aficher la list")
+      //console.log("on va aficher la list")
       this.message = message;
       console.log(message)
     });
     this.service.getvue(this.id).subscribe((n: number) => {
-      console.log("on va aficher la list")
-      this.vue = n;
+      //console.log("on va aficher la list")
+      this.nbNotifs = n;
       console.log(n)
     });
 
@@ -43,6 +43,7 @@ export class DepartementComponent {
     if (this.role == "CHEF_DEPARTEMENT") {
       this.isChef = true;
     }
+
   }
 
   ngAfterViewInit(): void {
@@ -70,33 +71,11 @@ export class DepartementComponent {
   rediriger(m: Message) {
     let link = "";
 
-    if (m.message == "Nouvelle besoin sont ajouter  pour generer appelle d'offre") {
-      link = "./consulterBesoin";
+    if (m.message == "Vous pouvez maintenat ajouter vous besoin") {
+      link = "/departement/besoin";
     }
-    if (m.message == "votre proposition a ete acepte") {
-      if (!m.exsist) {
-        link = "./FournissuerInfo";
-      }
-
-      else
-        link = "./consulterBesoin";
-
-    }
-    else
-      if (m.message == "votre Proposition a ete rejete") {
-        link = "./consulterBesoin";
-      }
-      else
-        if (m.message == "Vous pouvez maintenant ajouter des besoins si vous avez") {
-          link = "./consulterBesoin";
-        }
-        else
-          if (m.message == "Bonjour j'ai ajouter des besoins ") {
-            link = "./consulterBesoin";
-          }
-          else
-            link = "./consulterBesoin";
     this.router.navigateByUrl(link);
   }
+  
 }
 

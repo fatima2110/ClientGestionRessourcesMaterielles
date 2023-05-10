@@ -1,0 +1,5 @@
+.disabled-link {
+    opacity: 0.5; /* For example, reduce the opacity */
+    cursor: not-allowed; /* Change the cursor to indicate it is disabled */
+    /* Other disabled styles */
+  }

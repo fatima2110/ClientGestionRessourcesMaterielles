@@ -1,7 +1,7 @@
 
 
 import { Component, OnInit } from '@angular/core';
-import { ImprimenteDTO} from 'src/app/Classes/ImprimenteDTO';
+import { ImprimenteDTO } from 'src/app/Classes/ImprimenteDTO';
 import { BesoinService } from './besoin.service';
 import { OrdinateurDTO } from 'src/app/Classes/OrdinateurDTO';
 declare var $: any;
@@ -14,7 +14,7 @@ declare var $: any;
   templateUrl: './besoin.component.html',
   styleUrls: ['./besoin.component.css']
 })
-export class BesoinComponentResponsable  implements OnInit{
+export class BesoinComponentResponsable implements OnInit {
   ordinateur: OrdinateurDTO[] = [];
 
   imprimantes: ImprimenteDTO[] = [];
@@ -22,27 +22,27 @@ export class BesoinComponentResponsable  implements OnInit{
   selectedOrdinateur: OrdinateurDTO[] = [];
 
 
-  constructor( private service:BesoinService)
-  {
-this.service.getImprimantes().subscribe((imprimantes: ImprimenteDTO[]) => {
-console.log("on va aficher la list")
-  this.imprimantes = imprimantes;
-  console.log(imprimantes)
-});
-this.service.getOrdinateurs().subscribe((Ordinateur:OrdinateurDTO[]) => {
-  this.ordinateur =Ordinateur;
-});}
+  constructor(private service: BesoinService) {
+    
+  }
 
-ngAfterViewInit(): void {
-  setTimeout(()=>{
-    $(document).ready(function() {
-      $('#myTable').DataTable();
-      //$('.datatable').dataTable();
-    });
-  },500);
-}
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      $(document).ready(function () {
+        $('#myTable').DataTable();
+        //$('.datatable').dataTable();
+      });
+    }, 500);
+  }
   ngOnInit(): void {
-    console.log("")
+    this.service.getImprimantes().subscribe((imprimantes: ImprimenteDTO[]) => {
+      console.log("on va aficher la list")
+      this.imprimantes = imprimantes;
+      console.log(imprimantes)
+    });
+    this.service.getOrdinateurs().subscribe((Ordinateur: OrdinateurDTO[]) => {
+      this.ordinateur = Ordinateur;
+    });
   }
 
   genererListF(imprimante: ImprimenteDTO): void {
@@ -62,14 +62,14 @@ ngAfterViewInit(): void {
       // Vérifier l'état de chaque case à cocher et exécuter une fonction en conséquence
       if (checkbox.checked) {
 
-        this.selectedImprimantes=this.imprimantes;
-        this.selectedOrdinateur=this.ordinateur;
+        this.selectedImprimantes = this.imprimantes;
+        this.selectedOrdinateur = this.ordinateur;
         console.log(this.selectedImprimantes)
         console.log(this.selectedOrdinateur)
 
       } else {
-        this.selectedImprimantes=[];
-        this.selectedOrdinateur=[];
+        this.selectedImprimantes = [];
+        this.selectedOrdinateur = [];
         console.log(this.selectedImprimantes)
         console.log(this.selectedOrdinateur)
       }
@@ -84,7 +84,7 @@ ngAfterViewInit(): void {
 
 
 
-  genererListFor(ordinateur:OrdinateurDTO ): void {
+  genererListFor(ordinateur: OrdinateurDTO): void {
     const index = this.selectedOrdinateur.indexOf(ordinateur);
     if (index === -1) {
       this.selectedOrdinateur.push(ordinateur);
@@ -99,13 +99,13 @@ ngAfterViewInit(): void {
 
   //pour l'affichage des modal
   modeleAppeleOffre = false;
-  test=false;
+  test = false;
 
   afficherModele1() {
-    if(this.selectedImprimantes.length === 0 && this.selectedOrdinateur.length === 0)
-    this.test=true;
+    if (this.selectedImprimantes.length === 0 && this.selectedOrdinateur.length === 0)
+      this.test = true;
     else
-    this.modeleAppeleOffre = true;
+      this.modeleAppeleOffre = true;
   }
   cacherModele() {
     this.modeleAppeleOffre = false;
@@ -114,65 +114,62 @@ ngAfterViewInit(): void {
   cacherModele1() {
     this.test = false;
   }
-  initialiser(ref: any,ref1: any){
+  initialiser(ref: any, ref1: any) {
     ref.value = "";
     ref1.value = "";
 
   }
   modeleGenerationSucces = false;
-//pour afficher le message de succes
+  //pour afficher le message de succes
 
 
-sauvegarder() {
-  this.service.save(this.selectedImprimantes).subscribe(() => {
-    console.log('Les imprimantes ont été sauvegardées avec succès !');
-  });
-  this.service.saveOrd(this.selectedOrdinateur).subscribe(() => {
-    console.log('Les imprimantes ont été sauvegardées avec succès !');
-  });
-this.ngOnInit()
-
-}
-//generer Nouvelle apple d'offre
-count=0;
-genrerNouvelle(ref:any,ref1:any)
-{
-  this.cacherModele();
-  if(ref.value && ref1.value)
-  {
- for(let i=0;i<this.selectedImprimantes.length;i++)
-  {
-
-    this.selectedImprimantes[i].datedebut=ref.value.split("/").reverse().join("-");
-    this.selectedImprimantes[i].dateFin=ref1.value.split("/").reverse().join("-");
+  sauvegarder() {
+    this.service.save(this.selectedImprimantes).subscribe({
+      next:(res)=>{this.ngOnInit()},
+      error:(err)=>{console.log(err)}
+    })
+    this.service.saveOrd(this.selectedOrdinateur).subscribe({
+      next:(res)=>{this.ngOnInit()},
+      error:(err)=>{console.log(err)}
+    })
 
   }
-  for(let i=0;i<this.selectedOrdinateur.length;i++)
-  {
+  //generer Nouvelle apple d'offre
+  count = 0;
+  genrerNouvelle(ref: any, ref1: any) {
+    this.cacherModele();
+    if (ref.value && ref1.value) {
+      for (let i = 0; i < this.selectedImprimantes.length; i++) {
 
-    this.selectedOrdinateur[i].datedebut=ref.value.split("/").reverse().join("-");
-    this.selectedOrdinateur[i].dateFin=ref1.value.split("/").reverse().join("-");
+        this.selectedImprimantes[i].datedebut = ref.value.split("/").reverse().join("-");
+        this.selectedImprimantes[i].dateFin = ref1.value.split("/").reverse().join("-");
+
+      }
+      for (let i = 0; i < this.selectedOrdinateur.length; i++) {
+
+        this.selectedOrdinateur[i].datedebut = ref.value.split("/").reverse().join("-");
+        this.selectedOrdinateur[i].dateFin = ref1.value.split("/").reverse().join("-");
+
+      }
+
+      this.sauvegarder();
+
+    }
+
+
 
   }
-
-  this.sauvegarder();
-
-  }
-
-
-
-}
   //pour la recherche///
 
   myFunction() {
     // Declare variables
     let input = document.getElementById("myInput") as HTMLInputElement;
-let filter: string;
-let table = document.getElementById("myTable") as HTMLTableElement;
-let tr = Array.from(table.getElementsByTagName("tr")) as HTMLTableRowElement[];
-let td: HTMLTableCellElement;
-let i: number;
-let txtValue: string;
+    let filter: string;
+    let table = document.getElementById("myTable") as HTMLTableElement;
+    let tr = Array.from(table.getElementsByTagName("tr")) as HTMLTableRowElement[];
+    let td: HTMLTableCellElement;
+    let i: number;
+    let txtValue: string;
 
 
     filter = input.value.toUpperCase();

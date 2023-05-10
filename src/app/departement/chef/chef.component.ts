@@ -59,7 +59,7 @@ export class ChefComponent implements OnInit {
         this.besoinsOrdinateurs = res;
         // this.ngOnInit();
       }, error: (err) => {
-        alert("error")
+       // alert("error")
         console.log(err)
       }
     });
@@ -68,7 +68,7 @@ export class ChefComponent implements OnInit {
         this.besoinsImprimantes = res;
         // this.ngOnInit();
       }, error: (err) => {
-        alert("error")
+        //alert("error")
         console.log(err)
       }
     });
@@ -82,7 +82,7 @@ export class ChefComponent implements OnInit {
 
           // this.ngOnInit();
         }, error: (err) => {
-          alert("error")
+         // alert("error")
           console.log(err)
         }
       });;
@@ -96,7 +96,7 @@ export class ChefComponent implements OnInit {
 
           // this.ngOnInit();
         }, error: (err) => {
-          alert("error")
+         // alert("error")
           console.log(err)
         }
       });
@@ -122,7 +122,7 @@ export class ChefComponent implements OnInit {
 
         // this.ngOnInit();
       }, error: (err) => {
-        alert("error")
+       // alert("error")
         console.log(err)
       }
     });
@@ -135,13 +135,13 @@ export class ChefComponent implements OnInit {
 
         // this.ngOnInit();
       }, error: (err) => {
-        alert("error")
+       // alert("error")
         console.log(err)
       }
     });
   }
   valider() {
-    if (confirm("Vous arriver a valider les ordinateurs de votre departement")) {
+   
       this.besoinsOrdinateurs.forEach(element => {
         this.besoinOrdinateur.id = element.id;
         this.besoinOrdinateur.ram = element.ram;
@@ -160,7 +160,7 @@ export class ChefComponent implements OnInit {
           }
         });
       });
-    }
+    
 
 
   }

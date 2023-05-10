@@ -30,10 +30,17 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">J'ai un besoin</h5>
+          <div class="div">
           <p>Cette escpace pour ajouter vos besoin d'ensignment.votre presence dans la reunion de la departement est
             <code>obligatoire</code> apres avoir collecter tous vous besoins.
           </p>
 
+          <p *ngIf="isChef">cliquer ici <span>&nbsp;</span><button class="btn btn-info" (click)="notifier()"> <i class="bi bi-envelope"></i></button>
+            <span>&nbsp;</span>pour notifier tous les enseignats de votre département d'envoyer leurs besoins
+            
+          </p>
+    
+        </div>
           <!-- Browser Default Validation -->
 
           <label for="validationDefault04" class="form-label">Type de besoin:</label>
