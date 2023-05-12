@@ -77,6 +77,9 @@ export class CnxCompComponent {
     if (m.message == "refuse Proposition")
       link = "/fournisseur/ListePropo";
 
+    if (m.message == "accept Proposition")
+      link = "/fournisseur/FournissuerInfo";
+
     this.router.navigateByUrl(link);
     this.nbNotifs = this.nbNotifs-1;
   }

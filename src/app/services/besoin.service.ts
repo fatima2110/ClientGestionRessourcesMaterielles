@@ -29,7 +29,7 @@ export class BesoinService {
         "Authorization": "Bearer " + token
       }
     };
-    return this.httpclient.get<Besoin[]>("http://localhost:8080/getBesoinsOrdinateurChef/informatique",httpOptions);
+    return this.httpclient.get<Besoin[]>("http://localhost:8080/getBesoinsOrdinateurChef",httpOptions);
 
   }
   getBesoinsImprimates():Observable<BesoinImprimante[]>{
@@ -39,7 +39,7 @@ export class BesoinService {
         "Authorization": "Bearer " + token
       }
     };
-    return this.httpclient.get<BesoinImprimante[]>("http://localhost:8080/getBesoinsImprimentesChef/informatique",httpOptions);
+    return this.httpclient.get<BesoinImprimante[]>("http://localhost:8080/getBesoinsImprimentesChef",httpOptions);
 
   }
 

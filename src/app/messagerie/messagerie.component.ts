@@ -72,7 +72,7 @@ export class MessagerieComponent implements OnInit {
         } break;
 
       case "votre Proposition a ete rejete":
-        link = "./consulterBesoin"; break;
+        link = "/fournisseur/FournissuerInfo"; break;
 
       case "Bonjour j'ai ajouter des besoins":
         link = "./consulterBesoin"; break;

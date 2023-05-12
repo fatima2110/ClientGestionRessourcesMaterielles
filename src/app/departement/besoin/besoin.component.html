@@ -31,9 +31,14 @@
         <div class="card-body">
           <h5 class="card-title">J'ai un besoin</h5>
           <div class="div">
-          <p>Cette escpace pour ajouter vos besoin d'ensignment.votre presence dans la reunion de la departement est
+          <p>Cet espace pour ajouter vos besoin d'ensignment.votre presence dans la reunion de la departement est
             <code>obligatoire</code> apres avoir collecter tous vous besoins.
           </p>
+
+          <div *ngIf="notif == 9" class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Notification</strong> anvoyée avec succes .
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
 
           <p *ngIf="isChef">cliquer ici <span>&nbsp;</span><button class="btn btn-info" (click)="notifier()"> <i class="bi bi-envelope"></i></button>
             <span>&nbsp;</span>pour notifier tous les enseignats de votre département d'envoyer leurs besoins

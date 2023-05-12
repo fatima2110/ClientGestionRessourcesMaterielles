@@ -155,6 +155,7 @@ export class BesoinComponent implements OnInit {
     const id_emett = this.authService.getId();
 
     this.msgService.notifier(id_emett);
+    this.notif = 9;
 
 
   }

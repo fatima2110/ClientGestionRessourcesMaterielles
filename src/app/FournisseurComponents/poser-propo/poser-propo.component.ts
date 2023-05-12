@@ -22,6 +22,7 @@ export class PoserPropoComponent implements OnInit {
   FormAjtImp!: FormGroup;
   id!: number;
   confirmerProposition = 0;
+  notif = 0;
 
   constructor(private http: HttpClient, private Rout: Router, private LogSer: LoginService, private Fb: FormBuilder, private Fb2: FormBuilder, private rout: ActivatedRoute) {
     this.id = Number(this.rout.snapshot.params['id']);
@@ -76,6 +77,7 @@ export class PoserPropoComponent implements OnInit {
       PrixImp: this.Fb2.control("")
 
     });
+    this.notif = 0;
   }
 
   ADDOrdi(ordi: Ordinateur) {
@@ -130,14 +132,18 @@ export class PoserPropoComponent implements OnInit {
 
   PoserPropo() {
     for (let i = 0; i < this.ListeOrdi.length; i++) {
-      if (this.ListeOrdi[i].prix == 0 || this.ListeOrdi[i].marque == "")
+      if (this.ListeOrdi[i].prix == 0 || this.ListeOrdi[i].marque == ""){
         this.confirmerProposition = 0;
+        //this.notif = 1;
+      }
       else
         this.confirmerProposition = 1;
     }
     for (let i = 0; i < this.ListeImp.length; i++) {
-      if (this.ListeImp[i].prix == 0 || this.ListeImp[i].marque == "")
+      if (this.ListeImp[i].prix == 0 || this.ListeImp[i].marque == ""){
         this.confirmerProposition = 0;
+        //this.notif = 2;
+      }
       else
         this.confirmerProposition = 1;
     }
@@ -168,11 +174,11 @@ export class PoserPropoComponent implements OnInit {
           }
         }
       });
-
+      this.notif = 2;
       this.Rout.navigateByUrl("/fournisseur/ListePropo");
     }
     else {
-      //alert("VOUS DEVREZ SAISIR TT LES INFOS")
+      this.notif = 1;
     }
   }
 

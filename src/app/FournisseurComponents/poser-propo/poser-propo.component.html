@@ -8,13 +8,26 @@
     </ol>
   </nav>
 </div><!-- End Page Title -->
+
 <div class="col-3 pb-5">
   <select (change)="onOptionSelected($event.target)" class="form-select" id="validationDefault04" required>
     <option selected value=1>Ordinateur</option>
     <option value=2>Imprimante</option>
   </select>
 </div>
+
 <form [formGroup]="FormAjtOrdi" class="form">
+
+  <div *ngIf="notif == 1" class="alert alert-warning alert-dismissible fade show" role="alert">
+    Vous devez <strong>remplir</strong> tous les champs .
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <div *ngIf="notif == 2" class="alert alert-warning alert-dismissible fade show" role="alert">
+    Votre <strong>proposition</strong> est ajoutée avec succes.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
 <table *ngIf="showOrdinateur;else alternative" class="table datatable" id="myTbale">
   <thead>
 
@@ -57,6 +70,7 @@
 </form>
 <!-- End Table with stripped rows -->
 <ng-template #alternative>
+  
   <form [formGroup]="FormAjtImp" class="form">
   <table class="table datatable" id="myTbale">
     <thead>
@@ -71,7 +85,7 @@
     <tr *ngFor= "let imp of ListeImp" >
       <th>{{imp.resolution}}</th>
       <th>{{imp.vitesse}}</th>
-      <th><input type="text" formControlName="MarqueImp" class="form-control"></th>
+      <th><input type="text" formControlName="MarqueImp"></th>
       <th><input type="number" formControlName="PrixImp"></th>
       <th>
         <button *ngIf="imp.prix!==0;else cd2" (click)="ADDImp(imp)" type="button" class="btn btn-info">
